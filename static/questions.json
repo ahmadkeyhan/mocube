@@ -1,0 +1,107 @@
+[
+  {
+    "id": 0,
+    "question": "When travelling, you always need a",
+    "answer1": "Destination",
+    "answer2": "Direction",
+    "factor": 10
+  },
+  {
+    "id": 1,
+    "question": "My brain spends more time",
+    "answer1": "In the zone",
+    "answer2": "Zoning out",
+    "factor": -1
+  },
+  {
+    "id": 2,
+    "question": "Are you a ruler or a scribble?",
+    "answer1": "Ruler",
+    "answer2": "scribble",
+    "factor": 10
+  },
+  {
+    "id": 3,
+    "question": "My creativity is more",
+    "answer1": "Method",
+    "answer2": "Madness",
+    "factor": 10
+  },
+  {
+    "id": 4,
+    "question": "Updates are ready to install",
+    "answer1": "Restart now",
+    "answer2": "Remind me tomorrow",
+    "factor": -1
+  },
+  {
+    "id": 5,
+    "question": "Everything is connected",
+    "answer1": "True",
+    "answer2": "False",
+    "factor": -10
+  },
+  {
+    "id": 6,
+    "question": "Secret weapon",
+    "answer1": "Curiosity",
+    "answer2": "Endurance",
+    "factor": 1
+  },
+  {
+    "id": 7,
+    "question": "Are you a fortune cookie or a birthday cake?",
+    "answer1": "Fortune cookie",
+    "answer2": "Birthday cake",
+    "factor": 100
+  },
+  {
+    "id": 8,
+    "question": "I’d rather talk to",
+    "answer1": "Someone I just met",
+    "answer2": "Myself",
+    "factor": -100
+  },
+  {
+    "id": 9,
+    "question": "My door is",
+    "answer1": "Wide open",
+    "answer2": "Usually closed",
+    "factor": -100
+  },
+  {
+    "id": 10,
+    "question": "Dip your toes or dive in head first?",
+    "answer1": "Dip",
+    "answer2": "Dive",
+    "factor": 1
+  },
+  {
+    "id": 11,
+    "question": "My first question is always",
+    "answer1": "Why",
+    "answer2": "How",
+    "factor": 1
+  },
+  {
+    "id": 12,
+    "question": "I tend to see life through the lens of",
+    "answer1": "Systems",
+    "answer2": "Stories",
+    "factor": 10
+  },
+  {
+    "id": 13,
+    "question": "I'd rather be in",
+    "answer1": "A cocoon",
+    "answer2": "A beehive",
+    "factor": 100
+  },
+  {
+    "id": 14,
+    "question": "I tend to go",
+    "answer1": "Over the top",
+    "answer2": "Under the radar",
+    "factor": -100
+  }
+]
