@@ -1,9 +1,9 @@
 <template>
   <div>
     <headernav :isactive="3"></headernav>
-    <div class="container">
-      <h1>درباره تست</h1>
-    </div>
+      <div class="container">
+        <h1>درباره تست</h1>
+      </div>
   </div>
 </template>
 <script>
