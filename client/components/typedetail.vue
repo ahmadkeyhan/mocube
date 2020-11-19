@@ -1,43 +1,23 @@
 <template>
-  <b-col cols="12" md="6">
-    <div :style="style" class="typeCard">
-      <h1 class="typeTitle">
-        {{ type.title }}
-      </h1>
-      <h2 class="typeSubtitle">
-        {{ type.subtitle }}
-      </h2>
-      <img :src="type.avatar" class="avatar">
-    </div>
-  </b-col>
+  <b-row dir="rtl" no-gutters>
+    <b-col cols="12" md="6">
+      <div :style="{ 'background-color': type.color}" class="typeCard">
+        <h1 class="typeTitle">
+          {{ type.title }}
+        </h1>
+        <h2 class="typeSubtitle">
+          {{ type.subtitle }}
+        </h2>
+        <img :src="type.avatar" class="avatar">
+      </div>
+    </b-col>
+  </b-row>
 </template>
 <script>
-import typesData from '../static/types.json'
-const types = typesData
 export default {
-  props: {
-    creativeType: String
-  },
-  computed: {
-    style () {
-      let i
-      let background
-      for (i = 0; i < 8; i++) {
-        if (this.creativeType === types[i].title) {
-          background = 'background-color: ' + types[i].color
-        }
-      }
-      return background
-    },
-    type () {
-      let i
-      let type
-      for (i = 0; i < 8; i++) {
-        if (this.creativeType === types[i].title) {
-          type = types[i]
-        }
-      }
-      return type
+  data () {
+    return {
+      type: []
     }
   }
 }
