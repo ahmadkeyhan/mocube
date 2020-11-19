@@ -1,7 +1,7 @@
 const db = require("../models");
 const Type = db.types;
 
-// Create and Save a new Tutorial
+// Create and Save a new Type
 exports.create = (req, res) => {
   if (!req.body.title) {
     res.status(400).send({ message: "Content can not be empty!" });
@@ -29,7 +29,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Tutorials from the database.
+// Retrieve all Types from the database.
 exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
@@ -46,7 +46,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Tutorial with an id
+// Find a single Type with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -62,12 +62,3 @@ exports.findOne = (req, res) => {
       .send({ message: "Error retrieving Type with id=" + id });
     });
 };
-
-// Update a Tutorial by the id in the request
-
-// Delete a Tutorial with the specified id in the request
-
-// Delete all Tutorials from the database.
-
-
-// Find all published Tutorials
