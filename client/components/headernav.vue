@@ -4,9 +4,31 @@
     dir="rtl"
     toggleable="lg"
     type="dark"
-    variant="dark"
-    sticky=true>
+    variant="dark">
     <b-navbar-brand to="/">گونه های خلاقیت</b-navbar-brand>
+    <div class="" v-if="$auth.loggedIn">
+      <p> {{ $auth.user }} </p>
+      <b-button
+        @click="$auth.logout()"
+        class="button--grey"
+      >
+        لاگ آوت
+      </b-button>
+    </div>
+    <div class="" v-else>
+      <NuxtLink
+        to="/signin"
+        class="button--grey"
+      >
+        لاگ این
+      </NuxtLink>
+      <NuxtLink
+        to="/signup"
+        class="button--grey"
+      >
+        رجیستر
+      </NuxtLink>
+    </div>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav id="asd">

@@ -39,10 +39,38 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+
+  axios: {
+    baseURL: 'http://localhost:8080/api'
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          name: "x-access-token",
+          property: "accessToken",
+          // required: true,
+          type: ''
+        },
+        user: {
+          property: false,
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/auth/signin', method: 'post' },
+          logout: { url: '/auth/signout', method: 'delete' },
+          user: { url: '/test/user', method: 'get' }
+        }
+      }
+    }
   }
 }

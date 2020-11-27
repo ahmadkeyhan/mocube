@@ -22,6 +22,7 @@
 import questionsData from '../static/questions.json'
 const questions = questionsData
 export default {
+  middleware: 'auth',
   data () {
     return {
       questions,
