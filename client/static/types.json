@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "هنرمند",
+    "subtitle": ".دیدن زیبایی، آفریدن زیبایی",
+    "avatar": "/assets/artist.png",
+    "color": "#e03e52",
+    "link": "/artist"
+  },
+  {
+    "id": 2,
+    "title": "متفکر",
+    "subtitle": ".فکرهای عمیق، سؤال های بزرگ",
+    "avatar": "/assets/thinker.png",
+    "color": "#263238",
+    "link": "/thinker"
+  },
+  {
+    "id": 3,
+    "title": "ماجراجو",
+    "subtitle": ".الهام بسیار زیاد، زمان بسیار کم",
+    "avatar": "/assets/adventurer.png",
+    "color": "#ff5a0e",
+    "link": "/adventurer"
+  },
+  {
+    "id": 4,
+    "title": "سازنده",
+    "subtitle": ".متعهد به مهارت خودت",
+    "avatar": "/assets/maker.png",
+    "color": "#375a89",
+    "link": "/maker"
+  },
+  {
+    "id": 5,
+    "title": "تهیه کننده",
+    "subtitle": ".روند قدرت است",
+    "avatar": "/assets/producer.png",
+    "color": "#58b73d",
+    "link": "/producer"
+  },
+  {
+    "id": 6,
+    "title": "رویا پرداز",
+    "subtitle": ".نیروی آزادشده ی تخیل",
+    "avatar": "/assets/dreamer.png",
+    "color": "#6e2489",
+    "link": "/dreamer"
+  },
+  {
+    "id": 7,
+    "title": "مبتکر",
+    "subtitle": ".حرکت، تکان، برهم زدن، تکرار",
+    "avatar": "/assets/innovator.png",
+    "color": "#147061",
+    "link": "/innovator"
+  },
+  {
+    "id": 8,
+    "title": "بصیر",
+    "subtitle": ".تصور کردن ناممکن",
+    "avatar": "/assets/visionary.png",
+    "color": "#ffc010",
+    "link": "/visionary"
+  }
+]
