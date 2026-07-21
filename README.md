@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# موکیوب | استودیو خلاق
 
-## Getting Started
+سایت فارسی و RTL استودیو خلاق موکیوب — ساخته‌شده با Next.js و MongoDB.
 
-First, run the development server:
+## پیش‌نیازها
+
+- Node.js 20+
+- MongoDB محلی یا Atlas
+
+## راه‌اندازی
 
 ```bash
+npm install
+cp .env.example .env.local
+# مقدار MONGODB_URI را تنظیم کنید
+npm run seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+سایت روی [http://localhost:3000](http://localhost:3000) در دسترس است.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## اسکریپت‌ها
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| دستور | توضیح |
+|--------|--------|
+| `npm run dev` | سرور توسعه |
+| `npm run build` | بیلد تولید |
+| `npm run start` | اجرای بیلد |
+| `npm run seed` | پر کردن MongoDB با دادهٔ نمونه |
+| `npm run lint` | بررسی Biome |
 
-## Learn More
+## محتوا
 
-To learn more about Next.js, take a look at the following resources:
+اشیاء در MongoDB:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `services` — خدمات، میکروسرویس‌ها، سه پلن قیمتی
+- `customers` — مشتریان
+- `projects` — پروژه‌ها (لینک به مشتری و خدمت)
+- `siteSettings` — تلفن، اینستاگرام، تلگرام، بنر
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ویرایش محتوا از طریق MongoDB Compass یا Atlas (بدون پنل ادمین در نسخهٔ فعلی).
 
-## Deploy on Vercel
+## صفحات
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/` — خانه
+- `/services` و `/services/[slug]` — خدمات
+- `/projects` و `/projects/[slug]` — نمونه‌کارها (فیلتر `?service=` و `?customer=`)
+- `/customers` و `/customers/[slug]` — مشتریان
+- `/contact` — تماس
