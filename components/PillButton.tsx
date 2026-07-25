@@ -17,7 +17,7 @@ export function PillButton({
   ...props
 }: PillButtonProps) {
   const reduce = useReducedMotion();
-  const classes = `inline-flex items-center justify-center rounded-full border border-surface-cream px-24 py-[15px] text-[18px] leading-[1.05] font-bold text-surface-cream transition-colors hover:border-surface-50 hover:text-surface-cream ${className}`;
+  const classes = `inline-flex items-center justify-center rounded-full border border-surface-cream px-20 py-12 text-body-sm font-bold text-surface-cream transition-colors hover:border-surface-50 hover:text-surface-cream ${className}`;
 
   if (reduce) {
     return (

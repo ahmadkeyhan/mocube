@@ -1,9 +1,9 @@
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { GradientCta } from "@/components/GradientCta";
 import { HeroIntro } from "@/components/motion/HeroIntro";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
-import { OrganicBlob } from "@/components/OrganicBlob";
 import { PillButton } from "@/components/PillButton";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ServiceBlock } from "@/components/ServiceBlock";
@@ -21,44 +21,24 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden pt-32 pb-76 md:pt-76">
-        <div className="pointer-events-none absolute top-20 -left-20 opacity-70 md:top-10 md:left-10">
-          <OrganicBlob
-            color="pink"
-            className="max-w-[220px] md:max-w-[320px]"
-            delay={0}
-            duration={9}
-          />
-        </div>
-        <div className="pointer-events-none absolute top-40 -right-16 opacity-60 md:top-32 md:right-20">
-          <OrganicBlob
-            color="orangey"
-            className="max-w-[180px] md:max-w-[260px]"
-            delay={1.2}
-            duration={7}
-          />
-        </div>
-        <div className="pointer-events-none absolute bottom-10 left-1/3 opacity-50">
-          <OrganicBlob
-            color="shockingly-green"
-            className="max-w-[140px] md:max-w-[200px]"
-            delay={0.6}
-            duration={10}
-          />
-        </div>
-
-        <Container className="relative">
+      <section className="relative min-h-svh overflow-hidden max-w-[100rem] mx-auto">
+        <Image
+          src="/hero.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <Container className="relative z-10 pt-32 pb-76 md:pt-76 text-center flex flex-col items-center">
           <HeroIntro
-            eyebrow={<SectionEyebrow>موکیوب</SectionEyebrow>}
             headline={
-              <h1 className="mt-16 max-w-none text-[64px] leading-display font-bold tracking-[-1.28px] text-surface-cream sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display">
-                هر چیزی را
-                <br />
-                زنده کن
+              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-surface-cream sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display">
+                سوخت خلاقیت برای رسیدن به مدار توجه
               </h1>
             }
             subcopy={
-              <p className="mt-24 max-w-xl text-body-lg tracking-body-lg text-surface-50">
+              <p className="mt-24 max-w-xl text-body-lg  text-surface-50">
                 استودیو خلاق موکیوب — هویت برند، تصویرسازی، وب و مرچندایز برای
                 برندهایی که می‌خواهند دیده شوند.
               </p>
@@ -73,7 +53,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className="border-t border-surface-25">
+      {/* <section className="border-t border-surface-25">
         <Container className="py-76">
           <Reveal>
             <SectionEyebrow>چرا موکیوب</SectionEyebrow>
@@ -82,7 +62,7 @@ export default async function HomePage() {
             </h2>
           </Reveal>
         </Container>
-      </section>
+      </section> */}
 
       <section className="border-t border-surface-25">
         <Container>

@@ -42,7 +42,7 @@ export default async function CustomersPage() {
               >
                 {customer.name.slice(0, 1)}
               </div>
-              <h2 className="text-[24px] font-bold text-surface-cream">
+              <h2 className="text-body font-bold text-surface-cream">
                 {customer.name}
               </h2>
               <p className="mt-8 text-body-sm text-surface-50">

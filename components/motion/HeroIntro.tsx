@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 type HeroIntroProps = {
-  eyebrow: ReactNode;
+  eyebrow?: ReactNode;
   headline: ReactNode;
   subcopy: ReactNode;
   actions: ReactNode;

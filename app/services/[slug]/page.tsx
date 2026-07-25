@@ -84,7 +84,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 key={micro.slug}
                 className="border-t border-surface-25 pt-24"
               >
-                <h3 className="text-[24px] font-bold text-surface-cream">
+                <h3 className="text-body font-bold text-surface-cream">
                   {micro.name}
                 </h3>
                 <p className="mt-12 text-body text-surface-50">

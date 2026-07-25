@@ -57,7 +57,7 @@ export function ShowcaseCard({
           </motion.div>
         </div>
         <motion.h3
-          className="text-[24px] leading-[1.2] font-bold tracking-[-0.24px] text-surface-cream md:text-[33px] md:tracking-[-0.33px]"
+          className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-surface-cream md:text-[26px] md:tracking-[-0.26px]"
           variants={reduce ? undefined : titleVariants}
           transition={{ type: "spring", stiffness: 300, damping: 24 }}
         >

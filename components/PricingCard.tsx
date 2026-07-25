@@ -28,7 +28,7 @@ export function PricingCard({
       }
     >
       <p className="text-body-sm text-surface-50">{name}</p>
-      <p className="font-rooyin mt-12 text-subheading font-bold tracking-subheading text-surface-cream">
+      <p className="font-changa mt-12 text-subheading font-bold tracking-subheading text-surface-cream">
         {priceLabel}
       </p>
       <ul className="mt-24 flex flex-col gap-12">
