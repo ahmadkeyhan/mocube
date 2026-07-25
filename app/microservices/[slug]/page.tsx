@@ -1,0 +1,131 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CategoryLabel } from "@/components/CategoryLabel";
+import { Container } from "@/components/Container";
+import { GradientCta } from "@/components/GradientCta";
+import { Reveal } from "@/components/motion/Reveal";
+import { Stagger } from "@/components/motion/Stagger";
+import { OrganicBlob } from "@/components/OrganicBlob";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
+import {
+  getGalleriesForMicro,
+  getMicroServiceBySlug,
+} from "@/lib/queries/microServices";
+
+export const dynamic = "force-dynamic";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const micro = await getMicroServiceBySlug(slug);
+  if (!micro) return { title: "میکروسرویس یافت نشد" };
+  return {
+    title: micro.name,
+    description: micro.shortDescription,
+  };
+}
+
+export default async function MicroServiceDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const micro = await getMicroServiceBySlug(slug);
+  if (!micro) notFound();
+
+  const galleries = await getGalleriesForMicro(micro._id);
+  const service = micro.service;
+
+  return (
+    <>
+      <section className="relative overflow-hidden py-76">
+        {service ? (
+          <div className="pointer-events-none absolute top-20 left-0 opacity-60">
+            <OrganicBlob
+              color={service.color}
+              className="max-w-[280px]"
+              delay={0.3}
+            />
+          </div>
+        ) : null}
+        <Container className="relative">
+          <Reveal>
+            <SectionEyebrow>میکروسرویس</SectionEyebrow>
+            {service ? (
+              <Link href={`/services/${service.slug}`} className="mt-16 block">
+                <CategoryLabel
+                  label={service.name}
+                  color={service.color}
+                  className="text-body-lg"
+                />
+              </Link>
+            ) : null}
+            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+              {micro.name}
+            </h1>
+            <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+              {micro.shortDescription}
+            </p>
+            <p className="mt-16 max-w-2xl text-body text-surface-50">
+              {micro.description}
+            </p>
+            <div className="mt-32">
+              <GradientCta href="/contact">درخواست این خدمت</GradientCta>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-t border-surface-25 py-76">
+        <Container>
+          <Reveal>
+            <SectionEyebrow>نمونه‌ها</SectionEyebrow>
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream">
+              گالری‌های مرتبط
+            </h2>
+          </Reveal>
+
+          {galleries.length > 0 ? (
+            <div className="mt-32 flex flex-col gap-76">
+              {galleries.map((block) => (
+                <Reveal key={`${block.projectSlug}-${block.gallery.urls[0]}`}>
+                  <Link
+                    href={`/projects/${block.projectSlug}`}
+                    className="text-body font-bold text-surface-cream hover:underline"
+                  >
+                    {block.projectTitle}
+                  </Link>
+                  {block.gallery.description ? (
+                    <p className="mt-12 max-w-2xl text-body text-surface-50">
+                      {block.gallery.description}
+                    </p>
+                  ) : null}
+                  <Stagger className="mt-24 grid gap-16 md:grid-cols-3">
+                    {block.gallery.urls.map((url) => (
+                      <div
+                        key={url}
+                        className="aspect-square rounded-lg"
+                        style={{
+                          background: url.startsWith("#")
+                            ? url
+                            : `center / cover no-repeat url(${url})`,
+                        }}
+                      />
+                    ))}
+                  </Stagger>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-32 text-body text-surface-50">
+              هنوز گالری‌ای برای این میکروسرویس ثبت نشده است.
+            </p>
+          )}
+        </Container>
+      </section>
+    </>
+  );
+}

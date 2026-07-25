@@ -7,16 +7,13 @@ import { GradientCta } from "@/components/GradientCta";
 
 const navLinks = [
   { href: "/services", label: "خدمات", className: "text-surface-cream" },
-  { href: "/projects", label: "نمونه‌کارها", className: "text-surface-cream" },
-  { href: "/customers", label: "مشتریان", className: "text-surface-cream" },
-  { href: "/services/branding", label: "برندینگ", className: "text-orangey" },
   {
-    href: "/services/illustration",
-    label: "تصویرسازی",
-    className: "text-pink",
+    href: "/microservices",
+    label: "نمونه‌کارها",
+    className: "text-surface-cream",
   },
-  { href: "/services/web", label: "وب", className: "text-lilac" },
-  { href: "/services/merch", label: "مرچندایز", className: "text-blue" },
+  { href: "/projects", label: "پروژه‌ها", className: "text-surface-cream" },
+  { href: "/customers", label: "مشتریان", className: "text-surface-cream" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;

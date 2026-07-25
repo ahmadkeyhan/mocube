@@ -32,8 +32,13 @@ export function SiteFooter({ settings }: SiteFooterProps) {
               </Link>
             </li>
             <li>
-              <Link href="/projects" className="hover:text-surface-50">
+              <Link href="/microservices" className="hover:text-surface-50">
                 نمونه‌کارها
+              </Link>
+            </li>
+            <li>
+              <Link href="/projects" className="hover:text-surface-50">
+                پروژه‌ها
               </Link>
             </li>
             <li>

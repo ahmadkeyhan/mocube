@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
@@ -9,6 +10,7 @@ import { OrganicBlob } from "@/components/OrganicBlob";
 import { PricingCard } from "@/components/PricingCard";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
+import { getMicroServicesByServiceId } from "@/lib/queries/microServices";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServiceBySlug } from "@/lib/queries/services";
 
@@ -35,9 +37,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
-  const relatedProjects = await getProjectsWithRelations({
-    serviceSlug: service.slug,
-  });
+  const [microServices, relatedProjects] = await Promise.all([
+    getMicroServicesByServiceId(service._id),
+    getProjectsWithRelations({
+      serviceSlug: service.slug,
+    }),
+  ]);
 
   return (
     <>
@@ -79,18 +84,19 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </h2>
           </Reveal>
           <Stagger className="mt-32 grid gap-24 md:grid-cols-2">
-            {service.microServices.map((micro) => (
-              <div
-                key={micro.slug}
-                className="border-t border-surface-25 pt-24"
+            {microServices.map((micro) => (
+              <Link
+                key={micro._id}
+                href={`/microservices/${micro.slug}`}
+                className="border-t border-surface-25 pt-24 transition-colors hover:border-surface-50"
               >
                 <h3 className="text-body font-bold text-surface-cream">
                   {micro.name}
                 </h3>
                 <p className="mt-12 text-body text-surface-50">
-                  {micro.description}
+                  {micro.shortDescription}
                 </p>
-              </div>
+              </Link>
             ))}
           </Stagger>
         </Container>
@@ -122,7 +128,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <section className="border-t border-surface-25 py-76">
           <Container>
             <Reveal>
-              <SectionEyebrow>نمونه‌کارها</SectionEyebrow>
+              <SectionEyebrow>پروژه‌ها</SectionEyebrow>
               <h2 className="mt-16 mb-32 text-heading-sm tracking-heading-sm text-surface-cream">
                 پروژه‌های مرتبط با {service.name}
               </h2>

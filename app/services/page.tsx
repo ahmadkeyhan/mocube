@@ -4,6 +4,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ServiceBlock } from "@/components/ServiceBlock";
 import { getServices } from "@/lib/queries/services";
+import { serviceImages } from "@/lib/service-images";
 
 export const dynamic = "force-dynamic";
 
@@ -38,6 +39,7 @@ export default async function ServicesPage() {
               shortDescription={service.shortDescription}
               slug={service.slug}
               reverse={index % 2 === 1}
+              imageSrc={serviceImages[service.slug]}
             />
           </div>
         ))}

@@ -10,6 +10,7 @@ import { ServiceBlock } from "@/components/ServiceBlock";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServices } from "@/lib/queries/services";
+import { serviceImages } from "@/lib/service-images";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,7 @@ export default async function HomePage() {
             actions={
               <div className="mt-32 flex flex-wrap gap-16">
                 <GradientCta href="/contact">تماس با ما</GradientCta>
-                <PillButton href="/projects">کاوش نمونه‌کارها</PillButton>
+                <PillButton href="/microservices">کاوش نمونه‌کارها</PillButton>
               </div>
             }
           />
@@ -81,6 +82,7 @@ export default async function HomePage() {
                   shortDescription={service.shortDescription}
                   slug={service.slug}
                   reverse={index % 2 === 1}
+                  imageSrc={serviceImages[service.slug]}
                 />
               </div>
             ))
@@ -97,12 +99,12 @@ export default async function HomePage() {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <SectionEyebrow>نمونه‌کارها</SectionEyebrow>
+            <SectionEyebrow>پروژه‌ها</SectionEyebrow>
             <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
               <h2 className="text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
                 پروژه‌های منتخب
               </h2>
-              <PillButton href="/projects">کاوش همه نمونه‌کارها</PillButton>
+              <PillButton href="/projects">کاوش همه پروژه‌ها</PillButton>
             </div>
           </Reveal>
           <Stagger className="grid gap-24 md:grid-cols-2 lg:grid-cols-3">

@@ -33,9 +33,10 @@ npm run dev
 
 اشیاء در MongoDB:
 
-- `services` — خدمات، میکروسرویس‌ها، سه پلن قیمتی
+- `services` — خدمات و سه پلن قیمتی
+- `microServices` — میکروسرویس‌ها (متعلق به یک خدمت، اسلاگ یکتا)
 - `customers` — مشتریان
-- `projects` — پروژه‌ها (لینک به مشتری و خدمت)
+- `projects` — پروژه‌ها با `serviceIds`، `microServiceIds` و `galleries` (هر گالری: `urls`، `microServiceIds`، `description?`)
 - `siteSettings` — تلفن، اینستاگرام، تلگرام، بنر
 
 ویرایش محتوا از طریق MongoDB Compass یا Atlas (بدون پنل ادمین در نسخهٔ فعلی).
@@ -44,6 +45,7 @@ npm run dev
 
 - `/` — خانه
 - `/services` و `/services/[slug]` — خدمات
-- `/projects` و `/projects/[slug]` — نمونه‌کارها (فیلتر `?service=` و `?customer=`)
+- `/microservices` و `/microservices/[slug]` — نمونه‌کارها (میکروسرویس‌ها و گالری‌های مرتبط)
+- `/projects` و `/projects/[slug]` — پروژه‌ها (فیلتر `?service=`، `?micro=` و `?customer=`)
 - `/customers` و `/customers/[slug]` — مشتریان
 - `/contact` — تماس

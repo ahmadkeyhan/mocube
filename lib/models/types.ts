@@ -8,9 +8,13 @@ export type ServiceColor =
   | "shockingly-green";
 
 export type MicroService = {
+  _id: ObjectId;
   slug: string;
   name: string;
+  shortDescription: string;
   description: string;
+  serviceId: ObjectId;
+  sortOrder: number;
 };
 
 export type PricingPlan = {
@@ -27,7 +31,6 @@ export type Service = {
   color: ServiceColor;
   shortDescription: string;
   description: string;
-  microServices: MicroService[];
   pricingPlans: PricingPlan[];
   sortOrder: number;
 };
@@ -41,15 +44,21 @@ export type Customer = {
   description: string;
 };
 
+export type ProjectGallery = {
+  urls: string[];
+  microServiceIds: ObjectId[];
+  description?: string;
+};
+
 export type Project = {
   _id: ObjectId;
   slug: string;
   title: string;
   coverUrl: string;
-  galleryUrls: string[];
+  galleries: ProjectGallery[];
   customerId: ObjectId;
   serviceIds: ObjectId[];
-  microServiceSlugs: string[];
+  microServiceIds: ObjectId[];
   featured: boolean;
   description: string;
 };
@@ -65,6 +74,17 @@ export type SiteSettings = {
 export type ProjectWithRelations = Project & {
   customer: Customer | null;
   services: Service[];
+  microServices: MicroService[];
+};
+
+export type MicroServiceWithRelations = MicroService & {
+  service: Service | null;
+};
+
+export type MicroGalleryBlock = {
+  projectSlug: string;
+  projectTitle: string;
+  gallery: ProjectGallery;
 };
 
 export type Serialized<T> = T extends ObjectId

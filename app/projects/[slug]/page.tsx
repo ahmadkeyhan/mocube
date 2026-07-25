@@ -59,6 +59,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </Link>
             ))}
           </div>
+
+          {project.microServices.length > 0 ? (
+            <div className="mt-16 flex flex-wrap gap-12">
+              {project.microServices.map((micro) => (
+                <Link
+                  key={micro._id}
+                  href={`/microservices/${micro.slug}`}
+                  className="text-body-sm text-surface-50 underline-offset-4 hover:text-surface-cream hover:underline"
+                >
+                  {micro.name}
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </Reveal>
 
         <Reveal delay={0.1} className="mt-32">
@@ -72,24 +86,52 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           />
         </Reveal>
 
-        {project.galleryUrls.length > 0 ? (
-          <Stagger className="mt-24 grid gap-16 md:grid-cols-3">
-            {project.galleryUrls.map((url) => (
-              <div
-                key={url}
-                className="aspect-square rounded-lg"
-                style={{
-                  background: url.startsWith("#")
-                    ? url
-                    : `center / cover no-repeat url(${url})`,
-                }}
-              />
-            ))}
-          </Stagger>
-        ) : null}
+        {project.galleries.map((gallery, index) => (
+          <Reveal
+            key={`${gallery.urls[0]}-${index}`}
+            delay={0.12 + index * 0.04}
+            className="mt-32"
+          >
+            {gallery.description ? (
+              <p className="mb-16 max-w-2xl text-body text-surface-50">
+                {gallery.description}
+              </p>
+            ) : null}
+            {gallery.microServiceIds.length > 0 ? (
+              <div className="mb-16 flex flex-wrap gap-12">
+                {gallery.microServiceIds.map((id) => {
+                  const micro = project.microById[id];
+                  if (!micro) return null;
+                  return (
+                    <Link
+                      key={id}
+                      href={`/microservices/${micro.slug}`}
+                      className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-surface-cream"
+                    >
+                      {micro.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            ) : null}
+            <Stagger className="grid gap-16 md:grid-cols-3">
+              {gallery.urls.map((url) => (
+                <div
+                  key={url}
+                  className="aspect-square rounded-lg"
+                  style={{
+                    background: url.startsWith("#")
+                      ? url
+                      : `center / cover no-repeat url(${url})`,
+                  }}
+                />
+              ))}
+            </Stagger>
+          </Reveal>
+        ))}
 
         <Reveal delay={0.15} className="mt-32">
-          <PillButton href="/projects">بازگشت به نمونه‌کارها</PillButton>
+          <PillButton href="/projects">بازگشت به پروژه‌ها</PillButton>
         </Reveal>
       </Container>
     </section>

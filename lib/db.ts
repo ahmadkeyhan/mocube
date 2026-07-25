@@ -37,6 +37,7 @@ export async function getDb(): Promise<Db | null> {
 
 export const COLLECTIONS = {
   services: "services",
+  microServices: "microServices",
   customers: "customers",
   projects: "projects",
   siteSettings: "siteSettings",
