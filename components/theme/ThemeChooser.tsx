@@ -1,0 +1,302 @@
+"use client";
+
+import { animate, motion, useMotionValue, useReducedMotion } from "motion/react";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
+
+const STORAGE_KEY = "mocube-theme";
+const COMMIT_LIGHT = 80;
+const COMMIT_DARK = 20;
+const START_SPLIT = 50;
+
+type PaneProps = {
+  mode: "light" | "dark";
+  imageSrc: string;
+  priority?: boolean;
+};
+
+function ChooserPane({ mode, imageSrc, priority }: PaneProps) {
+  const titleColor = mode === "light" ? "#0e100f" : "#fffce1";
+  const bodyColor = mode === "light" ? "#5c5c52" : "#7c7c6f";
+
+  return (
+    <div
+      className={`absolute inset-0 overflow-hidden ${
+        mode === "light" ? "theme-pane-light" : "theme-pane-dark"
+      }`}
+    >
+      <Image
+        src={imageSrc}
+        alt=""
+        fill
+        priority={priority}
+        sizes="100vw"
+        className="object-cover"
+        draggable={false}
+      />
+      {/* Match home hero: Container + pt-32/md:pt-76 — not vertically centered */}
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-[1280px] flex-col items-center px-16 pt-32 pb-76 text-center md:px-24 md:pt-76">
+        <h1
+          style={{ color: titleColor }}
+          className="mt-16 max-w-none text-3xl font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display"
+        >
+          سوخت خلاقیت برای رسیدن به مدار توجه
+        </h1>
+        <p style={{ color: bodyColor }} className="mt-24 max-w-xl text-body-lg">
+          استودیو خلاق موکیوب — هویت برند، تصویرسازی، وب و مرچندایز برای
+          برندهایی که می‌خواهند دیده شوند.
+        </p>
+        <p className="mt-32 text-body-sm font-bold text-shockingly-green">
+          بکش تا تم را انتخاب کنی
+        </p>
+      </div>
+    </div>
+  );
+}
+
+type ThemeChooserProps = {
+  onComplete: () => void;
+};
+
+export function ThemeChooser({ onComplete }: ThemeChooserProps) {
+  const { setTheme } = useTheme();
+  const reduce = useReducedMotion();
+  const labelId = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+  const split = useMotionValue(START_SPLIT);
+  const [splitPct, setSplitPct] = useState(START_SPLIT);
+
+  useEffect(() => {
+    const unsub = split.on("change", (v) => setSplitPct(v));
+    return unsub;
+  }, [split]);
+
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
+  const commit = useCallback(
+    (theme: "light" | "dark") => {
+      setTheme(theme);
+      onComplete();
+    },
+    [onComplete, setTheme],
+  );
+
+  const snapOrCommit = useCallback(
+    (value: number) => {
+      if (value >= COMMIT_LIGHT) {
+        if (reduce) {
+          split.set(100);
+          commit("light");
+          return;
+        }
+        animate(split, 100, {
+          type: "spring",
+          stiffness: 320,
+          damping: 28,
+          onComplete: () => commit("light"),
+        });
+        return;
+      }
+      if (value <= COMMIT_DARK) {
+        if (reduce) {
+          split.set(0);
+          commit("dark");
+          return;
+        }
+        animate(split, 0, {
+          type: "spring",
+          stiffness: 320,
+          damping: 28,
+          onComplete: () => commit("dark"),
+        });
+        return;
+      }
+      if (reduce) {
+        split.set(START_SPLIT);
+        return;
+      }
+      animate(split, START_SPLIT, {
+        type: "spring",
+        stiffness: 380,
+        damping: 30,
+      });
+    },
+    [commit, reduce, split],
+  );
+
+  const pctFromClientX = useCallback((clientX: number) => {
+    const el = rootRef.current;
+    if (!el) return START_SPLIT;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0) return START_SPLIT;
+    return Math.min(
+      100,
+      Math.max(0, ((clientX - rect.left) / rect.width) * 100),
+    );
+  }, []);
+
+  const onPointerDown = (e: ReactPointerEvent) => {
+    dragging.current = true;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    split.set(pctFromClientX(e.clientX));
+  };
+
+  const onPointerMove = (e: ReactPointerEvent) => {
+    if (!dragging.current) return;
+    split.set(pctFromClientX(e.clientX));
+  };
+
+  const onPointerUp = (e: ReactPointerEvent) => {
+    if (!dragging.current) return;
+    dragging.current = false;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      /* already released */
+    }
+    snapOrCommit(split.get());
+  };
+
+  const onKeyDown = (e: ReactKeyboardEvent) => {
+    const step = 5;
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+      e.preventDefault();
+      split.set(Math.max(0, split.get() - step));
+      return;
+    }
+    if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+      e.preventDefault();
+      split.set(Math.min(100, split.get() + step));
+      return;
+    }
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      const v = split.get();
+      if (v >= COMMIT_LIGHT) commit("light");
+      else if (v <= COMMIT_DARK) commit("dark");
+      else if (v >= 50) snapOrCommit(COMMIT_LIGHT);
+      else snapOrCommit(COMMIT_DARK);
+    }
+    if (e.key === "Home") {
+      e.preventDefault();
+      split.set(0);
+      commit("dark");
+    }
+    if (e.key === "End") {
+      e.preventDefault();
+      split.set(100);
+      commit("light");
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-[#0e100f]"
+      style={{ direction: "ltr" }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={labelId}
+    >
+      <h2 id={labelId} className="sr-only">
+        انتخاب تم روشن یا تاریک
+      </h2>
+
+      <div
+        ref={rootRef}
+        className="relative mx-auto h-full min-h-svh max-w-[120rem] overflow-hidden"
+      >
+        <div
+          className="absolute inset-0"
+          style={{ clipPath: `inset(0 0 0 ${splitPct}%)` }}
+        >
+          <ChooserPane mode="dark" imageSrc="/hero-dark.png" priority />
+        </div>
+        <div
+          className="absolute inset-0"
+          style={{ clipPath: `inset(0 ${100 - splitPct}% 0 0)` }}
+        >
+          <ChooserPane mode="light" imageSrc="/hero-light.png" priority />
+        </div>
+
+        <motion.div
+          className="absolute top-0 bottom-0 z-30 w-0"
+          style={{ left: `${splitPct}%` }}
+        >
+          <div
+            className="absolute inset-y-0 left-1/2 w-48 -translate-x-1/2 cursor-ew-resize touch-none"
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            aria-hidden
+          />
+          <div className="pointer-events-none absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-shockingly-green" />
+          <button
+            type="button"
+            className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full border-2 border-shockingly-green bg-[#0e100f] text-shockingly-green outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"
+            aria-label="کشیدن برای انتخاب تم"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(splitPct)}
+            aria-orientation="horizontal"
+            role="slider"
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            onKeyDown={onKeyDown}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              aria-hidden
+            >
+              <path d="M8 12H3M5.5 9 3 12l2.5 3M16 12h5M18.5 9 21 12l-2.5 3" />
+            </svg>
+          </button>
+        </motion.div>
+      </div>
+
+      <button
+        type="button"
+        className="theme-pane-light absolute top-1/2 left-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/85 px-16 py-12 text-body-sm font-bold text-surface-cream backdrop-blur-sm transition-colors hover:text-shockingly-green md:left-24"
+        onClick={() => commit("light")}
+      >
+        روشن
+      </button>
+      <button
+        type="button"
+        className="theme-pane-dark absolute top-1/2 right-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/85 px-16 py-12 text-body-sm font-bold text-surface-cream backdrop-blur-sm transition-colors hover:text-shockingly-green md:right-24"
+        onClick={() => commit("dark")}
+      >
+        تاریک
+      </button>
+    </div>
+  );
+}
+
+export function hasStoredTheme(): boolean {
+  if (typeof window === "undefined") return true;
+  return Boolean(window.localStorage.getItem(STORAGE_KEY));
+}

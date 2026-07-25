@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { GradientCta } from "@/components/GradientCta";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navLinks = [
   { href: "/services", label: "خدمات", className: "text-surface-cream" },
@@ -59,6 +60,13 @@ export function SiteHeader() {
           <motion.div
             initial={reduce ? false : { opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.3, ease }}
+          >
+            <ThemeToggle />
+          </motion.div>
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.35, ease }}
             className="hidden sm:inline-flex"
           >
@@ -87,9 +95,12 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <GradientCta href="/contact" onClick={() => setOpen(false)}>
-            تماس با ما
-          </GradientCta>
+          <div className="flex items-center gap-12 pt-8">
+            <ThemeToggle />
+            <GradientCta href="/contact" onClick={() => setOpen(false)}>
+              تماس با ما
+            </GradientCta>
+          </div>
         </nav>
       ) : null}
     </header>

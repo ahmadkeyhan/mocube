@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container } from "@/components/Container";
 import { GradientCta } from "@/components/GradientCta";
 import { HeroIntro } from "@/components/motion/HeroIntro";
@@ -8,6 +7,8 @@ import { PillButton } from "@/components/PillButton";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ServiceBlock } from "@/components/ServiceBlock";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
+import { HomeThemeGate } from "@/components/theme/HomeThemeGate";
+import { ThemeImage } from "@/components/theme/ThemeImage";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServices } from "@/lib/queries/services";
 import { serviceImages } from "@/lib/service-images";
@@ -22,9 +23,11 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-svh overflow-hidden max-w-[100rem] mx-auto">
-        <Image
-          src="/hero.png"
+      <HomeThemeGate />
+      <section className="relative min-h-svh overflow-hidden max-w-[120rem] mx-auto">
+        <ThemeImage
+          lightSrc="/hero-light.png"
+          darkSrc="/hero-dark.png"
           alt=""
           fill
           priority

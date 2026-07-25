@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 // import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { getSiteSettings } from "@/lib/queries/site";
 import "./globals.css";
 
@@ -35,13 +36,16 @@ export default async function RootLayout({
     <html
       lang="fa"
       dir="rtl"
+      suppressHydrationWarning
       className={`${changa.variable} h-full antialiased`}
     >
-      <body className="font-changa flex min-h-full flex-col bg-just-black text-surface-cream">
-        {/* <AnnouncementBanner text={settings.announcement} /> */}
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter settings={settings} />
+      <body className="font-changa flex min-h-full flex-col">
+        <ThemeProvider>
+          {/* <AnnouncementBanner text={settings.announcement} /> */}
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter settings={settings} />
+        </ThemeProvider>
       </body>
     </html>
   );

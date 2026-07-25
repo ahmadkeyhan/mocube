@@ -1,9 +1,10 @@
-import Image from "next/image";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Reveal } from "@/components/motion/Reveal";
 import { PillButton } from "@/components/PillButton";
+import { ThemeImage } from "@/components/theme/ThemeImage";
 import type { ServiceColor } from "@/lib/models/types";
 import { serviceGradient } from "@/lib/service-colors";
+import type { ThemeImagePair } from "@/lib/service-images";
 
 type ServiceBlockProps = {
   name: string;
@@ -11,7 +12,7 @@ type ServiceBlockProps = {
   shortDescription: string;
   slug: string;
   reverse?: boolean;
-  imageSrc?: string;
+  imageSrc?: ThemeImagePair;
 };
 
 export function ServiceBlock({
@@ -27,8 +28,9 @@ export function ServiceBlock({
       <Reveal fromScale={0.85} fromRotate={-4}>
         <div className="relative aspect-square w-full overflow-hidden md:aspect-video">
           {imageSrc ? (
-            <Image
-              src={imageSrc}
+            <ThemeImage
+              lightSrc={imageSrc.light}
+              darkSrc={imageSrc.dark}
               alt=""
               fill
               sizes="100vw"
@@ -41,10 +43,6 @@ export function ServiceBlock({
               aria-hidden
             />
           )}
-          {/* <div
-            className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#0e100f]/80 via-[#0e100f]/25 to-transparent"
-            aria-hidden
-          /> */}
           <Reveal
             delay={0.1}
             className={`absolute inset-0 z-10 flex flex-col p-24 md:p-40 ${
