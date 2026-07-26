@@ -53,7 +53,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   return (
     <button
       type="button"
-      className={`inline-flex size-40 items-center justify-center rounded-full text-surface-cream transition-colors hover:text-shockingly-green ${className}`}
+      className={`inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream transition-colors hover:text-shockingly-green ${className}`}
       aria-label={label}
       title={label}
       onClick={() => setTheme(isDark ? "light" : "dark")}

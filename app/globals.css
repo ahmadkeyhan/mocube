@@ -213,3 +213,26 @@ a {
     linear-gradient(var(--surface-canvas), var(--surface-canvas)) padding-box,
     var(--gradient-shockingly-green) border-box;
 }
+
+/* Dark: sharp rect. Light: keep rounded on cards / buttons / chips / images */
+:is(.dark, .theme-pane-dark) .rounded-lg:not(.round-keep),
+.theme-pane-dark.rounded-lg:not(.round-keep),
+:is(.dark, .theme-pane-dark) .rounded-full:not(.round-keep),
+.theme-pane-dark.rounded-full:not(.round-keep) {
+  border-radius: 0;
+}
+
+/* Light theme-chooser pane: keep rounded even under .dark html */
+.dark .theme-pane-light.rounded-lg,
+.dark .theme-pane-light .rounded-lg,
+.theme-pane-light.rounded-lg,
+.theme-pane-light .rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.dark .theme-pane-light.rounded-full,
+.dark .theme-pane-light .rounded-full,
+.theme-pane-light.rounded-full,
+.theme-pane-light .rounded-full {
+  border-radius: var(--radius-full);
+}

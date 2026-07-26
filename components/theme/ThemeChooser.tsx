@@ -44,7 +44,7 @@ function ChooserPane({ mode, imageSrc, priority }: PaneProps) {
         draggable={false}
       />
       {/* Match home hero: Container + pt-32/md:pt-76 — not vertically centered */}
-      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-[1280px] flex-col items-center px-16 pt-32 pb-76 text-center md:px-24 md:pt-76">
+      <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col items-center px-16 pt-32 pb-76 text-center md:px-24 md:pt-76">
         <h1
           style={{ color: titleColor }}
           className="mt-16 max-w-none text-3xl font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display"
@@ -246,10 +246,10 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
             onPointerCancel={onPointerUp}
             aria-hidden
           />
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 bg-shockingly-green" />
+          <div className="pointer-events-none absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-shockingly-green" />
           <button
             type="button"
-            className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full border-2 border-shockingly-green bg-[#0e100f] text-shockingly-green outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"
+            className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full round-keep border-2 border-shockingly-green bg-[#0e100f] text-shockingly-green outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"
             aria-label="کشیدن برای انتخاب تم"
             aria-valuemin={0}
             aria-valuemax={100}

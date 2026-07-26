@@ -74,7 +74,7 @@ export function SiteHeader() {
           </motion.div>
           <button
             type="button"
-            className="inline-flex size-40 items-center justify-center rounded-full text-surface-cream lg:hidden"
+            className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream lg:hidden"
             aria-label={open ? "بستن منو" : "باز کردن منو"}
             onClick={() => setOpen((v) => !v)}
           >
