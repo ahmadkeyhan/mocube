@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { DataUnavailable } from "@/components/DataUnavailable";
 import { GradientCta } from "@/components/GradientCta";
 import { HeroIntro } from "@/components/motion/HeroIntro";
 import { Reveal } from "@/components/motion/Reveal";
@@ -69,16 +70,16 @@ export default async function HomePage() {
       </section> */}
 
       <section className="border-t border-surface-25">
-        <Container>
-          <Reveal className="pt-76">
-            <SectionEyebrow>ابزارهای موکیوب</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
-              چهار خدمت، یک زبان بصری
+        <Container className="grid grid-cols-2 gap-12">
+          <Reveal className="py-18 col-span-2">
+            {/* <SectionEyebrow>ابزارهای موکیوب</SectionEyebrow> */}
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-center text-shockingly-green md:text-heading md:tracking-heading">
+              خدمات موکیوب
             </h2>
           </Reveal>
           {services.length > 0 ? (
             services.map((service, index) => (
-              <div key={service._id} className="border-b border-surface-25">
+              <div key={service._id} className="col-span-2 lg:col-span-1">
                 <ServiceBlock
                   name={service.name}
                   color={service.color}
@@ -90,11 +91,7 @@ export default async function HomePage() {
               </div>
             ))
           ) : (
-            <p className="py-76 text-body text-surface-50">
-              برای نمایش خدمات، دیتابیس را با{" "}
-              <code className="text-shockingly-green">npm run seed</code> پر
-              کنید.
-            </p>
+            <DataUnavailable message="در حال حاضر امکان نمایش خدمات وجود ندارد. لطفاً دوباره تلاش کنید." />
           )}
         </Container>
       </section>
@@ -102,7 +99,7 @@ export default async function HomePage() {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <SectionEyebrow>پروژه‌ها</SectionEyebrow>
+            {/* <SectionEyebrow>پروژه‌ها</SectionEyebrow> */}
             <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
               <h2 className="text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
                 پروژه‌های منتخب
@@ -131,7 +128,7 @@ export default async function HomePage() {
       <section className="border-t border-surface-25 py-76">
         <Container className="text-center">
           <Reveal>
-            <SectionEyebrow>بعدی چیست؟</SectionEyebrow>
+            {/* <SectionEyebrow>بعدی چیست؟</SectionEyebrow> */}
             <h2 className="mx-auto mt-16 max-w-2xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
               پروژه‌ات را با موکیوب شروع کن
             </h2>

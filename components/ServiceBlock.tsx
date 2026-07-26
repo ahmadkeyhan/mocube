@@ -26,7 +26,7 @@ export function ServiceBlock({
   return (
     <div>
       <Reveal fromScale={0.85} fromRotate={-4}>
-        <div className="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-video">
+        <div className="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-4/3">
           {imageSrc ? (
             <ThemeImage
               lightSrc={imageSrc.light}
