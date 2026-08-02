@@ -1,12 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import {
   Field,
   FormErrors,
   TextArea,
   TextInput,
 } from "@/components/admin/FormControls";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import type { FormState } from "@/lib/admin/validation";
 
@@ -29,6 +30,7 @@ type CustomerFormProps = {
 
 export function CustomerForm({ action, defaults = {} }: CustomerFormProps) {
   const [state, formAction] = useActionState(action, {} as FormState);
+  const [logoUrl, setLogoUrl] = useState(defaults.logoUrl ?? "");
   const errors = state.fieldErrors ?? {};
 
   return (
@@ -57,13 +59,8 @@ export function CustomerForm({ action, defaults = {} }: CustomerFormProps) {
         />
       </Field>
 
-      <Field
-        label="آدرس لوگو"
-        htmlFor="logoUrl"
-        hint="آدرس تصویر یا کد رنگ."
-        error={errors.logoUrl}
-      >
-        <TextInput name="logoUrl" defaultValue={defaults.logoUrl} dir="ltr" />
+      <Field label="لوگو" error={errors.logoUrl}>
+        <ImageUploader name="logoUrl" value={logoUrl} onChange={setLogoUrl} />
       </Field>
 
       <Field label="توضیح کوتاه" htmlFor="shortDescription">

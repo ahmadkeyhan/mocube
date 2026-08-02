@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Option } from "@/components/admin/FormControls";
+import { MultiImageUploader } from "@/components/admin/ImageUploader";
 
 export type GalleryDefault = {
   urls: string[];
@@ -11,7 +12,7 @@ export type GalleryDefault = {
 
 type GalleryRow = {
   key: string;
-  urls: string;
+  urls: string[];
   description: string;
   microServiceIds: string[];
 };
@@ -22,7 +23,7 @@ const controlClasses =
 function toRow(gallery: GalleryDefault | undefined, index: number): GalleryRow {
   return {
     key: `gallery-${index}-${Math.random().toString(36).slice(2, 8)}`,
-    urls: gallery?.urls.join("\n") ?? "",
+    urls: gallery?.urls ?? [],
     description: gallery?.description ?? "",
     microServiceIds: gallery?.microServiceIds ?? [],
   };
@@ -83,14 +84,10 @@ export function GalleriesEditor({
             </button>
           </div>
 
-          <textarea
+          <MultiImageUploader
             name={`gallery-urls-${index}`}
-            value={row.urls}
-            onChange={(event) => update(index, { urls: event.target.value })}
-            rows={3}
-            dir="ltr"
-            placeholder="هر آدرس تصویر در یک خط"
-            className={`${controlClasses} resize-y`}
+            urls={row.urls}
+            onChange={(urls) => update(index, { urls })}
           />
 
           <input

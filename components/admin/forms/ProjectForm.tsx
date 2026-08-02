@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import {
   CheckboxGroup,
   Field,
@@ -15,6 +15,7 @@ import {
   GalleriesEditor,
   type GalleryDefault,
 } from "@/components/admin/GalleriesEditor";
+import { ImageUploader } from "@/components/admin/ImageUploader";
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import type { FormState } from "@/lib/admin/validation";
 
@@ -50,6 +51,7 @@ export function ProjectForm({
   defaults = {},
 }: ProjectFormProps) {
   const [state, formAction] = useActionState(action, {} as FormState);
+  const [coverUrl, setCoverUrl] = useState(defaults.coverUrl ?? "");
   const errors = state.fieldErrors ?? {};
 
   return (
@@ -78,13 +80,12 @@ export function ProjectForm({
         />
       </Field>
 
-      <Field
-        label="تصویر کاور"
-        htmlFor="coverUrl"
-        hint="آدرس تصویر یا کد رنگ."
-        error={errors.coverUrl}
-      >
-        <TextInput name="coverUrl" defaultValue={defaults.coverUrl} dir="ltr" />
+      <Field label="تصویر کاور" error={errors.coverUrl}>
+        <ImageUploader
+          name="coverUrl"
+          value={coverUrl}
+          onChange={setCoverUrl}
+        />
       </Field>
 
       <Field label="مشتری" htmlFor="customerId" error={errors.customerId}>
