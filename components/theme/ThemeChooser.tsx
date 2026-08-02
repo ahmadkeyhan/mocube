@@ -225,13 +225,13 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
           className="absolute inset-0"
           style={{ clipPath: `inset(0 0 0 ${splitPct}%)` }}
         >
-          <ChooserPane mode="dark" imageSrc="/hero-dark.png" priority />
+          <ChooserPane mode="dark" imageSrc="/hero-dark.webp" priority />
         </div>
         <div
           className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - splitPct}% 0 0)` }}
         >
-          <ChooserPane mode="light" imageSrc="/hero-light.png" priority />
+          <ChooserPane mode="light" imageSrc="/hero-light.webp" priority />
         </div>
 
         <motion.div

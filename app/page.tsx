@@ -27,8 +27,8 @@ export default async function HomePage() {
       <HomeThemeGate />
       <section className="relative min-h-svh overflow-hidden max-w-[120rem] mx-auto">
         <ThemeImage
-          lightSrc="/hero-light.png"
-          darkSrc="/hero-dark.png"
+          lightSrc="/hero-light.webp"
+          darkSrc="/hero-dark.webp"
           alt=""
           fill
           priority
