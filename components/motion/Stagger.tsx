@@ -6,6 +6,8 @@ import { Children, type ReactNode } from "react";
 type StaggerProps = {
   children: ReactNode;
   className?: string;
+  /** Applied to each staggered item wrapper (e.g. masonry break-inside-avoid) */
+  itemClassName?: string;
   /** Spring overshoot for playful tiles (e.g. contact) */
   spring?: boolean;
   stagger?: number;
@@ -42,6 +44,7 @@ const itemSpring = {
 export function Stagger({
   children,
   className = "",
+  itemClassName = "",
   spring = false,
   stagger = 0.08,
 }: StaggerProps) {
@@ -49,7 +52,13 @@ export function Stagger({
   const variants = spring ? itemSpring : itemTween;
 
   if (reduce) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div className={className}>
+        {Children.map(children, (child) => (
+          <div className={itemClassName}>{child}</div>
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -61,7 +70,9 @@ export function Stagger({
       viewport={{ once: true, amount: 0.15 }}
     >
       {Children.map(children, (child) => (
-        <motion.div variants={variants}>{child}</motion.div>
+        <motion.div className={itemClassName} variants={variants}>
+          {child}
+        </motion.div>
       ))}
     </motion.div>
   );

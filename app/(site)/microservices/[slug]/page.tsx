@@ -3,9 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
+import { GalleryGrid } from "@/components/GalleryGrid";
 import { GradientCta } from "@/components/GradientCta";
 import { Reveal } from "@/components/motion/Reveal";
-import { Stagger } from "@/components/motion/Stagger";
 import { OrganicBlob } from "@/components/OrganicBlob";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import {
@@ -103,19 +103,13 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
                       {block.gallery.description}
                     </p>
                   ) : null}
-                  <Stagger className="mt-24 grid gap-16 md:grid-cols-3">
-                    {block.gallery.urls.map((url) => (
-                      <div
-                        key={url}
-                        className="aspect-square rounded-lg"
-                        style={{
-                          background: url.startsWith("#")
-                            ? url
-                            : `center / cover no-repeat url(${url})`,
-                        }}
-                      />
-                    ))}
-                  </Stagger>
+                  <GalleryGrid
+                    className="mt-24"
+                    urls={block.gallery.urls}
+                    description={block.gallery.description}
+                    projectTitle={block.projectTitle}
+                    projectHref={`/projects/${block.projectSlug}`}
+                  />
                 </Reveal>
               ))}
             </div>

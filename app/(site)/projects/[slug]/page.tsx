@@ -3,8 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
+import { GalleryGrid } from "@/components/GalleryGrid";
 import { Reveal } from "@/components/motion/Reveal";
-import { Stagger } from "@/components/motion/Stagger";
 import { PillButton } from "@/components/PillButton";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { getProjectBySlug } from "@/lib/queries/projects";
@@ -114,19 +114,17 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 })}
               </div>
             ) : null}
-            <Stagger className="grid gap-16 md:grid-cols-3">
-              {gallery.urls.map((url) => (
-                <div
-                  key={url}
-                  className="aspect-square rounded-lg"
-                  style={{
-                    background: url.startsWith("#")
-                      ? url
-                      : `center / cover no-repeat url(${url})`,
-                  }}
-                />
-              ))}
-            </Stagger>
+            <GalleryGrid
+              urls={gallery.urls}
+              description={gallery.description}
+              micros={gallery.microServiceIds
+                .map((id) => project.microById[id])
+                .filter(
+                  (m): m is NonNullable<typeof m> =>
+                    m != null && Boolean(m.name) && Boolean(m.slug),
+                )
+                .map((m) => ({ name: m.name, slug: m.slug }))}
+            />
           </Reveal>
         ))}
 
