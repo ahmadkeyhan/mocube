@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GradientCta } from "@/components/GradientCta";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -23,86 +23,135 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
-  return (
-    <header className="sticky top-0 z-40 border-b border-surface-25/60 bg-just-black/90 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-16 px-16 py-12 md:px-24">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease }}
-        >
-          <Link href="/">
-            <h1 className="text-body-sm font-bold text-shockingly-green">
-            موکیوب
-            </h1>
-          </Link>
-        </motion.div>
+  useEffect(() => {
+    if (!open) return;
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link, index) => (
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  return (
+    <>
+      <header className="sticky top-0 z-40 border-b border-surface-25/60 bg-just-black/90 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-16 px-16 py-12 md:px-24">
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease }}
+          >
+            <Link href="/">
+              <h1 className="text-body-sm font-bold text-shockingly-green">
+                موکیوب
+              </h1>
+            </Link>
+          </motion.div>
+
+          <nav className="hidden items-center gap-6 lg:flex">
+            {navLinks.map((link, index) => (
+              <motion.div
+                key={link.href + link.label}
+                initial={reduce ? false : { opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.05 + index * 0.04, ease }}
+              >
+                <Link
+                  href={link.href}
+                  className={`px-8 py-10 text-body-sm transition-colors hover:text-surface-cream ${link.className}`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-12">
             <motion.div
-              key={link.href + link.label}
               initial={reduce ? false : { opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 + index * 0.04, ease }}
+              transition={{ duration: 0.45, delay: 0.3, ease }}
             >
-              <Link
-                href={link.href}
-                className={`px-8 py-10 text-body-sm transition-colors hover:text-surface-cream ${link.className}`}
-              >
-                {link.label}
-              </Link>
+              <ThemeToggle />
             </motion.div>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-12">
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.3, ease }}
-          >
-            <ThemeToggle />
-          </motion.div>
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.35, ease }}
-            className="hidden sm:inline-flex"
-          >
-            <GradientCta href="/contact">تماس با ما</GradientCta>
-          </motion.div>
-          <button
-            type="button"
-            className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream lg:hidden"
-            aria-label={open ? "بستن منو" : "باز کردن منو"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="text-body-sm">{open ? "✕" : "☰"}</span>
-          </button>
-        </div>
-      </div>
-
-      {open ? (
-        <nav className="flex flex-col gap-8 border-t border-surface-25 px-16 py-16 lg:hidden">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href + link.label}
-              href={link.href}
-              className={`py-8 text-body-sm ${link.className}`}
-              onClick={() => setOpen(false)}
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.35, ease }}
+              className="hidden sm:inline-flex"
             >
-              {link.label}
-            </Link>
-          ))}
-          <div className="flex items-center gap-12 pt-8">
-            <ThemeToggle />
-            <GradientCta href="/contact" onClick={() => setOpen(false)}>
-              تماس با ما
-            </GradientCta>
+              <GradientCta href="/contact">تماس با ما</GradientCta>
+            </motion.div>
+            <button
+              type="button"
+              className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream lg:hidden"
+              aria-expanded={open}
+              aria-label="باز کردن منو"
+              onClick={() => setOpen(true)}
+            >
+              <span className="text-body-sm">☰</span>
+            </button>
           </div>
-        </nav>
-      ) : null}
-    </header>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            key="mobile-menu"
+            className="fixed inset-0 z-50 flex flex-col bg-just-black px-16 py-12 lg:hidden"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
+            transition={{ duration: reduce ? 0 : 0.28, ease }}
+          >
+            <div className="flex items-center justify-between gap-16">
+              <Link href="/" onClick={() => setOpen(false)}>
+                <span className="text-body-sm font-bold text-shockingly-green">
+                  موکیوب
+                </span>
+              </Link>
+              <div className="flex items-center gap-12">
+                <ThemeToggle />
+                <button
+                  type="button"
+                  className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream"
+                  aria-label="بستن منو"
+                  onClick={() => setOpen(false)}
+                >
+                  <span className="text-body-sm">✕</span>
+                </button>
+              </div>
+            </div>
+
+            <nav className="mt-24 flex flex-col gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href + link.label}
+                  href={link.href}
+                  className={`py-8 text-body-sm ${link.className}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-8">
+                <GradientCta href="/contact" onClick={() => setOpen(false)}>
+                  تماس با ما
+                </GradientCta>
+              </div>
+            </nav>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 }
