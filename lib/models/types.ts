@@ -63,6 +63,16 @@ export type Project = {
   description: string;
 };
 
+export type AdminRole = "admin";
+
+export type AdminUser = {
+  _id: ObjectId;
+  username: string;
+  passwordHash: string;
+  role: AdminRole;
+  createdAt: Date;
+};
+
 export type SiteSettings = {
   _id: ObjectId;
   phone: string;
