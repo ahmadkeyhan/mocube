@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { Stagger } from "@/components/motion/Stagger";
-import { ProjectsFilter } from "@/components/ProjectsFilter";
+import { ProjectsExplorer } from "@/components/ProjectsExplorer";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
-import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { getCustomers } from "@/lib/queries/customers";
 import { getMicroServices } from "@/lib/queries/microServices";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
@@ -18,22 +16,9 @@ export const metadata: Metadata = {
   description: "پروژه‌های موکیوب بر اساس خدمت، میکروسرویس و مشتری",
 };
 
-type PageProps = {
-  searchParams: Promise<{
-    service?: string;
-    customer?: string;
-    micro?: string;
-  }>;
-};
-
-export default async function ProjectsPage({ searchParams }: PageProps) {
-  const params = await searchParams;
+export default async function ProjectsPage() {
   const [projects, services, customers, microServices] = await Promise.all([
-    getProjectsWithRelations({
-      serviceSlug: params.service,
-      customerSlug: params.customer,
-      microSlug: params.micro,
-    }),
+    getProjectsWithRelations(),
     getServices(),
     getCustomers(),
     getMicroServices(),
@@ -52,43 +37,37 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           </p>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <Suspense fallback={null}>
-            <ProjectsFilter
-              services={services.map((s) => ({ slug: s.slug, name: s.name }))}
-              customers={customers.map((c) => ({
-                slug: c.slug,
-                name: c.name,
-              }))}
-              microServices={microServices.map((m) => ({
+        <Suspense fallback={null}>
+          <ProjectsExplorer
+            projects={projects.map((project) => ({
+              _id: project._id,
+              slug: project.slug,
+              title: project.title,
+              coverUrl: project.coverUrl,
+              customer: project.customer
+                ? { slug: project.customer.slug, name: project.customer.name }
+                : null,
+              services: project.services.map((s) => ({
+                slug: s.slug,
+                name: s.name,
+                color: s.color,
+              })),
+              microServices: project.microServices.map((m) => ({
                 slug: m.slug,
                 name: m.name,
-              }))}
-            />
-          </Suspense>
-        </Reveal>
-
-        {projects.length > 0 ? (
-          <Stagger className="mt-32 grid gap-24 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ShowcaseCard
-                key={project._id}
-                href={`/projects/${project.slug}`}
-                title={project.title}
-                coverUrl={project.coverUrl}
-                customerName={project.customer?.name}
-                services={project.services.map((s) => ({
-                  name: s.name,
-                  color: s.color,
-                }))}
-              />
-            ))}
-          </Stagger>
-        ) : (
-          <p className="mt-32 text-body text-surface-50">
-            پروژه‌ای با این فیلتر پیدا نشد.
-          </p>
-        )}
+              })),
+            }))}
+            services={services.map((s) => ({ slug: s.slug, name: s.name }))}
+            customers={customers.map((c) => ({
+              slug: c.slug,
+              name: c.name,
+            }))}
+            microServices={microServices.map((m) => ({
+              slug: m.slug,
+              name: m.name,
+            }))}
+          />
+        </Suspense>
       </Container>
     </section>
   );

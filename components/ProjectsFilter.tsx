@@ -1,78 +1,217 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useId, useRef, useState } from "react";
 
-type Option = { slug: string; name: string };
+export type FilterOption = { slug: string; name: string };
+
+export type ProjectsFilterValue = {
+  service: string | null;
+  customer: string | null;
+  micro: string | null;
+};
 
 type ProjectsFilterProps = {
-  services: Option[];
-  customers: Option[];
-  microServices: Option[];
+  services: FilterOption[];
+  customers: FilterOption[];
+  microServices: FilterOption[];
+  value: ProjectsFilterValue;
+  onServiceChange: (slug: string) => void;
+  onCustomerChange: (slug: string) => void;
+  onMicroChange: (slug: string) => void;
+  onClear: () => void;
 };
+
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  emptyLabel,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  emptyLabel: string;
+  options: FilterOption[];
+}) {
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const listId = useId();
+  const selectedLabel =
+    options.find((item) => item.slug === value)?.name ?? emptyLabel;
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onPointerDown = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  const pick = (next: string) => {
+    onChange(next);
+    setOpen(false);
+  };
+
+  return (
+    <div
+      ref={rootRef}
+      className={`relative inline-flex ${open ? "z-30" : "z-0"}`}
+    >
+      <button
+        type="button"
+        aria-label={label}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listId}
+        className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-black py-8 pr-16 pl-36 text-body-sm text-surface-cream outline-none transition-colors hover:border-surface-50"
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span className="truncate">{selectedLabel}</span>
+        <svg
+          aria-hidden
+          viewBox="0 0 12 8"
+          className={`pointer-events-none absolute top-1/2 left-12 size-12 -translate-y-1/2 text-surface-50 transition-transform ${
+            open ? "rotate-180" : ""
+          }`}
+          fill="none"
+        >
+          <path
+            d="M1 1.5L6 6.5L11 1.5"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {open ? (
+        <ul
+          id={listId}
+          role="listbox"
+          aria-label={label}
+          className="absolute top-[calc(100%+6px)] right-0 z-30 max-h-[240px] min-w-full overflow-auto rounded-lg border border-surface-25 bg-off-black py-4 shadow-lg"
+        >
+          <li role="option" aria-selected={value === ""}>
+            <button
+              type="button"
+              className={`w-full px-16 py-8 text-start text-body-sm transition-colors hover:bg-surface-25/40 ${
+                value === ""
+                  ? "text-surface-cream"
+                  : "text-surface-50 hover:text-surface-cream"
+              }`}
+              onMouseDown={(event) => {
+                event.preventDefault();
+                pick("");
+              }}
+            >
+              {emptyLabel}
+            </button>
+          </li>
+          {options.map((item) => {
+            const active = value === item.slug;
+            return (
+              <li key={item.slug} role="option" aria-selected={active}>
+                <button
+                  type="button"
+                  className={`w-full px-16 py-8 text-start text-body-sm transition-colors hover:bg-surface-25/40 ${
+                    active
+                      ? "text-surface-cream"
+                      : "text-surface-50 hover:text-surface-cream"
+                  }`}
+                  onMouseDown={(event) => {
+                    event.preventDefault();
+                    pick(item.slug);
+                  }}
+                >
+                  {item.name}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 export function ProjectsFilter({
   services,
   customers,
   microServices,
+  value,
+  onServiceChange,
+  onCustomerChange,
+  onMicroChange,
+  onClear,
 }: ProjectsFilterProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const service = searchParams.get("service");
-  const customer = searchParams.get("customer");
-  const micro = searchParams.get("micro");
-
-  const chipClass = (active: boolean) =>
-    `rounded-full border px-16 py-8 text-body-sm transition-colors ${
+  const microChipClass = (active: boolean) =>
+    `rounded-full border px-2 py-1 text-caption transition-colors ${
       active
         ? "border-surface-cream text-surface-cream"
         : "border-surface-25 text-surface-50 hover:border-surface-50 hover:text-surface-cream"
     }`;
 
-  const noneActive = !service && !customer && !micro;
+  const filterActive = Boolean(value.service || value.customer || value.micro);
 
   return (
     <div className="flex flex-col gap-20">
-      <div className="flex flex-wrap gap-12">
-        <Link href={pathname} className={chipClass(noneActive)}>
-          همه
-        </Link>
-        {services.map((item) => (
-          <Link
-            key={item.slug}
-            href={`${pathname}?service=${item.slug}`}
-            className={chipClass(service === item.slug && !customer && !micro)}
+      <div className="flex flex-wrap items-center gap-12">
+        {filterActive ? (
+          <button
+            type="button"
+            onClick={onClear}
+            className="text-caption text-surface-50 transition-colors hover:text-surface-cream"
           >
-            {item.name}
-          </Link>
-        ))}
+            پاک کردن فیلتر
+          </button>
+        ) : null}
+        <FilterSelect
+          label="خدمت"
+          emptyLabel="همه خدمات"
+          value={
+            value.service && !value.customer && !value.micro
+              ? value.service
+              : ""
+          }
+          onChange={onServiceChange}
+          options={services}
+        />
+        <FilterSelect
+          label="مشتری"
+          emptyLabel="همه مشتریان"
+          value={value.customer ?? ""}
+          onChange={onCustomerChange}
+          options={customers}
+        />
       </div>
       <div className="flex flex-wrap gap-12">
         <span className="self-center text-caption text-surface-50">
           بر اساس میکروسرویس:
         </span>
         {microServices.map((item) => (
-          <Link
+          <button
             key={item.slug}
-            href={`${pathname}?micro=${item.slug}`}
-            className={chipClass(micro === item.slug)}
+            type="button"
+            onClick={() => onMicroChange(item.slug)}
+            className={microChipClass(value.micro === item.slug)}
           >
             {item.name}
-          </Link>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-12">
-        <span className="self-center text-caption text-surface-50">
-          بر اساس مشتری:
-        </span>
-        {customers.map((item) => (
-          <Link
-            key={item.slug}
-            href={`${pathname}?customer=${item.slug}`}
-            className={chipClass(customer === item.slug)}
-          >
-            {item.name}
-          </Link>
+          </button>
         ))}
       </div>
     </div>
