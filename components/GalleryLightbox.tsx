@@ -136,7 +136,7 @@ export function GalleryLightbox({
                     type="button"
                     onClick={goPrev}
                     aria-label="تصویر قبلی"
-                    className="absolute top-1/2 right-8 z-10 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/80 px-12 py-12 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:left-16"
+                    className="absolute top-1/2 right-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-just-black/80 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:right-16"
                   >
                     ‹
                   </button>
@@ -144,7 +144,7 @@ export function GalleryLightbox({
                     type="button"
                     onClick={goNext}
                     aria-label="تصویر بعدی"
-                    className="absolute top-1/2 left-8 z-10 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/80 px-12 py-12 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:right-16"
+                    className="absolute top-1/2 left-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-just-black/80 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:left-16"
                   >
                     ›
                   </button>
