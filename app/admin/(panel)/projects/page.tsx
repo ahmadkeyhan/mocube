@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DeleteButton } from "@/components/admin/DeleteButton";
+import { SurfaceCard } from "@/components/SurfaceCard";
 import { deleteProject } from "@/lib/admin/actions/projects";
 import { requireAdmin } from "@/lib/auth/guards";
 import { toPersianDigits } from "@/lib/persian";
@@ -28,16 +29,11 @@ export default async function AdminProjectsPage() {
 
       <div className="flex flex-col gap-12">
         {projects.length === 0 ? (
-          <p className="rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50">
-            هنوز پروژه‌ای ثبت نشده است.
-          </p>
+          <SurfaceCard variant="empty">هنوز پروژه‌ای ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {projects.map((project) => (
-          <div
-            key={project._id}
-            className="flex flex-wrap items-center justify-between gap-12 rounded-lg border border-surface-25 bg-off-black px-20 py-16"
-          >
+          <SurfaceCard key={project._id} variant="row">
             <div className="min-w-0">
               <p className="text-body-sm font-bold text-surface-cream">
                 {project.title}
@@ -65,7 +61,7 @@ export default async function AdminProjectsPage() {
               </Link>
               <DeleteButton action={deleteProject} id={project._id} />
             </div>
-          </div>
+          </SurfaceCard>
         ))}
       </div>
     </div>

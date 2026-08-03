@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { surfaceCardClass } from "@/components/SurfaceCard";
 import { getAdminCounts } from "@/lib/admin/queries";
 import { requireAdmin } from "@/lib/auth/guards";
 import { toPersianDigits } from "@/lib/persian";
@@ -43,7 +44,7 @@ export default async function AdminDashboardPage() {
           <Link
             key={card.href}
             href={card.href}
-            className="rounded-lg border border-surface-25 bg-off-black p-24 transition-colors hover:border-shockingly-green"
+            className={surfaceCardClass("panel")}
           >
             <p className="text-caption text-surface-50">{card.label}</p>
             <p className="mt-8 text-heading-sm tracking-heading-sm text-surface-cream">

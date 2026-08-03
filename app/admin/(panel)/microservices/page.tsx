@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DeleteButton } from "@/components/admin/DeleteButton";
+import { SurfaceCard } from "@/components/SurfaceCard";
 import { deleteMicroService } from "@/lib/admin/actions/microServices";
 import { requireAdmin } from "@/lib/auth/guards";
 import { toPersianDigits } from "@/lib/persian";
@@ -28,16 +29,11 @@ export default async function AdminMicroServicesPage() {
 
       <div className="flex flex-col gap-12">
         {microServices.length === 0 ? (
-          <p className="rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50">
-            هنوز ریزخدمتی ثبت نشده است.
-          </p>
+          <SurfaceCard variant="empty">هنوز ریزخدمتی ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {microServices.map((micro) => (
-          <div
-            key={micro._id}
-            className="flex flex-wrap items-center justify-between gap-12 rounded-lg border border-surface-25 bg-off-black px-20 py-16"
-          >
+          <SurfaceCard key={micro._id} variant="row">
             <div className="min-w-0">
               <p className="text-body-sm font-bold text-surface-cream">
                 {micro.name}
@@ -60,7 +56,7 @@ export default async function AdminMicroServicesPage() {
               </Link>
               <DeleteButton action={deleteMicroService} id={micro._id} />
             </div>
-          </div>
+          </SurfaceCard>
         ))}
       </div>
     </div>

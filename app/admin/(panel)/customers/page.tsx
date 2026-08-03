@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DeleteButton } from "@/components/admin/DeleteButton";
+import { SurfaceCard } from "@/components/SurfaceCard";
 import { deleteCustomer } from "@/lib/admin/actions/customers";
 import { requireAdmin } from "@/lib/auth/guards";
 import { getCustomers } from "@/lib/queries/customers";
@@ -27,16 +28,11 @@ export default async function AdminCustomersPage() {
 
       <div className="flex flex-col gap-12">
         {customers.length === 0 ? (
-          <p className="rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50">
-            هنوز مشتری‌ای ثبت نشده است.
-          </p>
+          <SurfaceCard variant="empty">هنوز مشتری‌ای ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {customers.map((customer) => (
-          <div
-            key={customer._id}
-            className="flex flex-wrap items-center justify-between gap-12 rounded-lg border border-surface-25 bg-off-black px-20 py-16"
-          >
+          <SurfaceCard key={customer._id} variant="row">
             <div className="min-w-0">
               <p className="text-body-sm font-bold text-surface-cream">
                 {customer.name}
@@ -55,7 +51,7 @@ export default async function AdminCustomersPage() {
               </Link>
               <DeleteButton action={deleteCustomer} id={customer._id} />
             </div>
-          </div>
+          </SurfaceCard>
         ))}
       </div>
     </div>

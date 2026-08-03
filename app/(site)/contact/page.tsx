@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { surfaceCardClass } from "@/components/SurfaceCard";
 import { toPersianDigits } from "@/lib/persian";
 import { getSiteSettings } from "@/lib/queries/site";
 
@@ -34,7 +35,7 @@ export default async function ContactPage() {
         <Stagger spring className="mt-48 grid gap-24 md:grid-cols-3">
           <a
             href={`tel:${phoneDigits}`}
-            className="rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-cream"
+            className={surfaceCardClass("tileSoft")}
           >
             <p className="text-caption text-surface-50">تلفن</p>
             <p
@@ -49,7 +50,7 @@ export default async function ContactPage() {
             href={`https://instagram.com/${settings.instagram}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-cream"
+            className={surfaceCardClass("tileSoft")}
           >
             <p className="text-caption text-surface-50">اینستاگرام</p>
             <p className="mt-16 text-subheading tracking-subheading text-shockingly-green">
@@ -61,7 +62,7 @@ export default async function ContactPage() {
             href={`https://t.me/${settings.telegram}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-cream"
+            className={surfaceCardClass("tileSoft")}
           >
             <p className="text-caption text-surface-50">تلگرام</p>
             <p className="mt-16 text-subheading tracking-subheading text-shockingly-green">

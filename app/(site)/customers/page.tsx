@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { surfaceCardClass } from "@/components/SurfaceCard";
 import { getCustomers } from "@/lib/queries/customers";
 
 export const dynamic = "force-dynamic";
@@ -34,7 +35,7 @@ export default async function CustomersPage() {
             <Link
               key={customer._id}
               href={`/customers/${customer.slug}`}
-              className="rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-50 hover:bg-off-black"
+              className={surfaceCardClass("tileHover")}
             >
               <div
                 className="mb-20 flex size-64 items-center justify-center rounded-lg text-body-sm font-bold text-just-black"

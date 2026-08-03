@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { surfaceCardClass } from "@/components/SurfaceCard";
 import { getMicroServicesWithService } from "@/lib/queries/microServices";
 
 export const dynamic = "force-dynamic";
@@ -36,7 +37,7 @@ export default async function MicroServicesPage() {
               <Link
                 key={micro._id}
                 href={`/microservices/${micro.slug}`}
-                className="rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-50 hover:bg-off-black"
+                className={surfaceCardClass("tileHover")}
               >
                 {micro.service ? (
                   <CategoryLabel

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { DeleteButton } from "@/components/admin/DeleteButton";
+import { SurfaceCard } from "@/components/SurfaceCard";
 import { deleteService } from "@/lib/admin/actions/services";
 import { SERVICE_COLOR_LABELS } from "@/lib/admin/constants";
 import { requireAdmin } from "@/lib/auth/guards";
@@ -29,16 +30,11 @@ export default async function AdminServicesPage() {
 
       <div className="flex flex-col gap-12">
         {services.length === 0 ? (
-          <p className="rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50">
-            هنوز خدمتی ثبت نشده است.
-          </p>
+          <SurfaceCard variant="empty">هنوز خدمتی ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {services.map((service) => (
-          <div
-            key={service._id}
-            className="flex flex-wrap items-center justify-between gap-12 rounded-lg border border-surface-25 bg-off-black px-20 py-16"
-          >
+          <SurfaceCard key={service._id} variant="row">
             <div className="min-w-0">
               <p className="text-body-sm font-bold text-surface-cream">
                 {service.name}
@@ -63,7 +59,7 @@ export default async function AdminServicesPage() {
               </Link>
               <DeleteButton action={deleteService} id={service._id} />
             </div>
-          </div>
+          </SurfaceCard>
         ))}
       </div>
     </div>
