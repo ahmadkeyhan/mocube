@@ -104,7 +104,7 @@ function FilterSelect({
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute top-[calc(100%+6px)] right-0 z-30 max-h-[240px] min-w-full overflow-auto rounded-lg border border-surface-25 bg-off-black py-4 shadow-lg"
+          className="absolute top-[calc(100%+6px)] right-0 z-30 max-h-60 min-w-full overflow-auto rounded-lg border border-surface-25 bg-off-black py-4 shadow-lg"
         >
           <li role="option" aria-selected={value === ""}>
             <button
