@@ -9,7 +9,7 @@ export function SectionEyebrow({
 }: SectionEyebrowProps) {
   return (
     <p
-      className={`text-body-sm text-surface-cream ${className}`}
+      className={`text-body-sm text-foreground ${className}`}
     >{`{ ${children} }`}</p>
   );
 }

@@ -37,7 +37,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <Container>
         <Reveal>
           <SectionEyebrow>پروژه</SectionEyebrow>
-          <h1 className="mt-16 max-w-4xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 max-w-4xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             {project.title}
           </h1>
           <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -66,7 +66,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <Link
                   key={micro._id}
                   href={`/microservices/${micro.slug}`}
-                  className="text-body-sm text-surface-50 underline-offset-4 hover:text-surface-cream hover:underline"
+                  className="text-body-sm text-surface-50 underline-offset-4 hover:text-foreground hover:underline"
                 >
                   {micro.name}
                 </Link>
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     <Link
                       key={id}
                       href={`/microservices/${micro.slug}`}
-                      className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-surface-cream"
+                      className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
                     >
                       {micro.name}
                     </Link>

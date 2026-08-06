@@ -29,7 +29,7 @@ export default async function ProjectsPage() {
       <Container>
         <Reveal>
           <SectionEyebrow>پروژه‌ها</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             کارهایی که ساخته‌ایم
           </h1>
           <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">

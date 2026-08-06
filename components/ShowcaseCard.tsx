@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import type { ServiceColor } from "@/lib/models/types";
+import { MdAccountCircle } from "react-icons/md";
 
 type ShowcaseCardProps = {
   href: string;
@@ -35,12 +36,12 @@ export function ShowcaseCard({
   return (
     <Link href={href} className="block">
       <motion.article
-        className="rounded-lg bg-just-black p-24 transition-colors hover:bg-off-black"
+        className="rounded-lg bg-off-background transition-colors hover:bg-background"
         initial="rest"
         whileHover={reduce ? undefined : "hover"}
         animate="rest"
       >
-        <div className="relative mb-20 aspect-video overflow-hidden rounded-lg">
+        <div className="relative aspect-video overflow-hidden rounded-lg">
           <motion.div
             className="absolute inset-0"
             style={{
@@ -56,28 +57,33 @@ export function ShowcaseCard({
             ) : null}
           </motion.div>
         </div>
-        <motion.h3
-          className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-surface-cream md:text-[26px] md:tracking-[-0.26px]"
-          variants={reduce ? undefined : titleVariants}
-          transition={{ type: "spring", stiffness: 300, damping: 24 }}
-        >
-          {title}
-        </motion.h3>
-        {customerName ? (
-          <p className="mt-8 text-body-sm text-surface-50">{customerName}</p>
-        ) : null}
-        {services.length > 0 ? (
-          <div className="mt-12 flex flex-wrap gap-12">
-            {services.map((service) => (
-              <CategoryLabel
-                key={service.name}
-                label={service.name}
-                color={service.color}
-                className="text-caption"
-              />
-            ))}
-          </div>
-        ) : null}
+        <div className="p-20">
+          <motion.h3
+            className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-foreground md:text-[26px] md:tracking-[-0.26px]"
+            variants={reduce ? undefined : titleVariants}
+            transition={{ type: "spring", stiffness: 300, damping: 24 }}
+          >
+            {title}
+          </motion.h3>
+          {customerName ? (
+            <div className="mt-8 text-body-sm text-surface-50 flex gap-1 items-center">
+              <MdAccountCircle className="w-5 h-5" />
+              <p>{customerName}</p>
+            </div>
+          ) : null}
+          {services.length > 0 ? (
+            <div className="mt-12 flex flex-wrap gap-2">
+              {services.map((service) => (
+                <CategoryLabel
+                  key={service.name}
+                  label={service.name}
+                  color={service.color}
+                  className="text-caption"
+                />
+              ))}
+            </div>
+          ) : null}
+        </div>
       </motion.article>
     </Link>
   );

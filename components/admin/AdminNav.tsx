@@ -29,8 +29,8 @@ export function AdminNav() {
             href={link.href}
             className={`rounded-lg px-16 py-10 text-body-sm transition-colors ${
               active
-                ? "bg-shockingly-green text-just-black font-bold"
-                : "text-surface-50 hover:text-surface-cream"
+                ? "bg-shockingly-green text-background font-bold"
+                : "text-surface-50 hover:text-foreground"
             }`}
           >
             {link.label}

@@ -23,7 +23,7 @@ export default async function MicroServicesPage() {
       <Container>
         <Reveal>
           <SectionEyebrow>نمونه‌کارها</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             جزئیاتی که می‌توانید انتخاب کنید
           </h1>
           <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -46,7 +46,7 @@ export default async function MicroServicesPage() {
                     className="text-body-sm"
                   />
                 ) : null}
-                <h2 className="mt-12 text-body font-bold text-surface-cream">
+                <h2 className="mt-12 text-body font-bold text-foreground">
                   {micro.name}
                 </h2>
                 <p className="mt-8 text-body-sm text-surface-50">

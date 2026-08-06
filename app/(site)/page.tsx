@@ -38,7 +38,7 @@ export default async function HomePage() {
         <Container className="relative z-10 pt-32 pb-76 md:pt-76 text-center flex flex-col items-center">
           <HeroIntro
             headline={
-              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-surface-cream sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display">
+              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display">
                 سوخت خلاقیت برای رسیدن به مدار توجه
               </h1>
             }
@@ -62,7 +62,7 @@ export default async function HomePage() {
         <Container className="py-76">
           <Reveal>
             <SectionEyebrow>چرا موکیوب</SectionEyebrow>
-            <h2 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+            <h2 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               طراحی با رنگ، تایپ و حرکت — نه قالب‌های تکراری
             </h2>
           </Reveal>
@@ -101,7 +101,7 @@ export default async function HomePage() {
           <Reveal>
             {/* <SectionEyebrow>پروژه‌ها</SectionEyebrow> */}
             <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
-              <h2 className="text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+              <h2 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
                 پروژه‌های منتخب
               </h2>
               <PillButton href="/projects">کاوش همه پروژه‌ها</PillButton>
@@ -129,7 +129,7 @@ export default async function HomePage() {
         <Container className="text-center">
           <Reveal>
             {/* <SectionEyebrow>بعدی چیست؟</SectionEyebrow> */}
-            <h2 className="mx-auto mt-16 max-w-2xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+            <h2 className="mx-auto mt-16 max-w-2xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               پروژه‌ات را با موکیوب شروع کن
             </h2>
             <div className="mt-32 flex justify-center">

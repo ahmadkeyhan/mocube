@@ -12,7 +12,7 @@ type PlanRow = {
 };
 
 const controlClasses =
-  "w-full rounded-lg border border-surface-25 bg-off-black px-12 py-10 text-body-sm text-surface-cream outline-none transition-colors placeholder:text-surface-50 focus:border-shockingly-green";
+  "w-full rounded-lg border border-surface-25 bg-off-background px-12 py-10 text-body-sm text-foreground outline-none transition-colors placeholder:text-surface-50 focus:border-shockingly-green";
 
 function toRow(plan: PricingPlan | undefined, index: number): PlanRow {
   return {
@@ -93,7 +93,7 @@ export function PricingPlansEditor({
             className={`${controlClasses} resize-y`}
           />
 
-          <label className="flex cursor-pointer items-center gap-8 text-body-sm text-surface-cream">
+          <label className="flex cursor-pointer items-center gap-8 text-body-sm text-foreground">
             <input
               type="checkbox"
               name={`plan-highlighted-${index}`}
@@ -113,7 +113,7 @@ export function PricingPlansEditor({
         onClick={() =>
           setRows((current) => [...current, toRow(undefined, current.length)])
         }
-        className="self-start rounded-full border border-surface-25 px-16 py-8 text-caption text-surface-cream transition-colors hover:border-shockingly-green"
+        className="self-start rounded-full border border-surface-25 px-16 py-8 text-caption text-foreground transition-colors hover:border-shockingly-green"
       >
         افزودن پلن
       </button>

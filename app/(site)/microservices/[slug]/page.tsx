@@ -63,7 +63,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
                 />
               </Link>
             ) : null}
-            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               {micro.name}
             </h1>
             <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -83,7 +83,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
         <Container>
           <Reveal>
             <SectionEyebrow>نمونه‌ها</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream">
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               گالری‌های مرتبط
             </h2>
           </Reveal>
@@ -94,7 +94,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
                 <Reveal key={`${block.projectSlug}-${block.gallery.urls[0]}`}>
                   <Link
                     href={`/projects/${block.projectSlug}`}
-                    className="text-body font-bold text-surface-cream hover:underline"
+                    className="text-body font-bold text-foreground hover:underline"
                   >
                     {block.projectTitle}
                   </Link>

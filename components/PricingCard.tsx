@@ -19,7 +19,7 @@ export function PricingCard({
 
   return (
     <motion.div
-      className={`rounded-lg p-24 ${highlighted ? "border border-shockingly-green/50 bg-off-black" : "border border-surface-25 bg-just-black"}`}
+      className={`rounded-lg p-24 ${highlighted ? "border border-shockingly-green/50 bg-off-background" : "border border-surface-25 bg-background"}`}
       animate={reduce || !highlighted ? undefined : { scale: [1, 1.02, 1] }}
       transition={
         highlighted
@@ -28,14 +28,14 @@ export function PricingCard({
       }
     >
       <p className="text-body-sm text-surface-50">{name}</p>
-      <p className="font-changa mt-12 text-subheading font-bold tracking-subheading text-surface-cream">
+      <p className="font-changa mt-12 text-subheading font-bold tracking-subheading text-foreground">
         {priceLabel}
       </p>
       <ul className="mt-24 flex flex-col gap-12">
         {features.map((feature) => (
           <li
             key={feature}
-            className="text-body-sm text-surface-cream before:me-8 before:text-shockingly-green before:content-['•']"
+            className="text-body-sm text-foreground before:me-8 before:text-shockingly-green before:content-['•']"
           >
             {feature}
           </li>

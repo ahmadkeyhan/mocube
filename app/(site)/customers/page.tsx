@@ -22,7 +22,7 @@ export default async function CustomersPage() {
       <Container>
         <Reveal>
           <SectionEyebrow>مشتریان</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             برندهایی که ساخته‌ایم
           </h1>
           <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -38,12 +38,12 @@ export default async function CustomersPage() {
               className={surfaceCardClass("tileHover")}
             >
               <div
-                className="mb-20 flex size-64 items-center justify-center rounded-lg text-body-sm font-bold text-just-black"
+                className="mb-20 flex size-64 items-center justify-center rounded-lg text-body-sm font-bold text-background"
                 style={{ background: customer.logoUrl }}
               >
                 {customer.name.slice(0, 1)}
               </div>
-              <h2 className="text-body font-bold text-surface-cream">
+              <h2 className="text-body font-bold text-foreground">
                 {customer.name}
               </h2>
               <p className="mt-8 text-body-sm text-surface-50">

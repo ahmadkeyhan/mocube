@@ -16,7 +16,7 @@ type ImageUploaderProps = {
 };
 
 const buttonClasses =
-  "rounded-full border border-surface-25 px-16 py-8 text-caption text-surface-cream transition-colors hover:border-shockingly-green disabled:cursor-not-allowed disabled:opacity-50";
+  "rounded-full border border-surface-25 px-16 py-8 text-caption text-foreground transition-colors hover:border-shockingly-green disabled:cursor-not-allowed disabled:opacity-50";
 
 export function ImageUploader({
   value = "",
@@ -140,7 +140,7 @@ export function ImageUploader({
       </div>
 
       {displayUrl ? (
-        <div className="relative h-40 w-40 overflow-hidden rounded-lg border border-surface-25 bg-off-black">
+        <div className="relative h-40 w-40 overflow-hidden rounded-lg border border-surface-25 bg-off-background">
           {/* biome-ignore lint/performance/noImgElement: blob + CDN preview in admin */}
           <img
             src={displayUrl}
@@ -240,7 +240,7 @@ export function MultiImageUploader({
         {urls.map((url) => (
           <div
             key={url}
-            className="relative h-28 w-28 overflow-hidden rounded-lg border border-surface-25 bg-off-black"
+            className="relative h-28 w-28 overflow-hidden rounded-lg border border-surface-25 bg-off-background"
           >
             {url.startsWith("#") ? (
               <div className="h-full w-full" style={{ background: url }} />
@@ -256,7 +256,7 @@ export function MultiImageUploader({
               type="button"
               onClick={() => handleRemove(url)}
               disabled={isUploading}
-              className="absolute top-4 left-4 rounded-full bg-just-black/80 px-8 py-2 text-[10px] text-lipstick-pink disabled:opacity-50"
+              className="absolute top-4 left-4 rounded-full bg-background/80 px-8 py-2 text-[10px] text-lipstick-pink disabled:opacity-50"
             >
               حذف
             </button>

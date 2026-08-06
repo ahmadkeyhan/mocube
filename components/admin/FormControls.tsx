@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 const controlClasses =
-  "w-full rounded-lg border border-surface-25 bg-off-black px-12 py-10 text-body-sm text-surface-cream outline-none transition-colors placeholder:text-surface-50 focus:border-shockingly-green";
+  "w-full rounded-lg border border-surface-25 bg-off-background px-12 py-10 text-body-sm text-foreground outline-none transition-colors placeholder:text-surface-50 focus:border-shockingly-green";
 
 type FieldProps = {
   label: string;
@@ -16,7 +16,7 @@ export function Field({ label, htmlFor, hint, error, children }: FieldProps) {
     <div className="flex flex-col gap-8">
       <label
         htmlFor={htmlFor}
-        className="text-body-sm font-bold text-surface-cream"
+        className="text-body-sm font-bold text-foreground"
       >
         {label}
       </label>
@@ -145,7 +145,7 @@ export function CheckboxGroup({
       {options.map((option) => (
         <label
           key={option.value}
-          className="flex cursor-pointer items-center gap-6 rounded-full border border-surface-25 px-12 py-6 text-caption text-surface-cream has-[:checked]:border-shockingly-green has-[:checked]:text-shockingly-green"
+          className="flex cursor-pointer items-center gap-6 rounded-full border border-surface-25 px-12 py-6 text-caption text-foreground has-[:checked]:border-shockingly-green has-[:checked]:text-shockingly-green"
         >
           <input
             type="checkbox"
@@ -169,7 +169,7 @@ type ToggleProps = {
 
 export function Toggle({ name, label, defaultChecked }: ToggleProps) {
   return (
-    <label className="flex cursor-pointer items-center gap-10 text-body-sm text-surface-cream">
+    <label className="flex cursor-pointer items-center gap-10 text-body-sm text-foreground">
       <input
         type="checkbox"
         name={name}

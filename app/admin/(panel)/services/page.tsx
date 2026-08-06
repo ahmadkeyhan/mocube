@@ -36,7 +36,7 @@ export default async function AdminServicesPage() {
         {services.map((service) => (
           <SurfaceCard key={service._id} variant="row">
             <div className="min-w-0">
-              <p className="text-body-sm font-bold text-surface-cream">
+              <p className="text-body-sm font-bold text-foreground">
                 {service.name}
               </p>
               <p className="mt-6 text-caption text-surface-50">
@@ -53,7 +53,7 @@ export default async function AdminServicesPage() {
             <div className="flex items-center gap-12">
               <Link
                 href={`/admin/services/${service._id}`}
-                className="rounded-full border border-surface-25 px-16 py-8 text-caption text-surface-cream transition-colors hover:border-shockingly-green"
+                className="rounded-full border border-surface-25 px-16 py-8 text-caption text-foreground transition-colors hover:border-shockingly-green"
               >
                 ویرایش
               </Link>

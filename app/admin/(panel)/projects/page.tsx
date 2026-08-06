@@ -35,7 +35,7 @@ export default async function AdminProjectsPage() {
         {projects.map((project) => (
           <SurfaceCard key={project._id} variant="row">
             <div className="min-w-0">
-              <p className="text-body-sm font-bold text-surface-cream">
+              <p className="text-body-sm font-bold text-foreground">
                 {project.title}
                 {project.featured ? (
                   <span className="mr-8 text-caption text-shockingly-green">
@@ -55,7 +55,7 @@ export default async function AdminProjectsPage() {
             <div className="flex items-center gap-12">
               <Link
                 href={`/admin/projects/${project._id}`}
-                className="rounded-full border border-surface-25 px-16 py-8 text-caption text-surface-cream transition-colors hover:border-shockingly-green"
+                className="rounded-full border border-surface-25 px-16 py-8 text-caption text-foreground transition-colors hover:border-shockingly-green"
               >
                 ویرایش
               </Link>

@@ -62,7 +62,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               color={service.color}
               className="mt-16 block text-body-lg"
             />
-            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               {service.shortDescription}
             </h1>
             <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -79,7 +79,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Container>
           <Reveal>
             <SectionEyebrow>میکروسرویس‌ها</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream">
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               جزئیات قابل انتخاب
             </h2>
           </Reveal>
@@ -90,7 +90,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 href={`/microservices/${micro.slug}`}
                 className="border-t border-surface-25 pt-24 transition-colors hover:border-surface-50"
               >
-                <h3 className="text-body font-bold text-surface-cream">
+                <h3 className="text-body font-bold text-foreground">
                   {micro.name}
                 </h3>
                 <p className="mt-12 text-body text-surface-50">
@@ -106,7 +106,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Container>
           <Reveal>
             <SectionEyebrow>پلن‌ها</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream">
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               سه سطح قیمت‌گذاری
             </h2>
           </Reveal>
@@ -129,7 +129,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <Container>
             <Reveal>
               <SectionEyebrow>پروژه‌ها</SectionEyebrow>
-              <h2 className="mt-16 mb-32 text-heading-sm tracking-heading-sm text-surface-cream">
+              <h2 className="mt-16 mb-32 text-heading-sm tracking-heading-sm text-foreground">
                 پروژه‌های مرتبط با {service.name}
               </h2>
             </Reveal>

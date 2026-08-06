@@ -50,7 +50,7 @@ export function ServiceBlock({
             }`}
           >
             <CategoryLabel label={name} color={color} />
-            <h3 className="mt-16 max-w-xl text-subheading tracking-subheading text-surface-cream md:text-heading-sm md:tracking-heading-sm">
+            <h3 className="mt-16 max-w-xl text-subheading tracking-subheading text-foreground md:text-heading-sm md:tracking-heading-sm">
               {shortDescription}
             </h3>
             <div className="mt-24 pointer-events-auto">

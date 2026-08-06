@@ -21,7 +21,7 @@ export function DataUnavailable({
       <button
         type="button"
         onClick={() => router.refresh()}
-        className="inline-flex items-center justify-center rounded-full border border-surface-cream px-20 py-12 text-body-sm font-bold text-surface-cream transition-colors hover:border-surface-50 hover:text-surface-cream"
+        className="inline-flex items-center justify-center rounded-full border border-foreground px-20 py-12 text-body-sm font-bold text-foreground transition-colors hover:border-surface-50 hover:text-foreground"
       >
         تلاش مجدد
       </button>

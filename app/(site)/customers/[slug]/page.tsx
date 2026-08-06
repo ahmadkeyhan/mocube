@@ -42,13 +42,13 @@ export default async function CustomerDetailPage({ params }: PageProps) {
           <SectionEyebrow>مشتری</SectionEyebrow>
           <div className="mt-16 flex flex-wrap items-start gap-24">
             <div
-              className="flex size-80 items-center justify-center rounded-lg text-subheading font-bold text-just-black"
+              className="flex size-80 items-center justify-center rounded-lg text-subheading font-bold text-background"
               style={{ background: customer.logoUrl }}
             >
               {customer.name.slice(0, 1)}
             </div>
             <div>
-              <h1 className="text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+              <h1 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
                 {customer.name}
               </h1>
               <p className="mt-12 text-body text-surface-50">
@@ -62,7 +62,7 @@ export default async function CustomerDetailPage({ params }: PageProps) {
         </Reveal>
 
         <Reveal className="mt-76 mb-24">
-          <h2 className="text-subheading tracking-subheading text-surface-cream">
+          <h2 className="text-subheading tracking-subheading text-foreground">
             پروژه‌های {customer.name}
           </h2>
         </Reveal>

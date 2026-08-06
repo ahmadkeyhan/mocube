@@ -15,7 +15,7 @@ export default async function NotFound() {
         <section className="py-108">
           <Container className="text-center">
             <SectionEyebrow>۴۰۴</SectionEyebrow>
-            <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream">
+            <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               صفحه پیدا نشد
             </h1>
             <p className="mt-16 text-body text-surface-50">

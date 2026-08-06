@@ -16,7 +16,7 @@ export function AdminPageHeader({
   return (
     <div className="flex flex-wrap items-center justify-between gap-16">
       <div>
-        <h1 className="text-heading-sm tracking-heading-sm text-surface-cream">
+        <h1 className="text-heading-sm tracking-heading-sm text-foreground">
           {title}
         </h1>
         {description ? (
@@ -27,7 +27,7 @@ export function AdminPageHeader({
       {actionHref && actionLabel ? (
         <Link
           href={actionHref}
-          className="rounded-full bg-shockingly-green px-20 py-10 text-body-sm font-bold text-just-black"
+          className="rounded-full bg-shockingly-green px-20 py-10 text-body-sm font-bold text-background"
         >
           {actionLabel}
         </Link>

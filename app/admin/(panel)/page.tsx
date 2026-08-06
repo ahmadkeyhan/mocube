@@ -29,7 +29,7 @@ export default async function AdminDashboardPage() {
   return (
     <div className="flex flex-col gap-24">
       <div>
-        <h1 className="text-heading-sm tracking-heading-sm text-surface-cream">
+        <h1 className="text-heading-sm tracking-heading-sm text-foreground">
           داشبورد
         </h1>
         <p className="mt-8 text-body-sm text-surface-50">
@@ -47,7 +47,7 @@ export default async function AdminDashboardPage() {
             className={surfaceCardClass("panel")}
           >
             <p className="text-caption text-surface-50">{card.label}</p>
-            <p className="mt-8 text-heading-sm tracking-heading-sm text-surface-cream">
+            <p className="mt-8 text-heading-sm tracking-heading-sm text-foreground">
               {toPersianDigits(card.value ?? 0)}
             </p>
           </Link>

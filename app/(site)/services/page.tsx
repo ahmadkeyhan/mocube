@@ -21,7 +21,7 @@ export default async function ServicesPage() {
       <Container>
         <Reveal>
           <SectionEyebrow>خدمات</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             چهار تخصص، یک استودیو
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">

@@ -7,14 +7,14 @@ import { GradientCta } from "@/components/GradientCta";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navLinks = [
-  { href: "/services", label: "خدمات", className: "text-surface-cream" },
+  { href: "/services", label: "خدمات", className: "text-foreground" },
   {
     href: "/microservices",
     label: "نمونه‌کارها",
-    className: "text-surface-cream",
+    className: "text-foreground",
   },
-  { href: "/projects", label: "پروژه‌ها", className: "text-surface-cream" },
-  { href: "/customers", label: "مشتریان", className: "text-surface-cream" },
+  { href: "/projects", label: "پروژه‌ها", className: "text-foreground" },
+  { href: "/customers", label: "مشتریان", className: "text-foreground" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -42,7 +42,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-surface-25/60 bg-just-black/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-40 border-b border-surface-25/60 bg-background/90 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-16 px-16 py-12 md:px-24">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: -12 }}
@@ -66,7 +66,7 @@ export function SiteHeader() {
               >
                 <Link
                   href={link.href}
-                  className={`px-8 py-10 text-body-sm transition-colors hover:text-surface-cream ${link.className}`}
+                  className={`px-8 py-10 text-body-sm transition-colors hover:text-foreground ${link.className}`}
                 >
                   {link.label}
                 </Link>
@@ -92,7 +92,7 @@ export function SiteHeader() {
             </motion.div>
             <button
               type="button"
-              className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream lg:hidden"
+              className="inline-flex size-40 items-center justify-center rounded-full round-keep text-foreground lg:hidden"
               aria-expanded={open}
               aria-label="باز کردن منو"
               onClick={() => setOpen(true)}
@@ -107,7 +107,7 @@ export function SiteHeader() {
         {open ? (
           <motion.div
             key="mobile-menu"
-            className="fixed inset-0 z-50 flex flex-col bg-just-black px-16 py-12 lg:hidden"
+            className="fixed inset-0 z-50 flex flex-col bg-background px-16 py-12 lg:hidden"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
@@ -123,7 +123,7 @@ export function SiteHeader() {
                 <ThemeToggle />
                 <button
                   type="button"
-                  className="inline-flex size-40 items-center justify-center rounded-full round-keep text-surface-cream"
+                  className="inline-flex size-40 items-center justify-center rounded-full round-keep text-foreground"
                   aria-label="بستن منو"
                   onClick={() => setOpen(false)}
                 >

@@ -77,7 +77,7 @@ function FilterSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
-        className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-black py-8 pr-16 pl-36 text-body-sm text-surface-cream outline-none transition-colors hover:border-surface-50"
+        className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-background py-8 pr-16 pl-36 text-body-sm text-foreground outline-none transition-colors hover:border-surface-50"
         onClick={() => setOpen((current) => !current)}
       >
         <span className="truncate">{selectedLabel}</span>
@@ -104,15 +104,15 @@ function FilterSelect({
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute top-[calc(100%+6px)] right-0 z-30 max-h-60 min-w-full overflow-auto rounded-lg border border-surface-25 bg-off-black py-4 shadow-lg"
+          className="absolute top-[calc(100%+6px)] right-0 z-30 max-h-60 min-w-full overflow-auto rounded-lg border border-surface-25 bg-off-background py-4 shadow-lg"
         >
           <li role="option" aria-selected={value === ""}>
             <button
               type="button"
               className={`w-full px-16 py-8 text-start text-body-sm transition-colors hover:bg-surface-25/40 ${
                 value === ""
-                  ? "text-surface-cream"
-                  : "text-surface-50 hover:text-surface-cream"
+                  ? "text-foreground"
+                  : "text-surface-50 hover:text-foreground"
               }`}
               onMouseDown={(event) => {
                 event.preventDefault();
@@ -130,8 +130,8 @@ function FilterSelect({
                   type="button"
                   className={`w-full px-16 py-8 text-start text-body-sm transition-colors hover:bg-surface-25/40 ${
                     active
-                      ? "text-surface-cream"
-                      : "text-surface-50 hover:text-surface-cream"
+                      ? "text-foreground"
+                      : "text-surface-50 hover:text-foreground"
                   }`}
                   onMouseDown={(event) => {
                     event.preventDefault();
@@ -162,8 +162,8 @@ export function ProjectsFilter({
   const microChipClass = (active: boolean) =>
     `rounded-full border px-2 py-1 text-caption transition-colors ${
       active
-        ? "border-surface-cream text-surface-cream"
-        : "border-surface-25 text-surface-50 hover:border-surface-50 hover:text-surface-cream"
+        ? "border-foreground text-foreground"
+        : "border-surface-25 text-surface-50 hover:border-surface-50 hover:text-foreground"
     }`;
 
   const filterActive = Boolean(value.service || value.customer || value.micro);
@@ -175,7 +175,7 @@ export function ProjectsFilter({
           <button
             type="button"
             onClick={onClear}
-            className="text-caption text-surface-50 transition-colors hover:text-surface-cream"
+            className="text-caption text-surface-50 transition-colors hover:text-foreground"
           >
             پاک کردن فیلتر
           </button>

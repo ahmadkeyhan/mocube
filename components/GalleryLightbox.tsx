@@ -104,12 +104,12 @@ export function GalleryLightbox({
           <button
             type="button"
             aria-label="بستن"
-            className="absolute inset-0 bg-just-black/90 backdrop-blur-md"
+            className="absolute inset-0 bg-background/90 backdrop-blur-md"
             onClick={onClose}
           />
 
           <motion.div
-            className="relative z-10 flex max-h-[min(92vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-lg border border-surface-25 bg-off-black"
+            className="relative z-10 flex max-h-[min(92vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-lg border border-surface-25 bg-off-background"
             initial={reduce ? false : { opacity: 0, scale: 0.94, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, scale: 0.96, y: 12 }}
@@ -123,20 +123,20 @@ export function GalleryLightbox({
                 ref={closeRef}
                 type="button"
                 onClick={onClose}
-                className="rounded-full border border-surface-25 px-16 py-8 text-body-sm font-bold text-surface-cream transition-colors hover:border-surface-50 hover:text-shockingly-green"
+                className="rounded-full border border-surface-25 px-16 py-8 text-body-sm font-bold text-foreground transition-colors hover:border-surface-50 hover:text-shockingly-green"
               >
                 بستن
               </button>
             </div>
 
-            <div className="relative flex min-h-0 flex-1 items-center justify-center bg-just-black px-16 py-24 md:px-32">
+            <div className="relative flex min-h-0 flex-1 items-center justify-center bg-background px-16 py-24 md:px-32">
               {hasNav ? (
                 <>
                   <button
                     type="button"
                     onClick={goPrev}
                     aria-label="تصویر قبلی"
-                    className="absolute top-1/2 right-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-just-black/80 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:right-16"
+                    className="absolute top-1/2 right-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-background/80 text-body-sm text-foreground backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:right-16"
                   >
                     ‹
                   </button>
@@ -144,7 +144,7 @@ export function GalleryLightbox({
                     type="button"
                     onClick={goNext}
                     aria-label="تصویر بعدی"
-                    className="absolute top-1/2 left-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-just-black/80 text-body-sm text-surface-cream backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:left-16"
+                    className="absolute top-1/2 left-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-background/80 text-body-sm text-foreground backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:left-16"
                   >
                     ›
                   </button>
@@ -187,7 +187,7 @@ export function GalleryLightbox({
                 {projectTitle && projectHref ? (
                   <Link
                     href={projectHref}
-                    className="text-body font-bold text-surface-cream hover:underline"
+                    className="text-body font-bold text-foreground hover:underline"
                   >
                     {projectTitle}
                   </Link>
@@ -207,7 +207,7 @@ export function GalleryLightbox({
                       <Link
                         key={micro.slug}
                         href={`/microservices/${micro.slug}`}
-                        className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-surface-cream"
+                        className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
                       >
                         {micro.name}
                       </Link>

@@ -24,7 +24,7 @@ export default async function ContactPage() {
       <Container>
         <Reveal>
           <SectionEyebrow>تماس</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-surface-cream md:text-heading md:tracking-heading">
+          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             بیایید حرف بزنیم
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
@@ -39,7 +39,7 @@ export default async function ContactPage() {
           >
             <p className="text-caption text-surface-50">تلفن</p>
             <p
-              className="mt-16 text-subheading tracking-subheading text-surface-cream"
+              className="mt-16 text-subheading tracking-subheading text-foreground"
               dir="ltr"
             >
               {phoneDisplay}

@@ -121,7 +121,7 @@ Soft 3D shapes (pill, dome, liquid blob) rendered with multi-stop gradients — 
 ### Footer
 **Role:** Closing navigation and legal block
 
-Off-black #191919 background, 1px #42433d top divider, multi-column nav with cream links at 16px Ravi 400, generous 60–80px vertical padding. Includes the mocube wordmark, link columns, and social/secondary nav. The footer shifts one surface step lighter than the page, creating a subtle terminator.
+off-background #191919 background, 1px #42433d top divider, multi-column nav with cream links at 16px Ravi 400, generous 60–80px vertical padding. Includes the mocube wordmark, link columns, and social/secondary nav. The footer shifts one surface step lighter than the page, creating a subtle terminator.
 
 ### Showcase Card
 **Role:** Grid item in the Showcase section
@@ -140,7 +140,7 @@ Near-black surface with 8px corner radius, cream heading at 24–33px, no visibl
 
 ### Don't
 - Don't add filled, solid-color CTA buttons — the system is outlined-only; the gradient-stroked pill is the maximum chromatic escalation allowed.
-- Don't use pure white (#ffffff) for text or #000000 for the background — the warmth of #fffce1 cream and #0e100f off-black is what gives the system its character.
+- Don't use pure white (#ffffff) for text or #000000 for the background — the warmth of #fffce1 cream and #0e100f off-background is what gives the system its character.
 - Don't set body type below 14px or above 23px; the type scale is binary between editorial display (66–224px) and compact UI (14–23px).
 - Don't introduce new category colors beyond the five-discipline palette; adding a sixth color dilutes the taxonomy that makes the system legible.
 - Don't apply drop shadows to cards or illustrations — depth is communicated only through gradient washes and surface-step shifts, never via box-shadow.

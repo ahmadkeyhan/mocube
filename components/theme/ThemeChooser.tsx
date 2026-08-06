@@ -280,14 +280,14 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
 
       <button
         type="button"
-        className="theme-pane-light absolute top-1/2 left-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/85 px-16 py-12 text-body-sm font-bold text-surface-cream backdrop-blur-sm transition-colors hover:text-shockingly-green md:left-24"
+        className="theme-pane-light absolute top-1/2 left-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:left-24"
         onClick={() => commit("light")}
       >
         روشن
       </button>
       <button
         type="button"
-        className="theme-pane-dark absolute top-1/2 right-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-just-black/85 px-16 py-12 text-body-sm font-bold text-surface-cream backdrop-blur-sm transition-colors hover:text-shockingly-green md:right-24"
+        className="theme-pane-dark absolute top-1/2 right-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:right-24"
         onClick={() => commit("dark")}
       >
         تاریک

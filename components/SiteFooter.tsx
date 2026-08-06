@@ -14,7 +14,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
   const phoneDisplay = toPersianDigits(phoneDigits);
 
   return (
-    <footer className="mt-auto border-t border-surface-25 bg-off-black">
+    <footer className="mt-auto border-t border-surface-25 bg-off-background">
       <div className="mx-auto grid max-w-[1280px] gap-32 px-16 py-76 md:grid-cols-4 md:px-24">
         <div className="md:col-span-1">
           <p className="text-body-sm text-shockingly-green">موکیوب</p>
@@ -25,7 +25,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
 
         <div>
           <p className="mb-16 text-caption text-surface-50">کاوش</p>
-          <ul className="flex flex-col gap-12 text-body-sm text-surface-cream">
+          <ul className="flex flex-col gap-12 text-body-sm text-foreground">
             <li>
               <Link href="/services" className="hover:text-surface-50">
                 خدمات
@@ -82,7 +82,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
 
         <div>
           <p className="mb-16 text-caption text-surface-50">ارتباط</p>
-          <ul className="flex flex-col gap-12 text-body-sm text-surface-cream">
+          <ul className="flex flex-col gap-12 text-body-sm text-foreground">
             <li>
               <a
                 href={`tel:${phoneDigits}`}

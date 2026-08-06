@@ -14,7 +14,7 @@ export function CategoryLabel({
 }: CategoryLabelProps) {
   return (
     <span
-      className={`text-body font-normal ${serviceColorClass[color]} ${className}`}
+      className={`text-body font-normal bg-background px-2 py-1 rounded-full ${serviceColorClass[color]} ${className}`}
     >
       {label}
     </span>
