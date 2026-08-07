@@ -1,8 +1,15 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import type { ServiceColor } from "@/lib/models/types";
+import {
+  serviceBgTintClass,
+  serviceBorderClass,
+} from "@/lib/service-colors";
 
 export type FilterOption = { slug: string; name: string };
+
+export type MicroFilterOption = FilterOption & { color: ServiceColor };
 
 export type ProjectsFilterValue = {
   service: string | null;
@@ -13,7 +20,7 @@ export type ProjectsFilterValue = {
 type ProjectsFilterProps = {
   services: FilterOption[];
   customers: FilterOption[];
-  microServices: FilterOption[];
+  microServices: MicroFilterOption[];
   value: ProjectsFilterValue;
   onServiceChange: (slug: string) => void;
   onCustomerChange: (slug: string) => void;
@@ -77,7 +84,7 @@ function FilterSelect({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
-        className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-background py-8 pr-16 pl-36 text-body-sm text-foreground outline-none transition-colors hover:border-surface-50"
+        className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-background py-8 pr-12 pl-24 text-body-sm text-foreground outline-none transition-colors hover:border-surface-50"
         onClick={() => setOpen((current) => !current)}
       >
         <span className="truncate">{selectedLabel}</span>
@@ -159,27 +166,27 @@ export function ProjectsFilter({
   onMicroChange,
   onClear,
 }: ProjectsFilterProps) {
-  const microChipClass = (active: boolean) =>
-    `rounded-full border px-2 py-1 text-caption transition-colors ${
+  const microChipClass = (color: ServiceColor, active: boolean) =>
+    `rounded-full border px-2 py-1 text-caption transition-colors ${serviceBorderClass[color]} ${
       active
-        ? "border-foreground text-foreground"
-        : "border-surface-25 text-surface-50 hover:border-surface-50 hover:text-foreground"
+        ? `${serviceBgTintClass[color]} text-foreground`
+        : "bg-transparent text-surface-50 hover:text-foreground"
     }`;
 
   const filterActive = Boolean(value.service || value.customer || value.micro);
 
   return (
     <div className="flex flex-col gap-20">
-      <div className="flex flex-wrap items-center gap-12">
-        {filterActive ? (
-          <button
-            type="button"
-            onClick={onClear}
-            className="text-caption text-surface-50 transition-colors hover:text-foreground"
-          >
-            پاک کردن فیلتر
-          </button>
-        ) : null}
+      {filterActive ? (
+        <button
+          type="button"
+          onClick={onClear}
+          className="text-caption p-2 rounded-full w-56 border border-red-400 bg-red-400/15 text-foreground transition-colors hover:bg-red-400"
+        >
+          پاک کردن فیلتر
+        </button>
+      ) : null}
+      <div className="flex flex-wrap items-center gap-2">
         <FilterSelect
           label="خدمت"
           emptyLabel="همه خدمات"
@@ -199,16 +206,13 @@ export function ProjectsFilter({
           options={customers}
         />
       </div>
-      <div className="flex flex-wrap gap-12">
-        <span className="self-center text-caption text-surface-50">
-          بر اساس میکروسرویس:
-        </span>
+      <div className="flex h-80 flex-wrap gap-2 overflow-y-auto">
         {microServices.map((item) => (
           <button
             key={item.slug}
             type="button"
             onClick={() => onMicroChange(item.slug)}
-            className={microChipClass(value.micro === item.slug)}
+            className={microChipClass(item.color, value.micro === item.slug)}
           >
             {item.name}
           </button>

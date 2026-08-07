@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ProjectsExplorer } from "@/components/ProjectsExplorer";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { getCustomers } from "@/lib/queries/customers";
-import { getMicroServices } from "@/lib/queries/microServices";
+import { getMicroServicesWithService } from "@/lib/queries/microServices";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServices } from "@/lib/queries/services";
 
@@ -21,7 +21,7 @@ export default async function ProjectsPage() {
     getProjectsWithRelations(),
     getServices(),
     getCustomers(),
-    getMicroServices(),
+    getMicroServicesWithService(),
   ]);
 
   return (
@@ -65,6 +65,7 @@ export default async function ProjectsPage() {
             microServices={microServices.map((m) => ({
               slug: m.slug,
               name: m.name,
+              color: m.service?.color ?? "shockingly-green",
             }))}
           />
         </Suspense>

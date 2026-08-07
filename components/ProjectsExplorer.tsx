@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ProjectsFilter,
   type FilterOption,
+  type MicroFilterOption,
   type ProjectsFilterValue,
 } from "@/components/ProjectsFilter";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
@@ -24,7 +25,7 @@ type ProjectsExplorerProps = {
   projects: ExplorerProject[];
   services: FilterOption[];
   customers: FilterOption[];
-  microServices: FilterOption[];
+  microServices: MicroFilterOption[];
 };
 
 function readFilters(params: URLSearchParams): ProjectsFilterValue {
