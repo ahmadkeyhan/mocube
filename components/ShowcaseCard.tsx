@@ -78,7 +78,7 @@ export function ShowcaseCard({
                   key={service.name}
                   label={service.name}
                   color={service.color}
-                  className="text-caption"
+                  className="text-caption bg-background rounded-full"
                 />
               ))}
             </div>
