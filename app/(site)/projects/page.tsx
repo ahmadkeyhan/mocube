@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { ProjectsExplorer } from "@/components/ProjectsExplorer";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { getCustomers } from "@/lib/queries/customers";
 import { getMicroServicesWithService } from "@/lib/queries/microServices";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
