@@ -1,6 +1,8 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
+import { MdClose, MdOutlineFilterList } from "react-icons/md";
 import type { ServiceColor } from "@/lib/models/types";
 import {
   serviceBgTintClass,
@@ -166,6 +168,14 @@ export function ProjectsFilter({
   onMicroChange,
   onClear,
 }: ProjectsFilterProps) {
+  const [open, setOpen] = useState(false);
+  const [panelOverflow, setPanelOverflow] = useState<"hidden" | "visible">(
+    "hidden",
+  );
+  const panelId = useId();
+  const reduceMotion = useReducedMotion();
+  const ease = [0.22, 1, 0.36, 1] as const;
+
   const microChipClass = (color: ServiceColor, active: boolean) =>
     `rounded-full border px-2 py-1 text-caption transition-colors ${serviceBorderClass[color]} ${
       active
@@ -176,48 +186,104 @@ export function ProjectsFilter({
   const filterActive = Boolean(value.service || value.customer || value.micro);
 
   return (
-    <div className="flex flex-col gap-20">
-      {filterActive ? (
+    <div className="mt-12 flex flex-col gap-16">
+      <div className="flex items-center gap-2">
         <button
           type="button"
-          onClick={onClear}
-          className="text-caption p-2 rounded-full w-56 border border-red-400 bg-red-400/15 text-foreground transition-colors hover:bg-red-400"
+          aria-label="فیلتر"
+          aria-expanded={open}
+          aria-controls={panelId}
+          className="relative inline-flex h-40 items-center justify-center gap-2 rounded-full border border-surface-25 bg-off-background px-4 text-foreground transition-colors hover:border-surface-50"
+          onClick={() => setOpen((current) => !current)}
         >
-          پاک کردن فیلتر
+          {open ? (
+            <MdClose aria-hidden className="size-20" />
+          ) : (
+            <MdOutlineFilterList aria-hidden className="size-20" />
+          )}
+          فیلتر
+          {filterActive ? (
+            <span
+              aria-hidden
+              className="absolute top-6 inset-e-6 size-8 rounded-full bg-shockingly-green"
+            />
+          ) : null}
         </button>
-      ) : null}
-      <div className="flex flex-wrap items-center gap-2">
-        <FilterSelect
-          label="خدمت"
-          emptyLabel="همه خدمات"
-          value={
-            value.service && !value.customer && !value.micro
-              ? value.service
-              : ""
-          }
-          onChange={onServiceChange}
-          options={services}
-        />
-        <FilterSelect
-          label="مشتری"
-          emptyLabel="همه مشتریان"
-          value={value.customer ?? ""}
-          onChange={onCustomerChange}
-          options={customers}
-        />
       </div>
-      <div className="flex h-80 flex-wrap gap-2 overflow-y-auto">
-        {microServices.map((item) => (
-          <button
-            key={item.slug}
-            type="button"
-            onClick={() => onMicroChange(item.slug)}
-            className={microChipClass(item.color, value.micro === item.slug)}
+
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            id={panelId}
+            key="filter-panel"
+            className="flex flex-col gap-16"
+            style={{
+              overflow: reduceMotion ? "visible" : panelOverflow,
+            }}
+            initial={
+              reduceMotion ? false : { height: 0, opacity: 0, y: -8 }
+            }
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={
+              reduceMotion
+                ? undefined
+                : { height: 0, opacity: 0, y: -8 }
+            }
+            transition={{ duration: 0.32, ease }}
+            onAnimationStart={() => {
+              if (!reduceMotion) setPanelOverflow("hidden");
+            }}
+            onAnimationComplete={() => {
+              if (open && !reduceMotion) setPanelOverflow("visible");
+            }}
           >
-            {item.name}
-          </button>
-        ))}
-      </div>
+            {filterActive ? (
+              <button
+                type="button"
+                onClick={onClear}
+                className="w-56 rounded-full border border-red-400 bg-red-400/15 p-2 text-caption text-foreground transition-colors hover:bg-red-400"
+              >
+                پاک کردن فیلتر
+              </button>
+            ) : null}
+            <div className="flex flex-wrap items-center gap-2">
+              <FilterSelect
+                label="خدمت"
+                emptyLabel="همه خدمات"
+                value={
+                  value.service && !value.customer && !value.micro
+                    ? value.service
+                    : ""
+                }
+                onChange={onServiceChange}
+                options={services}
+              />
+              <FilterSelect
+                label="مشتری"
+                emptyLabel="همه مشتریان"
+                value={value.customer ?? ""}
+                onChange={onCustomerChange}
+                options={customers}
+              />
+            </div>
+            <div className="flex max-h-80 flex-wrap gap-2 overflow-y-auto">
+              {microServices.map((item) => (
+                <button
+                  key={item.slug}
+                  type="button"
+                  onClick={() => onMicroChange(item.slug)}
+                  className={microChipClass(
+                    item.color,
+                    value.micro === item.slug,
+                  )}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

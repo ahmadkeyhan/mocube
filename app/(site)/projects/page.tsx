@@ -25,15 +25,14 @@ export default async function ProjectsPage() {
   ]);
 
   return (
-    <section className="py-76">
+    <section className="py-40">
       <Container>
         <Reveal>
-          <SectionEyebrow>پروژه‌ها</SectionEyebrow>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-            کارهایی که ساخته‌ایم
+          <h1 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+            پروژه‌های موکیوب
           </h1>
-          <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            فیلتر پروژه‌ها بر اساس خدمت، میکروسرویس یا مشتری.
+          <p className="mt-8 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+            -پروژه‌های قرارگرفته در مدار-
           </p>
         </Reveal>
 
