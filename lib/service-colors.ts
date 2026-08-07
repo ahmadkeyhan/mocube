@@ -17,9 +17,10 @@ export const serviceBgClass: Record<ServiceColor, string> = {
 };
 
 export const serviceGradient: Record<ServiceColor, string> = {
-  orangey: "linear-gradient(135deg, #ff8709 0%, #ffc078 100%)",
-  pink: "linear-gradient(135deg, #fec5fb 0%, #00bae2 100%)",
-  lilac: "linear-gradient(135deg, #9d95ff 0%, #fec5fb 100%)",
-  blue: "linear-gradient(135deg, #00bae2 0%, #85ffce 100%)",
-  "shockingly-green": "linear-gradient(135deg, #0ae68e 0%, #85ffce 100%)",
+  orangey: "linear-gradient(135deg, var(--orangey) 0%, var(--orangey-soft) 100%)",
+  pink: "linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%)",
+  lilac: "linear-gradient(135deg, var(--lilac) 0%, var(--pink) 100%)",
+  blue: "linear-gradient(135deg, var(--blue) 0%, var(--light-green) 100%)",
+  "shockingly-green":
+    "linear-gradient(135deg, var(--shockingly-green) 0%, var(--light-green) 100%)",
 };

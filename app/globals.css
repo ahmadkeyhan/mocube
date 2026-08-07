@@ -10,12 +10,12 @@
   --color-surface-50: var(--surface-50);
   --color-surface-25: var(--surface-25);
   --color-off-background: var(--off-background);
-  --color-shockingly-green: #0ae68e;
-  --color-light-green: #85ffce;
-  --color-orangey: #ff8709;
-  --color-pink: #fec5fb;
-  --color-lilac: #9d95ff;
-  --color-blue: #00bae2;
+  --color-shockingly-green: var(--shockingly-green);
+  --color-light-green: var(--light-green);
+  --color-orangey: var(--orangey);
+  --color-pink: var(--pink);
+  --color-lilac: var(--lilac);
+  --color-blue: var(--blue);
   --color-core-green: #d1ffed;
   --color-lipstick-pink: #f100cb;
 
@@ -77,8 +77,8 @@
 :root {
   --gradient-shockingly-green: linear-gradient(
     114.41deg,
-    #0ae68e 20.74%,
-    #85ffce 65.5%
+    var(--shockingly-green) 20.74%,
+    var(--light-green) 65.5%
   );
 
   --font-weight-regular: 400;
@@ -105,6 +105,13 @@
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
   --foreground-surface: #fffef1;
+  --shockingly-green: #0ae68e;
+  --light-green: #85ffce;
+  --orangey: #ff8709;
+  --orangey-soft: #ffc078;
+  --pink: #fec5fb;
+  --lilac: #9d95ff;
+  --blue: #00bae2;
 }
 
 .dark {
@@ -116,6 +123,13 @@
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
   --foreground-surface: #fffef1;
+  --shockingly-green: #0ae68e;
+  --light-green: #85ffce;
+  --orangey: #ff8709;
+  --orangey-soft: #ffc078;
+  --pink: #fec5fb;
+  --lilac: #9d95ff;
+  --blue: #00bae2;
 }
 
 .light {
@@ -127,6 +141,13 @@
   --surface-canvas: #fffef1;
   --surface-nested-panel: #fffbd7;
   --foreground-surface: #0e100f;
+  --shockingly-green: #068a56;
+  --light-green: #0d8f6a;
+  --orangey: #c45f00;
+  --orangey-soft: #e08a2a;
+  --pink: #c016a8;
+  --lilac: #5c52d4;
+  --blue: #007a99;
 }
 
 /* Scoped previews for first-visit theme chooser (independent of html class) */
@@ -139,11 +160,29 @@
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
   --foreground-surface: #fffef1;
+  --shockingly-green: #0ae68e;
+  --light-green: #85ffce;
+  --orangey: #ff8709;
+  --orangey-soft: #ffc078;
+  --pink: #fec5fb;
+  --lilac: #9d95ff;
+  --blue: #00bae2;
   --color-background: #0e100f;
   --color-foreground: #fffef1;
   --color-surface-50: #7c7c6f;
   --color-surface-25: #42433d;
   --color-off-background: #191919;
+  --color-shockingly-green: var(--shockingly-green);
+  --color-light-green: var(--light-green);
+  --color-orangey: var(--orangey);
+  --color-pink: var(--pink);
+  --color-lilac: var(--lilac);
+  --color-blue: var(--blue);
+  --gradient-shockingly-green: linear-gradient(
+    114.41deg,
+    var(--shockingly-green) 20.74%,
+    var(--light-green) 65.5%
+  );
   background: var(--surface-canvas);
   color: var(--color-foreground);
 }
@@ -157,11 +196,29 @@
   --surface-canvas: #fffef1;
   --surface-nested-panel: #fffbd7;
   --foreground-surface: #0e100f;
+  --shockingly-green: #068a56;
+  --light-green: #0d8f6a;
+  --orangey: #c45f00;
+  --orangey-soft: #e08a2a;
+  --pink: #c016a8;
+  --lilac: #5c52d4;
+  --blue: #007a99;
   --color-background: #fffef1;
   --color-foreground: #0e100f;
   --color-surface-50: #5c5c52;
   --color-surface-25: #c8c4a8;
   --color-off-background: #fffbd7;
+  --color-shockingly-green: var(--shockingly-green);
+  --color-light-green: var(--light-green);
+  --color-orangey: var(--orangey);
+  --color-pink: var(--pink);
+  --color-lilac: var(--lilac);
+  --color-blue: var(--blue);
+  --gradient-shockingly-green: linear-gradient(
+    114.41deg,
+    var(--shockingly-green) 20.74%,
+    var(--light-green) 65.5%
+  );
   background: var(--surface-canvas);
   color: var(--color-foreground);
 }
