@@ -5,7 +5,7 @@ export type ThemeImagePair = {
 
 export const serviceImages: Partial<Record<string, ThemeImagePair>> = {
   branding: {
-    light: "/brandIdentity-light.png",
-    dark: "/brandIdentity-dark.png",
+    light: "/brandIdentity-light.webp",
+    dark: "/brandIdentity-dark.webp",
   },
 };

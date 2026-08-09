@@ -38,7 +38,7 @@ export default async function HomePage() {
         <Container className="relative z-10 pt-32 pb-76 md:pt-76 text-center flex flex-col items-center">
           <HeroIntro
             headline={
-              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display">
+              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg lg:w-[15ch]">
                 سوخت خلاقیت برای رسیدن به مدار توجه
               </h1>
             }
