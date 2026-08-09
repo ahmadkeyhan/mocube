@@ -12,6 +12,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const STORAGE_KEY = "mocube-theme";
 const COMMIT_LIGHT = 80;
@@ -25,7 +26,7 @@ type PaneProps = {
 };
 
 function ChooserPane({ mode, imageSrc, priority }: PaneProps) {
-  const titleColor = mode === "light" ? "#0e100f" : "#fffce1";
+  // const titleColor = mode === "light" ? "#0e100f" : "#f6fbff";
   const bodyColor = mode === "light" ? "#5c5c52" : "#7c7c6f";
 
   return (
@@ -46,17 +47,17 @@ function ChooserPane({ mode, imageSrc, priority }: PaneProps) {
       {/* Match home hero: Container + pt-32/md:pt-76 — not vertically centered */}
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col items-center px-16 pt-32 pb-76 text-center md:px-24 md:pt-76">
         <h1
-          style={{ color: titleColor }}
-          className="mt-16 max-w-none text-3xl font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:text-display lg:tracking-display"
+          style={{ color: "#0ae68e" }}
+          className="mt-16 max-w-none text-3xl font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:w-[15ch]"
         >
           سوخت خلاقیت برای رسیدن به مدار توجه
         </h1>
-        <p style={{ color: bodyColor }} className="mt-24 max-w-xl text-body-lg">
+        {/* <p style={{ color: bodyColor }} className="mt-24 max-w-xl text-body-lg">
           استودیو خلاق موکیوب — هویت برند، تصویرسازی، وب و مرچندایز برای
           برندهایی که می‌خواهند دیده شوند.
-        </p>
-        <p className="mt-32 text-body-sm font-bold text-shockingly-green">
-          بکش تا تم را انتخاب کنی
+        </p> */}
+        <p className="mt-32 text-body-sm font-bold text-foreground">
+          تــم موکیوب را انتخاب کنید
         </p>
       </div>
     </div>
@@ -73,8 +74,17 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
   const labelId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const hintActive = useRef(true);
+  const hintAnim = useRef<ReturnType<typeof animate> | null>(null);
   const split = useMotionValue(START_SPLIT);
   const [splitPct, setSplitPct] = useState(START_SPLIT);
+
+  const stopHint = useCallback(() => {
+    if (!hintActive.current) return;
+    hintActive.current = false;
+    hintAnim.current?.stop();
+    hintAnim.current = null;
+  }, []);
 
   useEffect(() => {
     const unsub = split.on("change", (v) => setSplitPct(v));
@@ -89,12 +99,48 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
     };
   }, []);
 
+  useEffect(() => {
+    if (reduce) {
+      hintActive.current = false;
+      return;
+    }
+
+    const controls = animate(
+      split,
+      [
+        START_SPLIT,
+        START_SPLIT + 6,
+        START_SPLIT - 6,
+        START_SPLIT + 3,
+        START_SPLIT,
+      ],
+      {
+        duration: 1.8,
+        repeat: Infinity,
+        repeatDelay: 3,
+        times: [0, 0.22, 0.5, 0.75, 1],
+        ease: "easeInOut",
+        onComplete: () => {
+          hintActive.current = false;
+          hintAnim.current = null;
+        },
+      },
+    );
+    hintAnim.current = controls;
+
+    return () => {
+      controls.stop();
+      hintAnim.current = null;
+    };
+  }, [reduce, split]);
+
   const commit = useCallback(
     (theme: "light" | "dark") => {
+      stopHint();
       setTheme(theme);
       onComplete();
     },
-    [onComplete, setTheme],
+    [onComplete, setTheme, stopHint],
   );
 
   const snapOrCommit = useCallback(
@@ -152,6 +198,7 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
   }, []);
 
   const onPointerDown = (e: ReactPointerEvent) => {
+    stopHint();
     dragging.current = true;
     e.currentTarget.setPointerCapture(e.pointerId);
     split.set(pctFromClientX(e.clientX));
@@ -174,6 +221,7 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
   };
 
   const onKeyDown = (e: ReactKeyboardEvent) => {
+    stopHint();
     const step = 5;
     if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
       e.preventDefault();
@@ -246,10 +294,10 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
             onPointerCancel={onPointerUp}
             aria-hidden
           />
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-shockingly-green" />
+          <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-shockingly-green left-1/2 -translate-x-1/2" />
           <button
             type="button"
-            className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full round-keep border-2 border-shockingly-green bg-[#0e100f] text-shockingly-green outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"
+            className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full round-keep bg-shockingly-green text-background outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"
             aria-label="کشیدن برای انتخاب تم"
             aria-valuemin={0}
             aria-valuemax={100}
@@ -262,32 +310,22 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
             onPointerCancel={onPointerUp}
             onKeyDown={onKeyDown}
           >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              aria-hidden
-            >
-              <path d="M8 12H3M5.5 9 3 12l2.5 3M16 12h5M18.5 9 21 12l-2.5 3" />
-            </svg>
+            <MdChevronLeft />
+            <MdChevronRight />
           </button>
         </motion.div>
       </div>
 
       <button
         type="button"
-        className="theme-pane-light absolute top-1/2 left-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:left-24"
+        className="theme-pane-light absolute top-2/5 left-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:left-24"
         onClick={() => commit("light")}
       >
         روشن
       </button>
       <button
         type="button"
-        className="theme-pane-dark absolute top-1/2 right-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:right-24"
+        className="theme-pane-dark absolute top-2/5 right-16 z-20 -translate-y-1/2 rounded-full border border-surface-25 bg-background/85 px-16 py-12 text-body-sm font-bold text-foreground backdrop-blur-sm transition-colors hover:text-shockingly-green md:right-24"
         onClick={() => commit("dark")}
       >
         تاریک

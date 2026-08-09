@@ -98,13 +98,13 @@
 
   /* Default = dark (before next-themes class lands) */
   --background: #0e100f;
-  --foreground: #fffef1;
+  --foreground: #f6fbff;
   --surface-50: #7c7c6f;
   --surface-25: #42433d;
   --off-background: #191919;
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
-  --foreground-surface: #fffef1;
+  --foreground-surface: #f6fbff;
   --shockingly-green: #0ae68e;
   --light-green: #85ffce;
   --orangey: #ff8709;
@@ -116,13 +116,13 @@
 
 .dark {
   --background: #0e100f;
-  --foreground: #fffef1;
+  --foreground: #f6fbff;
   --surface-50: #7c7c6f;
   --surface-25: #42433d;
   --off-background: #191919;
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
-  --foreground-surface: #fffef1;
+  --foreground-surface: #f6fbff;
   --shockingly-green: #0ae68e;
   --light-green: #85ffce;
   --orangey: #ff8709;
@@ -133,13 +133,13 @@
 }
 
 .light {
-  --background: #fffef1;
+  --background: #f6fbff;
   --foreground: #0e100f;
   --surface-50: #5c5c52;
   --surface-25: #c8c4a8;
-  --off-background: #fffbd7;
-  --surface-canvas: #fffef1;
-  --surface-nested-panel: #fffbd7;
+  --off-background: #d6edff;
+  --surface-canvas: #f6fbff;
+  --surface-nested-panel: #d6edff;
   --foreground-surface: #0e100f;
   --shockingly-green: #068a56;
   --light-green: #0d8f6a;
@@ -153,13 +153,13 @@
 /* Scoped previews for first-visit theme chooser (independent of html class) */
 .theme-pane-dark {
   --background: #0e100f;
-  --foreground: #fffef1;
+  --foreground: #f6fbff;
   --surface-50: #7c7c6f;
   --surface-25: #42433d;
   --off-background: #191919;
   --surface-canvas: #0e100f;
   --surface-nested-panel: #191919;
-  --foreground-surface: #fffef1;
+  --foreground-surface: #f6fbff;
   --shockingly-green: #0ae68e;
   --light-green: #85ffce;
   --orangey: #ff8709;
@@ -168,7 +168,7 @@
   --lilac: #9d95ff;
   --blue: #00bae2;
   --color-background: #0e100f;
-  --color-foreground: #fffef1;
+  --color-foreground: #f6fbff;
   --color-surface-50: #7c7c6f;
   --color-surface-25: #42433d;
   --color-off-background: #191919;
@@ -188,13 +188,13 @@
 }
 
 .theme-pane-light {
-  --background: #fffef1;
+  --background: #f6fbff;
   --foreground: #0e100f;
   --surface-50: #5c5c52;
   --surface-25: #c8c4a8;
-  --off-background: #fffbd7;
-  --surface-canvas: #fffef1;
-  --surface-nested-panel: #fffbd7;
+  --off-background: #d6edff;
+  --surface-canvas: #f6fbff;
+  --surface-nested-panel: #d6edff;
   --foreground-surface: #0e100f;
   --shockingly-green: #068a56;
   --light-green: #0d8f6a;
@@ -203,11 +203,11 @@
   --pink: #c016a8;
   --lilac: #5c52d4;
   --blue: #007a99;
-  --color-background: #fffef1;
+  --color-background: #f6fbff;
   --color-foreground: #0e100f;
   --color-surface-50: #5c5c52;
   --color-surface-25: #c8c4a8;
-  --color-off-background: #fffbd7;
+  --color-off-background: #d6edff;
   --color-shockingly-green: var(--shockingly-green);
   --color-light-green: var(--light-green);
   --color-orangey: var(--orangey);
