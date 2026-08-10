@@ -79,7 +79,7 @@ export default async function HomePage() {
           </Reveal>
           {services.length > 0 ? (
             services.map((service, index) => (
-              <div key={service._id} className="col-span-2 lg:col-span-1">
+              <div key={service._id} className="col-span-2 md:col-span-1">
                 <ServiceBlock
                   name={service.name}
                   color={service.color}

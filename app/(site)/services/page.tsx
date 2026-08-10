@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ServiceBlock } from "@/components/ServiceBlock";
 import { getServices } from "@/lib/queries/services";
 import { serviceImages } from "@/lib/service-images";
@@ -18,9 +17,8 @@ export default async function ServicesPage() {
 
   return (
     <section className="py-76">
-      <Container>
-        <Reveal>
-          <SectionEyebrow>خدمات</SectionEyebrow>
+      <Container className="grid grid-cols-2 gap-12">
+        <Reveal className="col-span-2">
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             چهار تخصص، یک استودیو
           </h1>
@@ -29,10 +27,8 @@ export default async function ServicesPage() {
             پروژه‌ات هماهنگ شود.
           </p>
         </Reveal>
-      </Container>
-      <Container>
         {services.map((service, index) => (
-          <div key={service._id} className="border-b border-surface-25">
+          <div key={service._id} className="col-span-2 md:col-span-1">
             <ServiceBlock
               name={service.name}
               color={service.color}
