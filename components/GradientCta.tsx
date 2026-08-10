@@ -17,7 +17,7 @@ export function GradientCta({
   ...props
 }: GradientCtaProps) {
   const reduce = useReducedMotion();
-  const classes = `gradient-cta-border inline-flex items-center justify-center rounded-full px-20 py-12 text-body-sm font-bold text-foreground ${className}`;
+  const classes = `bg-shockingly-green inline-flex items-center justify-center rounded-full px-20 py-12 text-body-sm font-bold text-foreground ${className}`;
 
   if (reduce) {
     return (

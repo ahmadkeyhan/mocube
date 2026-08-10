@@ -25,7 +25,7 @@ export default async function HomePage() {
   return (
     <>
       <HomeThemeGate />
-      <section className="relative min-h-svh overflow-hidden max-w-[120rem] mx-auto">
+      <section className="relative min-h-svh overflow-hidden max-w-6xl mx-auto">
         <ThemeImage
           lightSrc="/hero-light.webp"
           darkSrc="/hero-dark.webp"
@@ -38,7 +38,7 @@ export default async function HomePage() {
         <Container className="relative z-10 pt-32 pb-76 md:pt-76 text-center flex flex-col items-center">
           <HeroIntro
             headline={
-              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg lg:w-[15ch]">
+              <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg w-[15ch]">
                 سوخت خلاقیت برای رسیدن به مدار توجه
               </h1>
             }
@@ -50,8 +50,8 @@ export default async function HomePage() {
             }
             actions={
               <div className="mt-32 flex flex-wrap gap-16">
-                <GradientCta href="/contact">تماس با ما</GradientCta>
-                <PillButton href="/microservices">کاوش نمونه‌کارها</PillButton>
+                <GradientCta href="/services">خدمات موکیوب</GradientCta>
+                <PillButton href="/projects">کاوش پروژه‌ها</PillButton>
               </div>
             }
           />
