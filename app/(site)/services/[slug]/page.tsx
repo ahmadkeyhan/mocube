@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
 import { GradientCta } from "@/components/GradientCta";
+import { HeroIntro } from "@/components/motion/HeroIntro";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
+import { MicroServiceCard } from "@/components/MicroServiceCard";
 import { OrganicBlob } from "@/components/OrganicBlob";
+import { PillButton } from "@/components/PillButton";
 import { PricingCard } from "@/components/PricingCard";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
+import { ThemeImage } from "@/components/theme/ThemeImage";
 import { getMicroServicesByServiceId } from "@/lib/queries/microServices";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
-import { getServiceBySlug } from "@/lib/queries/services";
+import { getServiceBySlug, getServices } from "@/lib/queries/services";
+import { serviceColorClass, serviceGradient } from "@/lib/service-colors";
+import { serviceImages } from "@/lib/service-images";
 
 export const dynamic = "force-dynamic";
 
@@ -37,66 +41,111 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
-  const [microServices, relatedProjects] = await Promise.all([
+  const imageSrc = serviceImages[service.slug];
+
+  const [microServices, relatedProjects, services] = await Promise.all([
     getMicroServicesByServiceId(service._id),
     getProjectsWithRelations({
       serviceSlug: service.slug,
+      featured: true,
     }),
+    getServices(),
   ]);
+
+  const reverse =
+    services.findIndex((item) => item._id === service._id) % 2 === 1;
 
   return (
     <>
       <section className="relative overflow-hidden py-76">
-        <div className="pointer-events-none absolute top-20 left-0 opacity-60">
-          <OrganicBlob
-            color={service.color}
-            className="max-w-[280px]"
-            delay={0.3}
-          />
-        </div>
-        <Container className="relative">
-          <Reveal>
-            <SectionEyebrow>خدمت</SectionEyebrow>
-            <CategoryLabel
-              label={service.name}
-              color={service.color}
-              className="mt-16 block text-body-lg"
+        {imageSrc ? (
+          <>
+            <ThemeImage
+              lightSrc={imageSrc.light}
+              darkSrc={imageSrc.dark}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-20"
             />
-            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-              {service.shortDescription}
-            </h1>
-            <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-              {service.description}
-            </p>
-            <div className="mt-32">
-              <GradientCta href="/contact">درخواست این خدمت</GradientCta>
+            <div
+              className={`pointer-events-none absolute inset-0 from-background via-background/70 to-background/20 ${
+                reverse ? "bg-linear-to-r" : "bg-linear-to-l"
+              }`}
+              aria-hidden
+            />
+          </>
+        ) : (
+          <>
+            <div
+              className="pointer-events-none absolute inset-0 opacity-20"
+              style={{ background: serviceGradient[service.color] }}
+              aria-hidden
+            />
+            <div
+              className={`pointer-events-none absolute top-20 opacity-60 ${
+                reverse ? "right-0" : "left-0"
+              }`}
+            >
+              <OrganicBlob
+                color={service.color}
+                className="max-w-70"
+                delay={0.3}
+              />
             </div>
-          </Reveal>
+          </>
+        )}
+        <Container
+          className={`relative z-10 flex flex-col ${
+            reverse ? "items-end text-end" : "items-start text-start"
+          }`}
+        >
+          <HeroIntro
+            eyebrow={
+              <h1
+                className={`text-subheading tracking-subheading md:text-heading-sm md:tracking-heading-sm lg:text-heading-lg lg:tracking-heading-lg ${serviceColorClass[service.color]}`}
+              >
+                {service.name}
+              </h1>
+            }
+            headline={
+              <p className="mt-16 max-w-3xl text-body-lg text-foreground">
+                {service.shortDescription}
+              </p>
+            }
+            subcopy={
+              <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+                {service.description}
+              </p>
+            }
+            actions={
+              <div className="mt-32">
+                <GradientCta href="/contact" color={service.color}>
+                  درخواست این خدمت
+                </GradientCta>
+              </div>
+            }
+          />
         </Container>
       </section>
 
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <SectionEyebrow>میکروسرویس‌ها</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
-              جزئیات قابل انتخاب
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+              میکروسرویس‌ها
             </h2>
           </Reveal>
           <Stagger className="mt-32 grid gap-24 md:grid-cols-2">
             {microServices.map((micro) => (
-              <Link
+              <MicroServiceCard
                 key={micro._id}
                 href={`/microservices/${micro.slug}`}
-                className="border-t border-surface-25 pt-24 transition-colors hover:border-surface-50"
-              >
-                <h3 className="text-body font-bold text-foreground">
-                  {micro.name}
-                </h3>
-                <p className="mt-12 text-body text-surface-50">
-                  {micro.shortDescription}
-                </p>
-              </Link>
+                name={micro.name}
+                shortDescription={micro.shortDescription}
+                color={service.color}
+              />
             ))}
           </Stagger>
         </Container>
@@ -106,7 +155,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Container>
           <Reveal>
             <SectionEyebrow>پلن‌ها</SectionEyebrow>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
+            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               سه سطح قیمت‌گذاری
             </h2>
           </Reveal>
@@ -118,6 +167,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 priceLabel={plan.priceLabel}
                 features={plan.features}
                 highlighted={plan.highlighted}
+                href="/contact"
+                color={service.color}
               />
             ))}
           </Stagger>
@@ -128,10 +179,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <section className="border-t border-surface-25 py-76">
           <Container>
             <Reveal>
-              <SectionEyebrow>پروژه‌ها</SectionEyebrow>
-              <h2 className="mt-16 mb-32 text-heading-sm tracking-heading-sm text-foreground">
-                پروژه‌های مرتبط با {service.name}
-              </h2>
+              <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
+                <h2 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+                  پروژه‌های {service.name}
+                </h2>
+                <PillButton href={`/projects?service=${service.slug}`}>
+                  کاوش همه پروژه‌ها
+                </PillButton>
+              </div>
             </Reveal>
             <Stagger className="grid gap-24 md:grid-cols-2 lg:grid-cols-3">
               {relatedProjects.map((project) => (
@@ -151,6 +206,21 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </Container>
         </section>
       ) : null}
+
+      <section className="border-t border-surface-25 py-76">
+        <Container className="text-center">
+          <Reveal>
+            <h2 className="mx-auto mt-16 max-w-2xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+              پروژه‌ات را با موکیوب شروع کن
+            </h2>
+            <div className="mt-32 flex justify-center">
+              <GradientCta href="/contact" color={service.color}>
+                تماس با ما
+              </GradientCta>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
     </>
   );
 }

@@ -32,6 +32,22 @@ export const serviceBgTintClass: Record<ServiceColor, string> = {
   "shockingly-green": "bg-shockingly-green/15",
 };
 
+export const serviceHoverBorderClass: Record<ServiceColor, string> = {
+  orangey: "hover:border-orangey",
+  pink: "hover:border-pink",
+  lilac: "hover:border-lilac",
+  blue: "hover:border-blue",
+  "shockingly-green": "hover:border-shockingly-green",
+};
+
+export const serviceBeforeColorClass: Record<ServiceColor, string> = {
+  orangey: "before:text-orangey",
+  pink: "before:text-pink",
+  lilac: "before:text-lilac",
+  blue: "before:text-blue",
+  "shockingly-green": "before:text-shockingly-green",
+};
+
 export const serviceGradient: Record<ServiceColor, string> = {
   orangey: "linear-gradient(135deg, var(--orangey) 0%, var(--orangey-soft) 100%)",
   pink: "linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%)",
