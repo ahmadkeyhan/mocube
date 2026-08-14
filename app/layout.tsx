@@ -12,6 +12,13 @@ const changa = localFont({
   display: "swap",
 });
 
+const alibaba = localFont({
+  src: "./fonts/alibaba/alibaba-regular.woff2",
+  variable: "--font-alibaba-face",
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "موکیوب | استودیو خلاق",
@@ -31,9 +38,9 @@ export default function RootLayout({
       lang="fa"
       dir="rtl"
       suppressHydrationWarning
-      className={`${changa.variable} h-full antialiased`}
+      className={`${changa.variable} ${alibaba.variable} h-full antialiased`}
     >
-      <body className="font-changa flex min-h-full flex-col">
+      <body className="font-alibaba flex min-h-full flex-col">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

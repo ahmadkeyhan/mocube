@@ -21,19 +21,20 @@
 
   /* Typography */
   --font-changa: var(--font-changa-face), ui-sans-serif, system-ui, sans-serif;
+  --font-alibaba: var(--font-alibaba-face), ui-sans-serif, system-ui, sans-serif;
   --font-weight-bold: 800;
 
   /* Typography — Scale */
-  --text-caption: 12px;
-  --leading-caption: 1.4;
-  --tracking-caption: -0.12px;
-  --text-body-sm: 14px;
-  --leading-body-sm: 1.3;
-  --text-body: 16px;
-  --leading-body: 1.35;
-  --text-body-lg: 18px;
-  --leading-body-lg: 1.45;
-  --tracking-body-lg: -0.18px;
+  --text-caption: 13px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0;
+  --text-body-sm: 15px;
+  --leading-body-sm: 1.55;
+  --text-body: 17px;
+  --leading-body: 1.7;
+  --text-body-lg: 20px;
+  --leading-body-lg: 1.75;
+  --tracking-body-lg: 0;
   --text-subheading: 26px;
   --leading-subheading: 1.2;
   --tracking-subheading: -0.26px;
@@ -244,7 +245,7 @@ body {
   min-height: 100%;
   background: var(--surface-canvas);
   color: var(--foreground);
-  font-family: var(--font-changa);
+  font-family: var(--font-alibaba);
   font-size: var(--text-body);
   line-height: var(--leading-body);
   font-weight: var(--font-weight-regular);
