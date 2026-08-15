@@ -9,14 +9,14 @@ export type SurfaceCardVariant =
 
 const variants: Record<SurfaceCardVariant, string> = {
   tileHover:
-    "rounded-lg border border-surface-25 p-24 transition-colors hover:border-surface-50 hover:bg-off-background",
+    "block rounded-lg border border-surface-25 bg-off-background p-24 transition-colors hover:border-surface-50 hover:bg-background",
   tileSoft:
-    "rounded-lg border border-surface-25 p-24 transition-colors hover:border-foreground",
+    "block rounded-lg border border-surface-25 bg-off-background p-24 transition-colors hover:border-foreground",
   panel:
-    "rounded-lg border border-surface-25 bg-off-background p-24 transition-colors hover:border-shockingly-green",
+    "block rounded-lg border border-surface-25 bg-off-background p-24 transition-colors hover:border-shockingly-green",
   row: "flex flex-wrap items-center justify-between gap-12 rounded-lg border border-surface-25 bg-off-background px-20 py-16",
   empty:
-    "rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50",
+    "block rounded-lg border border-surface-25 p-24 text-body-sm text-surface-50",
 };
 
 function cx(...parts: Array<string | false | undefined>) {

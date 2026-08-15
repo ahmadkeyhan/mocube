@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { FaInstagram, FaTelegramPlane } from "react-icons/fa";
+import { MdPhone } from "react-icons/md";
 import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
@@ -117,14 +119,15 @@ export default async function ContactPage({
             initialPlan={initialPlan}
           />
 
-          <Stagger spring className="flex flex-col gap-24">
+          <Stagger spring className="flex flex-col gap-16">
             <a
               href={`tel:${phoneDigits}`}
-              className={surfaceCardClass("tileSoft")}
+              aria-label={`تلفن ${phoneDisplay}`}
+              className={surfaceCardClass("row")}
             >
-              <p className="text-caption text-surface-50">تلفن</p>
+              <MdPhone className="size-24 shrink-0 text-surface-50" />
               <p
-                className="mt-16 text-subheading tracking-subheading text-foreground"
+                className="text-body font-bold text-foreground"
                 dir="ltr"
               >
                 {phoneDisplay}
@@ -135,10 +138,14 @@ export default async function ContactPage({
               href={`https://instagram.com/${settings.instagram}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={surfaceCardClass("tileSoft")}
+              aria-label={`اینستاگرام ${settings.instagram}`}
+              className={surfaceCardClass("row")}
             >
-              <p className="text-caption text-surface-50">اینستاگرام</p>
-              <p className="mt-16 text-subheading tracking-subheading text-shockingly-green">
+              <FaInstagram className="size-24 shrink-0 text-surface-50" />
+              <p
+                className="text-body font-bold text-shockingly-green"
+                dir="ltr"
+              >
                 @{settings.instagram}
               </p>
             </a>
@@ -147,10 +154,14 @@ export default async function ContactPage({
               href={`https://t.me/${settings.telegram}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={surfaceCardClass("tileSoft")}
+              aria-label={`تلگرام ${settings.telegram}`}
+              className={surfaceCardClass("row")}
             >
-              <p className="text-caption text-surface-50">تلگرام</p>
-              <p className="mt-16 text-subheading tracking-subheading text-shockingly-green">
+              <FaTelegramPlane className="size-24 shrink-0 text-surface-50" />
+              <p
+                className="text-body font-bold text-shockingly-green"
+                dir="ltr"
+              >
                 @{settings.telegram}
               </p>
             </a>

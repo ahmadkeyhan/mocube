@@ -37,18 +37,22 @@ export default async function CustomersPage() {
               href={`/customers/${customer.slug}`}
               className={surfaceCardClass("tileHover")}
             >
-              <div
-                className="mb-20 flex size-64 items-center justify-center rounded-lg text-body-sm font-bold text-background"
-                style={{ background: customer.logoUrl }}
-              >
-                {customer.name.slice(0, 1)}
+              <div className="flex items-center gap-16">
+                <div
+                  className="flex size-48 shrink-0 items-center justify-center rounded-lg text-body-sm font-bold text-background"
+                  style={{ background: customer.logoUrl }}
+                >
+                  {customer.name.slice(0, 1)}
+                </div>
+                <div className="min-w-0">
+                  <h2 className="text-body font-bold text-foreground">
+                    {customer.name}
+                  </h2>
+                  <p className="mt-4 text-body-sm text-surface-50">
+                    {customer.shortDescription}
+                  </p>
+                </div>
               </div>
-              <h2 className="text-body font-bold text-foreground">
-                {customer.name}
-              </h2>
-              <p className="mt-8 text-body-sm text-surface-50">
-                {customer.shortDescription}
-              </p>
             </Link>
           ))}
         </Stagger>
