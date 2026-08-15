@@ -583,6 +583,7 @@ async function seed() {
     db.collection("projects").createIndex({ serviceIds: 1 }),
     db.collection("projects").createIndex({ microServiceIds: 1 }),
     db.collection("projects").createIndex({ "galleries.microServiceIds": 1 }),
+    db.collection("inquiries").createIndex({ createdAt: -1 }),
   ]);
 
   console.log(

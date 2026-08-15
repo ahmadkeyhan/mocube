@@ -42,4 +42,5 @@ export const COLLECTIONS = {
   projects: "projects",
   siteSettings: "siteSettings",
   users: "users",
+  inquiries: "inquiries",
 } as const;

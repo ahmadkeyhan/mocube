@@ -121,7 +121,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             }
             actions={
               <div className="mt-32">
-                <GradientCta href="/contact" color={service.color}>
+                <GradientCta href={`/contact?service=${service.slug}`} color={service.color}>
                   درخواست این خدمت
                 </GradientCta>
               </div>
@@ -167,7 +167,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 priceLabel={plan.priceLabel}
                 features={plan.features}
                 highlighted={plan.highlighted}
-                href="/contact"
+                href={`/contact?service=${service.slug}&plan=${encodeURIComponent(plan.name)}`}
                 color={service.color}
               />
             ))}
@@ -214,7 +214,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               پروژه‌ات را با موکیوب شروع کن
             </h2>
             <div className="mt-32 flex justify-center">
-              <GradientCta href="/contact" color={service.color}>
+              <GradientCta href={`/contact?service=${service.slug}`} color={service.color}>
                 تماس با ما
               </GradientCta>
             </div>

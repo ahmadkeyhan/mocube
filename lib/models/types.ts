@@ -81,6 +81,31 @@ export type SiteSettings = {
   announcement: string;
 };
 
+export type InquirySnapshotItem = {
+  slug: string;
+  name: string;
+};
+
+export type InquiryPlanSnapshot = {
+  serviceSlug: string;
+  serviceName: string;
+  planName: string;
+  priceLabel: string;
+};
+
+export type Inquiry = {
+  _id: ObjectId;
+  name: string;
+  phone: string;
+  businessName: string;
+  message: string;
+  services: InquirySnapshotItem[];
+  microServices: InquirySnapshotItem[];
+  plan: InquiryPlanSnapshot | null;
+  createdAt: Date;
+  read: boolean;
+};
+
 export type ProjectWithRelations = Project & {
   customer: Customer | null;
   services: Service[];

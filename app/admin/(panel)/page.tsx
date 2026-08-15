@@ -16,6 +16,11 @@ export default async function AdminDashboardPage() {
   const counts = await getAdminCounts();
 
   const cards = [
+    {
+      href: "/admin/inquiries",
+      label: "درخواست‌های خوانده‌نشده",
+      value: counts?.unreadInquiries,
+    },
     { href: "/admin/projects", label: "پروژه‌ها", value: counts?.projects },
     { href: "/admin/customers", label: "مشتریان", value: counts?.customers },
     { href: "/admin/services", label: "خدمات", value: counts?.services },
@@ -39,7 +44,7 @@ export default async function AdminDashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-16 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-16 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card) => (
           <Link
             key={card.href}

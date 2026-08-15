@@ -73,7 +73,15 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
               {micro.description}
             </p>
             <div className="mt-32">
-              <GradientCta href="/contact">درخواست این خدمت</GradientCta>
+              <GradientCta
+                href={
+                  service
+                    ? `/contact?service=${service.slug}&micro=${micro.slug}`
+                    : "/contact"
+                }
+              >
+                درخواست این خدمت
+              </GradientCta>
             </div>
           </Reveal>
         </Container>

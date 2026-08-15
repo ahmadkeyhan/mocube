@@ -33,7 +33,7 @@ type TextInputProps = {
   name: string;
   defaultValue?: string;
   placeholder?: string;
-  type?: "text" | "password" | "number";
+  type?: "text" | "password" | "number" | "tel";
   required?: boolean;
   dir?: "rtl" | "ltr";
 };

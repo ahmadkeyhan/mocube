@@ -45,6 +45,7 @@ async function createAdmin() {
     db.collection("microServices").createIndex({ slug: 1 }, { unique: true }),
     db.collection("customers").createIndex({ slug: 1 }, { unique: true }),
     db.collection("projects").createIndex({ slug: 1 }, { unique: true }),
+    db.collection("inquiries").createIndex({ createdAt: -1 }),
   ]);
 
   const passwordHash = await hash(password, 12);

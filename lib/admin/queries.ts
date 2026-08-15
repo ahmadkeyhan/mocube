@@ -55,14 +55,26 @@ export async function getAdminCounts() {
     const db = await getDb();
     if (!db) return null;
 
-    const [projects, customers, services, microServices] = await Promise.all([
-      db.collection(COLLECTIONS.projects).countDocuments(),
-      db.collection(COLLECTIONS.customers).countDocuments(),
-      db.collection(COLLECTIONS.services).countDocuments(),
-      db.collection(COLLECTIONS.microServices).countDocuments(),
-    ]);
+    const [projects, customers, services, microServices, inquiries, unreadInquiries] =
+      await Promise.all([
+        db.collection(COLLECTIONS.projects).countDocuments(),
+        db.collection(COLLECTIONS.customers).countDocuments(),
+        db.collection(COLLECTIONS.services).countDocuments(),
+        db.collection(COLLECTIONS.microServices).countDocuments(),
+        db.collection(COLLECTIONS.inquiries).countDocuments(),
+        db
+          .collection(COLLECTIONS.inquiries)
+          .countDocuments({ read: false }),
+      ]);
 
-    return { projects, customers, services, microServices };
+    return {
+      projects,
+      customers,
+      services,
+      microServices,
+      inquiries,
+      unreadInquiries,
+    };
   } catch {
     return null;
   }
