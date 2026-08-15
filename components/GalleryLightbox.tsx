@@ -109,7 +109,7 @@ export function GalleryLightbox({
           />
 
           <motion.div
-            className="relative z-10 flex max-h-[min(92vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-lg border border-surface-25 bg-off-background"
+            className="card-chrome relative z-10 flex max-h-[min(92vh,920px)] w-full max-w-5xl flex-col overflow-hidden rounded-lg bg-off-background"
             initial={reduce ? false : { opacity: 0, scale: 0.94, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, scale: 0.96, y: 12 }}

@@ -138,7 +138,7 @@ export function CheckboxGroup({
   const selected = new Set(defaultValues);
 
   return (
-    <div className="flex flex-wrap gap-8 rounded-lg border border-surface-25 p-12">
+    <div className="card-chrome flex flex-wrap gap-8 rounded-lg p-12">
       {options.length === 0 ? (
         <p className="text-caption text-surface-50">موردی موجود نیست.</p>
       ) : null}

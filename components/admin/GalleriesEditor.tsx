@@ -67,7 +67,7 @@ export function GalleriesEditor({
       {rows.map((row, index) => (
         <div
           key={row.key}
-          className="flex flex-col gap-12 rounded-lg border border-surface-25 p-16"
+          className="card-chrome flex flex-col gap-12 rounded-lg p-16"
         >
           <div className="flex items-center justify-between">
             <span className="text-caption text-surface-50">

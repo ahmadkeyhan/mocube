@@ -173,7 +173,7 @@ export function ContactForm({
         htmlFor="service"
         hint="اگر هنوز جزئیات مشخص نیست، فقط خدمت را انتخاب کنید."
       >
-        <div className="flex flex-wrap gap-8 rounded-lg border border-surface-25 p-12">
+        <div className="flex flex-wrap gap-8 rounded-lg py-2">
           {services.map((service) => (
             <label key={service.slug} className={chipClass}>
               <input
@@ -224,7 +224,7 @@ export function ContactForm({
           htmlFor="micro"
           hint="اگر می‌دانید کدام بخش را می‌خواهید انتخاب کنید؛ وگرنه خالی بگذارید."
         >
-          <div className="flex flex-col gap-16 rounded-lg border border-surface-25 p-12">
+          <div className="card-chrome flex flex-col gap-16 rounded-lg p-12">
             {microGroups.map((group) => (
               <div key={group.service.slug}>
                 {microGroups.length > 1 ? (

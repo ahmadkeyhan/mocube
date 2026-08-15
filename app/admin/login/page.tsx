@@ -15,7 +15,7 @@ export default async function AdminLoginPage() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-16 py-64">
-      <div className="w-full max-w-[420px] rounded-lg border border-surface-25 bg-off-background p-32">
+      <div className="card-chrome w-full max-w-[420px] rounded-lg bg-off-background p-32">
         <p className="text-caption text-shockingly-green">موکیوب</p>
         <h1 className="mt-8 text-heading-sm tracking-heading-sm text-foreground">
           ورود به پنل مدیریت

@@ -25,29 +25,29 @@
   --font-weight-bold: 800;
 
   /* Typography — Scale */
-  --text-caption: 13px;
+  --text-caption: 12px;
   --leading-caption: 1.5;
   --tracking-caption: 0;
-  --text-body-sm: 15px;
+  --text-body-sm: 14px;
   --leading-body-sm: 1.55;
-  --text-body: 17px;
+  --text-body: 16px;
   --leading-body: 1.7;
-  --text-body-lg: 20px;
+  --text-body-lg: 18px;
   --leading-body-lg: 1.75;
   --tracking-body-lg: 0;
-  --text-subheading: 26px;
+  --text-subheading: 24px;
   --leading-subheading: 1.2;
   --tracking-subheading: -0.26px;
-  --text-heading-sm: 32px;
+  --text-heading-sm: 30px;
   --leading-heading-sm: 1.2;
   --tracking-heading-sm: -0.32px;
-  --text-heading: 48px;
+  --text-heading: 44px;
   --leading-heading: 1.15;
   --tracking-heading: -0.48px;
-  --text-heading-lg: 72px;
+  --text-heading-lg: 68px;
   --leading-heading-lg: 1;
   --tracking-heading-lg: -0.72px;
-  --text-display: 128px;
+  --text-display: 112px;
   --leading-display: 0.95;
   --tracking-display: -2.56px;
 
@@ -108,7 +108,7 @@
   --foreground-surface: #f6fbff;
   --shockingly-green: #13dd8c;
   --light-green: #85ffce;
-  --orangey: #ff8709;
+  --orangey: #fd2e3d;
   --orangey-soft: #ffc078;
   --pink: #fec5fb;
   --lilac: #9d95ff;
@@ -126,7 +126,7 @@
   --foreground-surface: #f6fbff;
   --shockingly-green: #13dd8c;
   --light-green: #85ffce;
-  --orangey: #ff8709;
+  --orangey: #fd2e3d;
   --orangey-soft: #ffc078;
   --pink: #fec5fb;
   --lilac: #9d95ff;
@@ -136,15 +136,15 @@
 .light {
   --background: #f6fbff;
   --foreground: #0e100f;
-  --surface-50: #5c5c52;
-  --surface-25: #c8c4a8;
-  --off-background: #d6edff;
+  --surface-50: hsl(150, 6%, 34%);
+  --surface-25: hsl(150, 23%, 72%);
+  --off-background: #e8f7f0;
   --surface-canvas: #f6fbff;
-  --surface-nested-panel: #d6edff;
+  --surface-nested-panel: #e8f7f0;
   --foreground-surface: #0e100f;
   --shockingly-green: #13dd8c;
   --light-green: #0d8f6a;
-  --orangey: #ff8709;
+  --orangey: #fd2e3d;
   --orangey-soft: #e08a2a;
   --pink: #c016a8;
   --lilac: #5c52d4;
@@ -163,7 +163,7 @@
   --foreground-surface: #f6fbff;
   --shockingly-green: #13dd8c;
   --light-green: #85ffce;
-  --orangey: #ff8709;
+  --orangey: #fd2e3d;
   --orangey-soft: #ffc078;
   --pink: #fec5fb;
   --lilac: #9d95ff;
@@ -193,13 +193,13 @@
   --foreground: #0e100f;
   --surface-50: #5c5c52;
   --surface-25: #c8c4a8;
-  --off-background: #d6edff;
+  --off-background: #d9f3e6;
   --surface-canvas: #f6fbff;
-  --surface-nested-panel: #d6edff;
+  --surface-nested-panel: #d9f3e6;
   --foreground-surface: #0e100f;
   --shockingly-green: #068a56;
   --light-green: #0d8f6a;
-  --orangey: #ff8709;
+  --orangey: #fd2e3d;
   --orangey-soft: #e08a2a;
   --pink: #c016a8;
   --lilac: #5c52d4;
@@ -208,7 +208,7 @@
   --color-foreground: #0e100f;
   --color-surface-50: #5c5c52;
   --color-surface-25: #c8c4a8;
-  --color-off-background: #d6edff;
+  --color-off-background: #d9f3e6;
   --color-shockingly-green: var(--shockingly-green);
   --color-light-green: var(--light-green);
   --color-orangey: var(--orangey);
@@ -272,6 +272,12 @@ h3 {
   background:
     linear-gradient(var(--surface-canvas), var(--surface-canvas)) padding-box,
     var(--gradient-shockingly-green) border-box;
+}
+
+@layer components {
+  .card-chrome {
+    border: 1px solid var(--surface-25);
+  }
 }
 
 /* Dark: sharp rect. Light: keep rounded on cards / buttons / chips / images */

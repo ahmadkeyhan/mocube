@@ -31,10 +31,10 @@ export function PricingCard({
   return (
     <Link href={href} className="block">
       <motion.article
-        className={`rounded-lg p-24 ${
+        className={`card-chrome rounded-lg p-24 ${
           highlighted
-            ? `border ${serviceBorderClass[color]} bg-off-background`
-            : `border border-surface-25 bg-background ${serviceHoverBorderClass[color]}`
+            ? `${serviceBorderClass[color]} bg-off-background`
+            : `bg-background ${serviceHoverBorderClass[color]}`
         }`}
         whileHover={reduce ? undefined : { scale: 1.02 }}
         whileTap={reduce ? undefined : { scale: 0.99 }}

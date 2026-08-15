@@ -36,7 +36,7 @@ export function ShowcaseCard({
   return (
     <Link href={href} className="block">
       <motion.article
-        className="rounded-lg bg-off-background transition-colors hover:bg-background"
+        className="card-chrome rounded-lg bg-off-background transition-colors hover:bg-background"
         initial="rest"
         whileHover={reduce ? undefined : "hover"}
         animate="rest"

@@ -33,7 +33,7 @@ export function MicroServiceCard({
 
   return (
     <motion.article
-      className={`relative rounded-lg border border-surface-25 bg-off-background p-24 transition-colors hover:bg-background ${serviceHoverBorderClass[color]}`}
+      className={`card-chrome relative rounded-lg bg-off-background p-24 transition-colors hover:bg-background ${serviceHoverBorderClass[color]}`}
       initial="rest"
       whileHover={reduce ? undefined : "hover"}
       animate="rest"
