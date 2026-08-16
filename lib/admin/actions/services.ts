@@ -50,12 +50,12 @@ function parse(form: FormData) {
   const color = text(form, "color") as ServiceColor;
 
   if (!SERVICE_COLORS.includes(color)) {
-    errors.add("color", "رنگ خدمت را انتخاب کنید.");
+    errors.add("color", "رنگ سرویس را انتخاب کنید.");
   }
 
   const doc = {
     slug: slug(form, "slug", errors),
-    name: requiredText(form, "name", errors, "نام خدمت"),
+    name: requiredText(form, "name", errors, "نام سرویس"),
     color,
     shortDescription: text(form, "shortDescription"),
     description: text(form, "description"),
@@ -84,7 +84,7 @@ export async function createService(
       .insertOne({ _id: new ObjectId(), ...doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "ذخیره خدمت ناموفق بود." };
+    return { message: "ذخیره سرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);
@@ -111,7 +111,7 @@ export async function updateService(
       .updateOne({ _id: new ObjectId(id) }, { $set: doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "به‌روزرسانی خدمت ناموفق بود." };
+    return { message: "به‌روزرسانی سرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);

@@ -83,7 +83,7 @@ export default async function ContactPage({
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
             فرم را پر کنید تا با شما تماس بگیریم. نام، تلفن و نام کسب‌وکار لازم
-            است؛ جزئیات خدمت اختیاری است.
+            است؛ جزئیات سرویس اختیاری است.
           </p>
         </Reveal>
 

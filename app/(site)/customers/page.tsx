@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { CustomerName } from "@/components/CustomerName";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
@@ -21,12 +22,14 @@ export default async function CustomersPage() {
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>مشتریان</SectionEyebrow>
+          <SectionEyebrow>
+            <CustomerName>مشتریان</CustomerName>
+          </SectionEyebrow>
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             برندهایی که ساخته‌ایم
           </h1>
           <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            هر مشتری مجموعه‌ای از پروژه‌ها در خدمات مختلف دارد.
+            هر مشتری مجموعه‌ای از پروژه‌ها در سرویس‌های مختلف دارد.
           </p>
         </Reveal>
 
@@ -46,7 +49,7 @@ export default async function CustomersPage() {
                 </div>
                 <div className="min-w-0">
                   <h2 className="text-body font-bold text-foreground">
-                    {customer.name}
+                    <CustomerName>{customer.name}</CustomerName>
                   </h2>
                   <p className="mt-4 text-body-sm text-surface-50">
                     {customer.shortDescription}

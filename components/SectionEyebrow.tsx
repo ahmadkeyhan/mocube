@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 type SectionEyebrowProps = {
-  children: string;
+  children: ReactNode;
   className?: string;
 };
 
@@ -8,8 +10,10 @@ export function SectionEyebrow({
   className = "",
 }: SectionEyebrowProps) {
   return (
-    <p
-      className={`text-body-sm text-foreground ${className}`}
-    >{`{ ${children} }`}</p>
+    <p className={`text-body-sm text-foreground ${className}`}>
+      {"{ "}
+      {children}
+      {" }"}
+    </p>
   );
 }

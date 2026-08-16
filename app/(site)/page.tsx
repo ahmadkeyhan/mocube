@@ -50,7 +50,7 @@ export default async function HomePage() {
             }
             actions={
               <div className="mt-32 flex flex-wrap gap-16">
-                <GradientCta href="/services">خدمات موکیوب</GradientCta>
+                <GradientCta href="/services">سرویس‌های موکیوب</GradientCta>
                 <PillButton href="/projects">کاوش پروژه‌ها</PillButton>
               </div>
             }
@@ -74,7 +74,7 @@ export default async function HomePage() {
           <Reveal className="py-18 col-span-2">
             {/* <SectionEyebrow>ابزارهای موکیوب</SectionEyebrow> */}
             <h2 className="mt-16 text-heading-sm tracking-heading-sm text-center text-shockingly-green md:text-heading md:tracking-heading">
-              خدمات موکیوب
+              سرویس‌های موکیوب
             </h2>
           </Reveal>
           {services.length > 0 ? (
@@ -91,7 +91,7 @@ export default async function HomePage() {
               </div>
             ))
           ) : (
-            <DataUnavailable message="در حال حاضر امکان نمایش خدمات وجود ندارد. لطفاً دوباره تلاش کنید." />
+            <DataUnavailable message="در حال حاضر امکان نمایش سرویس‌ها وجود ندارد. لطفاً دوباره تلاش کنید." />
           )}
         </Container>
       </section>

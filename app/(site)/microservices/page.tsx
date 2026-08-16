@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FaHashtag } from "react-icons/fa";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { surfaceCardClass } from "@/components/SurfaceCard";
+import { microHash } from "@/lib/micro-label";
 import { getMicroServicesWithService } from "@/lib/queries/microServices";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "نمونه‌کارها",
+  title: "میکروسرویس‌ها",
   description: "میکروسرویس‌ها و نمونه‌های بصری موکیوب",
 };
 
@@ -22,7 +24,12 @@ export default async function MicroServicesPage() {
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>نمونه‌کارها</SectionEyebrow>
+          <SectionEyebrow>
+            <span className="inline-flex items-center gap-1">
+              <FaHashtag aria-hidden className="size-16 shrink-0" />
+              میکروسرویس‌ها
+            </span>
+          </SectionEyebrow>
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             جزئیاتی که می‌توانید انتخاب کنید
           </h1>
@@ -47,7 +54,7 @@ export default async function MicroServicesPage() {
                   />
                 ) : null}
                 <h2 className="mt-12 text-body font-bold text-foreground">
-                  {micro.name}
+                  {microHash(micro.name)}
                 </h2>
                 <p className="mt-8 text-body-sm text-surface-50">
                   {micro.shortDescription}

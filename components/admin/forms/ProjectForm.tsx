@@ -97,7 +97,7 @@ export function ProjectForm({
         />
       </Field>
 
-      <Field label="خدمات" error={errors.serviceIds}>
+      <Field label="سرویس‌ها" error={errors.serviceIds}>
         <CheckboxGroup
           name="serviceIds"
           options={serviceOptions}
@@ -105,7 +105,7 @@ export function ProjectForm({
         />
       </Field>
 
-      <Field label="ریزخدمات" error={errors.microServiceIds}>
+      <Field label="ریزسرویس‌ها" error={errors.microServiceIds}>
         <CheckboxGroup
           name="microServiceIds"
           options={microServiceOptions}

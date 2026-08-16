@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { FaHashtag } from "react-icons/fa";
 import { Container } from "@/components/Container";
 import { GradientCta } from "@/components/GradientCta";
 import { HeroIntro } from "@/components/motion/HeroIntro";
@@ -29,7 +30,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-  if (!service) return { title: "خدمت یافت نشد" };
+  if (!service) return { title: "سرویس یافت نشد" };
   return {
     title: service.name,
     description: service.shortDescription,
@@ -122,7 +123,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             actions={
               <div className="mt-32">
                 <GradientCta href={`/contact?service=${service.slug}`} color={service.color}>
-                  درخواست این خدمت
+                  درخواست این سرویس
                 </GradientCta>
               </div>
             }
@@ -133,7 +134,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+            <h2 className="mt-16 inline-flex items-center gap-1 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+              <FaHashtag aria-hidden className="size-24 shrink-0 md:size-32" />
               میکروسرویس‌ها
             </h2>
           </Reveal>

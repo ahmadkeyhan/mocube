@@ -1,8 +1,9 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useId, useRef, useState } from "react";
-import { MdClose, MdOutlineFilterList } from "react-icons/md";
+import { type ReactNode, useEffect, useId, useRef, useState } from "react";
+import { MdClose, MdOutlineFilterList, MdRocket } from "react-icons/md";
+import { microHash } from "@/lib/micro-label";
 import type { ServiceColor } from "@/lib/models/types";
 import {
   serviceBgTintClass,
@@ -36,12 +37,14 @@ function FilterSelect({
   onChange,
   emptyLabel,
   options,
+  leading,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   emptyLabel: string;
   options: FilterOption[];
+  leading?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -89,7 +92,10 @@ function FilterSelect({
         className="relative inline-flex min-w-[10rem] items-center justify-between gap-12 rounded-full border border-surface-25 bg-off-background py-8 pr-12 pl-24 text-body-sm text-foreground outline-none transition-colors hover:border-surface-50"
         onClick={() => setOpen((current) => !current)}
       >
-        <span className="truncate">{selectedLabel}</span>
+        <span className="flex min-w-0 items-center gap-1">
+          {leading}
+          <span className="truncate">{selectedLabel}</span>
+        </span>
         <svg
           aria-hidden
           viewBox="0 0 12 8"
@@ -128,7 +134,10 @@ function FilterSelect({
                 pick("");
               }}
             >
-              {emptyLabel}
+              <span className="inline-flex items-center gap-1">
+                {leading}
+                {emptyLabel}
+              </span>
             </button>
           </li>
           {options.map((item) => {
@@ -147,7 +156,10 @@ function FilterSelect({
                     pick(item.slug);
                   }}
                 >
-                  {item.name}
+                  <span className="inline-flex items-center gap-1">
+                    {leading}
+                    {item.name}
+                  </span>
                 </button>
               </li>
             );
@@ -248,8 +260,8 @@ export function ProjectsFilter({
             ) : null}
             <div className="flex flex-wrap items-center gap-2">
               <FilterSelect
-                label="خدمت"
-                emptyLabel="همه خدمات"
+                label="سرویس"
+                emptyLabel="همه سرویس‌ها"
                 value={
                   value.service && !value.customer && !value.micro
                     ? value.service
@@ -264,6 +276,9 @@ export function ProjectsFilter({
                 value={value.customer ?? ""}
                 onChange={onCustomerChange}
                 options={customers}
+                leading={
+                  <MdRocket aria-hidden className="size-16 shrink-0" />
+                }
               />
             </div>
             <div className="flex max-h-80 flex-wrap gap-2 overflow-y-auto">
@@ -277,7 +292,7 @@ export function ProjectsFilter({
                     value.micro === item.slug,
                   )}
                 >
-                  {item.name}
+                  {microHash(item.name)}
                 </button>
               ))}
             </div>

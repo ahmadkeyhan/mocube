@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FaHashtag } from "react-icons/fa";
+import { MdDesignServices, MdFolderOpen, MdRocket } from "react-icons/md";
 import { toPersianDigits } from "@/lib/persian";
 
 type SiteFooterProps = {
@@ -27,22 +29,38 @@ export function SiteFooter({ settings }: SiteFooterProps) {
           <p className="mb-16 text-caption text-surface-50">کاوش</p>
           <ul className="flex flex-col gap-12 text-body-sm text-foreground">
             <li>
-              <Link href="/services" className="hover:text-surface-50">
-                خدمات
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1 hover:text-surface-50"
+              >
+                <MdDesignServices aria-hidden className="size-16 shrink-0" />
+                سرویس‌ها
               </Link>
             </li>
             <li>
-              <Link href="/microservices" className="hover:text-surface-50">
-                نمونه‌کارها
+              <Link
+                href="/microservices"
+                className="inline-flex items-center gap-1 hover:text-surface-50"
+              >
+                <FaHashtag aria-hidden className="size-16 shrink-0" />
+                میکروسرویس‌ها
               </Link>
             </li>
             <li>
-              <Link href="/projects" className="hover:text-surface-50">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1 hover:text-surface-50"
+              >
+                <MdFolderOpen aria-hidden className="size-16 shrink-0" />
                 پروژه‌ها
               </Link>
             </li>
             <li>
-              <Link href="/customers" className="hover:text-surface-50">
+              <Link
+                href="/customers"
+                className="inline-flex items-center gap-1 hover:text-surface-50"
+              >
+                <MdRocket aria-hidden className="size-16 shrink-0" />
                 مشتریان
               </Link>
             </li>
@@ -55,7 +73,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
         </div>
 
         <div>
-          <p className="mb-16 text-caption text-surface-50">خدمات</p>
+          <p className="mb-16 text-caption text-surface-50">سرویس‌ها</p>
           <ul className="flex flex-col gap-12 text-body-sm">
             <li>
               <Link href="/services/branding" className="text-orangey">

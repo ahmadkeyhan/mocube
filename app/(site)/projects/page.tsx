@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "پروژه‌ها",
-  description: "پروژه‌های موکیوب بر اساس خدمت، میکروسرویس و مشتری",
+  description: "پروژه‌های موکیوب بر اساس سرویس، میکروسرویس و مشتری",
 };
 
 export default async function ProjectsPage() {

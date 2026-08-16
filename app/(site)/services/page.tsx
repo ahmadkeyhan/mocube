@@ -8,8 +8,8 @@ import { serviceImages } from "@/lib/service-images";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "خدمات",
-  description: "خدمات استودیو خلاق موکیوب: هویت برند، تصویرسازی، وب و مرچندایز",
+  title: "سرویس‌ها",
+  description: "سرویس‌های استودیو خلاق موکیوب: هویت برند، تصویرسازی، وب و مرچندایز",
 };
 
 export default async function ServicesPage() {
@@ -23,7 +23,7 @@ export default async function ServicesPage() {
             چهار تخصص، یک استودیو
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            هر خدمت مجموعه‌ای از میکروسرویس‌ها و سه پلن قیمتی دارد تا با مقیاس
+            هر سرویس مجموعه‌ای از میکروسرویس‌ها و سه پلن قیمتی دارد تا با مقیاس
             پروژه‌ات هماهنگ شود.
           </p>
         </Reveal>

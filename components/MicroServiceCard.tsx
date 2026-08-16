@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { PillButton } from "@/components/PillButton";
 import type { ServiceColor } from "@/lib/models/types";
+import { microHash } from "@/lib/micro-label";
 import { serviceHoverBorderClass } from "@/lib/service-colors";
 
 type MicroServiceCardProps = {
@@ -43,7 +44,7 @@ export function MicroServiceCard({
       <Link
         href={href}
         className="absolute inset-0 z-0"
-        aria-label={`کاوش ${name}`}
+        aria-label={`کاوش ${microHash(name)}`}
       />
       <div className="relative z-10 pointer-events-none flex items-center justify-between gap-16">
         <motion.h3
@@ -51,7 +52,7 @@ export function MicroServiceCard({
           variants={reduce ? undefined : titleVariants}
           transition={{ type: "spring", stiffness: 300, damping: 24 }}
         >
-          {name}
+          {microHash(name)}
         </motion.h3>
         <div className="pointer-events-auto shrink-0">
           <PillButton href={href}>کاوش</PillButton>

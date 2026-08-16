@@ -21,11 +21,11 @@ const LIST_PATH = "/admin/microservices";
 
 function parse(form: FormData) {
   const errors = new FieldErrors();
-  const serviceId = objectId(form, "serviceId", errors, "خدمت مرتبط");
+  const serviceId = objectId(form, "serviceId", errors, "سرویس مرتبط");
 
   const doc = {
     slug: slug(form, "slug", errors),
-    name: requiredText(form, "name", errors, "نام ریزخدمت"),
+    name: requiredText(form, "name", errors, "نام ریزسرویس"),
     shortDescription: text(form, "shortDescription"),
     description: text(form, "description"),
     serviceId: serviceId ?? new ObjectId(),
@@ -53,7 +53,7 @@ export async function createMicroService(
       .insertOne({ _id: new ObjectId(), ...doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "ذخیره ریزخدمت ناموفق بود." };
+    return { message: "ذخیره ریزسرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);
@@ -80,7 +80,7 @@ export async function updateMicroService(
       .updateOne({ _id: new ObjectId(id) }, { $set: doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "به‌روزرسانی ریزخدمت ناموفق بود." };
+    return { message: "به‌روزرسانی ریزسرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);

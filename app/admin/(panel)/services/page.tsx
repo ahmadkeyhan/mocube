@@ -12,7 +12,7 @@ import { getServices } from "@/lib/queries/services";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "خدمات",
+  title: "سرویس‌ها",
 };
 
 export default async function AdminServicesPage() {
@@ -22,15 +22,15 @@ export default async function AdminServicesPage() {
   return (
     <div className="flex flex-col gap-24">
       <AdminPageHeader
-        title="خدمات"
-        description="خدمات اصلی و پلن‌های قیمتی"
+        title="سرویس‌ها"
+        description="سرویس‌های اصلی و پلن‌های قیمتی"
         actionHref="/admin/services/new"
-        actionLabel="خدمت جدید"
+        actionLabel="سرویس جدید"
       />
 
       <div className="flex flex-col gap-12">
         {services.length === 0 ? (
-          <SurfaceCard variant="empty">هنوز خدمتی ثبت نشده است.</SurfaceCard>
+          <SurfaceCard variant="empty">هنوز سرویسی ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {services.map((service) => (

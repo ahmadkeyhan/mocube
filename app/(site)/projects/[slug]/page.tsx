@@ -3,10 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
+import { CustomerName } from "@/components/CustomerName";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { Reveal } from "@/components/motion/Reveal";
 import { PillButton } from "@/components/PillButton";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
+import { microHash } from "@/lib/micro-label";
 import { getProjectBySlug } from "@/lib/queries/projects";
 
 export const dynamic = "force-dynamic";
@@ -50,7 +52,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 href={`/customers/${project.customer.slug}`}
                 className="text-body-sm text-shockingly-green hover:underline"
               >
-                مشتری: {project.customer.name}
+                <CustomerName>{project.customer.name}</CustomerName>
               </Link>
             ) : null}
             {project.services.map((service) => (
@@ -68,7 +70,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   href={`/microservices/${micro.slug}`}
                   className="text-body-sm text-surface-50 underline-offset-4 hover:text-foreground hover:underline"
                 >
-                  {micro.name}
+                  {microHash(micro.name)}
                 </Link>
               ))}
             </div>
@@ -108,7 +110,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                       href={`/microservices/${micro.slug}`}
                       className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
                     >
-                      {micro.name}
+                      {microHash(micro.name)}
                     </Link>
                   );
                 })}

@@ -8,8 +8,8 @@ const links = [
   { href: "/admin/inquiries", label: "درخواست‌ها" },
   { href: "/admin/projects", label: "پروژه‌ها" },
   { href: "/admin/customers", label: "مشتریان" },
-  { href: "/admin/services", label: "خدمات" },
-  { href: "/admin/microservices", label: "ریزخدمات" },
+  { href: "/admin/services", label: "سرویس‌ها" },
+  { href: "/admin/microservices", label: "ریزسرویس‌ها" },
   { href: "/admin/settings", label: "تنظیمات سایت" },
 ];
 

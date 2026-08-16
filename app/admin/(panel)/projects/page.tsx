@@ -22,7 +22,7 @@ export default async function AdminProjectsPage() {
     <div className="flex flex-col gap-24">
       <AdminPageHeader
         title="پروژه‌ها"
-        description="نمونه‌کارها و گالری‌های هر پروژه"
+        description="میکروسرویس‌ها و گالری‌های هر پروژه"
         actionHref="/admin/projects/new"
         actionLabel="پروژه جدید"
       />

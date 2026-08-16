@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
+import { CustomerName } from "@/components/CustomerName";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { SectionEyebrow } from "@/components/SectionEyebrow";
@@ -39,7 +40,9 @@ export default async function CustomerDetailPage({ params }: PageProps) {
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>مشتری</SectionEyebrow>
+          <SectionEyebrow>
+            <CustomerName>مشتری</CustomerName>
+          </SectionEyebrow>
           <div className="mt-16 flex flex-wrap items-start gap-24">
             <div
               className="flex size-80 items-center justify-center rounded-lg text-subheading font-bold text-background"
@@ -49,7 +52,9 @@ export default async function CustomerDetailPage({ params }: PageProps) {
             </div>
             <div>
               <h1 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-                {customer.name}
+                <CustomerName iconClassName="size-32 shrink-0 md:size-40">
+                  {customer.name}
+                </CustomerName>
               </h1>
               <p className="mt-12 text-body text-surface-50">
                 {customer.shortDescription}
@@ -63,7 +68,7 @@ export default async function CustomerDetailPage({ params }: PageProps) {
 
         <Reveal className="mt-76 mb-24">
           <h2 className="text-subheading tracking-subheading text-foreground">
-            پروژه‌های {customer.name}
+            پروژه‌های <CustomerName>{customer.name}</CustomerName>
           </h2>
         </Reveal>
 

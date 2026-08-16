@@ -23,10 +23,10 @@ export default async function AdminDashboardPage() {
     },
     { href: "/admin/projects", label: "پروژه‌ها", value: counts?.projects },
     { href: "/admin/customers", label: "مشتریان", value: counts?.customers },
-    { href: "/admin/services", label: "خدمات", value: counts?.services },
+    { href: "/admin/services", label: "سرویس‌ها", value: counts?.services },
     {
       href: "/admin/microservices",
-      label: "ریزخدمات",
+      label: "ریزسرویس‌ها",
       value: counts?.microServices,
     },
   ];

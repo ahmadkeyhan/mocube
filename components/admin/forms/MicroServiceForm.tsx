@@ -47,7 +47,7 @@ export function MicroServiceForm({
         <input type="hidden" name="id" value={defaults._id} />
       ) : null}
 
-      <Field label="نام ریزخدمت" htmlFor="name" error={errors.name}>
+      <Field label="نام ریزسرویس" htmlFor="name" error={errors.name}>
         <TextInput name="name" defaultValue={defaults.name} required />
       </Field>
 
@@ -65,12 +65,12 @@ export function MicroServiceForm({
         />
       </Field>
 
-      <Field label="خدمت مرتبط" htmlFor="serviceId" error={errors.serviceId}>
+      <Field label="سرویس مرتبط" htmlFor="serviceId" error={errors.serviceId}>
         <Select
           name="serviceId"
           options={serviceOptions}
           defaultValue={defaults.serviceId}
-          placeholder="انتخاب خدمت"
+          placeholder="انتخاب سرویس"
         />
       </Field>
 

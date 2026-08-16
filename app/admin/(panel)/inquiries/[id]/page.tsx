@@ -58,7 +58,7 @@ export default async function AdminInquiryDetailPage({ params }: PageProps) {
           <span dir="ltr">{toPersianDigits(inquiry.phone)}</span>
         </Row>
         <Row label="تاریخ">{formatDate(inquiry.createdAt)}</Row>
-        <Row label="خدمات">
+        <Row label="سرویس‌ها">
           {inquiry.services.length > 0
             ? inquiry.services.map((s) => s.name).join("، ")
             : "—"}

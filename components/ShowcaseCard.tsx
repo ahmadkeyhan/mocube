@@ -3,8 +3,8 @@
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { CategoryLabel } from "@/components/CategoryLabel";
+import { CustomerName } from "@/components/CustomerName";
 import type { ServiceColor } from "@/lib/models/types";
-import { MdRocket } from "react-icons/md";
 
 type ShowcaseCardProps = {
   href: string;
@@ -66,10 +66,11 @@ export function ShowcaseCard({
             {title}
           </motion.h3>
           {customerName ? (
-            <div className="mt-8 text-body-sm text-surface-50 flex gap-1 items-center">
-              <MdRocket className="w-5 h-5" />
-              <p>{customerName}</p>
-            </div>
+            <p className="mt-8 text-body-sm text-surface-50">
+              <CustomerName iconClassName="size-20 shrink-0">
+                {customerName}
+              </CustomerName>
+            </p>
           ) : null}
           {services.length > 0 ? (
             <div className="mt-12 flex flex-wrap gap-2">

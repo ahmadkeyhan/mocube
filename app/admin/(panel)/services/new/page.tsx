@@ -7,7 +7,7 @@ import { requireAdmin } from "@/lib/auth/guards";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "خدمت جدید",
+  title: "سرویس جدید",
 };
 
 export default async function NewServicePage() {
@@ -15,7 +15,7 @@ export default async function NewServicePage() {
 
   return (
     <div className="flex max-w-[720px] flex-col gap-24">
-      <AdminPageHeader title="خدمت جدید" />
+      <AdminPageHeader title="سرویس جدید" />
       <ServiceForm action={createService} />
     </div>
   );

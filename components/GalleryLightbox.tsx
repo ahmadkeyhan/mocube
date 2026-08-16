@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { microHash } from "@/lib/micro-label";
 
 export type GalleryMicroLink = {
   name: string;
@@ -209,7 +210,7 @@ export function GalleryLightbox({
                         href={`/microservices/${micro.slug}`}
                         className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
                       >
-                        {micro.name}
+                        {microHash(micro.name)}
                       </Link>
                     ))}
                   </div>

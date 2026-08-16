@@ -10,6 +10,7 @@ import {
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { submitInquiry } from "@/lib/actions/contact";
 import type { FormState } from "@/lib/admin/validation";
+import { microHash } from "@/lib/micro-label";
 
 export type ContactServiceOption = {
   slug: string;
@@ -171,7 +172,7 @@ export function ContactForm({
       <Field
         label="چه کمکی نیاز دارید؟"
         htmlFor="service"
-        hint="اگر هنوز جزئیات مشخص نیست، فقط خدمت را انتخاب کنید."
+        hint="اگر هنوز جزئیات مشخص نیست، فقط سرویس را انتخاب کنید."
       >
         <div className="flex flex-wrap gap-8 rounded-lg py-2">
           {services.map((service) => (
@@ -249,7 +250,7 @@ export function ContactForm({
                         }
                         className="size-12 accent-shockingly-green"
                       />
-                      {micro.name}
+                      {microHash(micro.name)}
                     </label>
                   ))}
                 </div>

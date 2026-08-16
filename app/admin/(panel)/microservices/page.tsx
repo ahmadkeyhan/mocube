@@ -11,7 +11,7 @@ import { getMicroServicesWithService } from "@/lib/queries/microServices";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ریزخدمات",
+  title: "ریزسرویس‌ها",
 };
 
 export default async function AdminMicroServicesPage() {
@@ -21,15 +21,15 @@ export default async function AdminMicroServicesPage() {
   return (
     <div className="flex flex-col gap-24">
       <AdminPageHeader
-        title="ریزخدمات"
-        description="ریزخدمت‌های هر خدمت"
+        title="ریزسرویس‌ها"
+        description="ریزسرویس‌های هر سرویس"
         actionHref="/admin/microservices/new"
-        actionLabel="ریزخدمت جدید"
+        actionLabel="ریزسرویس جدید"
       />
 
       <div className="flex flex-col gap-12">
         {microServices.length === 0 ? (
-          <SurfaceCard variant="empty">هنوز ریزخدمتی ثبت نشده است.</SurfaceCard>
+          <SurfaceCard variant="empty">هنوز ریزسرویسی ثبت نشده است.</SurfaceCard>
         ) : null}
 
         {microServices.map((micro) => (
@@ -41,7 +41,7 @@ export default async function AdminMicroServicesPage() {
               <p className="mt-6 text-caption text-surface-50">
                 <span dir="ltr">{micro.slug}</span>
                 {" · "}
-                {micro.service?.name ?? "بدون خدمت"}
+                {micro.service?.name ?? "بدون سرویس"}
                 {" · "}
                 ترتیب {toPersianDigits(micro.sortOrder)}
               </p>

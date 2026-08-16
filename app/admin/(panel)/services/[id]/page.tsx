@@ -9,7 +9,7 @@ import { requireAdmin } from "@/lib/auth/guards";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ویرایش خدمت",
+  title: "ویرایش سرویس",
 };
 
 type PageProps = {
@@ -25,7 +25,7 @@ export default async function EditServicePage({ params }: PageProps) {
 
   return (
     <div className="flex max-w-[720px] flex-col gap-24">
-      <AdminPageHeader title="ویرایش خدمت" description={service.name} />
+      <AdminPageHeader title="ویرایش سرویس" description={service.name} />
       <ServiceForm action={updateService} defaults={service} />
     </div>
   );

@@ -50,7 +50,7 @@ export function ServiceForm({ action, defaults = {} }: ServiceFormProps) {
         <input type="hidden" name="id" value={defaults._id} />
       ) : null}
 
-      <Field label="نام خدمت" htmlFor="name" error={errors.name}>
+      <Field label="نام سرویس" htmlFor="name" error={errors.name}>
         <TextInput name="name" defaultValue={defaults.name} required />
       </Field>
 

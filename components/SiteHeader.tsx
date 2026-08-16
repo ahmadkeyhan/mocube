@@ -2,19 +2,43 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
+import type { ComponentType } from "react";
 import { useEffect, useState } from "react";
+import { FaHashtag } from "react-icons/fa";
+import { MdDesignServices, MdFolderOpen, MdRocket } from "react-icons/md";
 import { GradientCta } from "@/components/GradientCta";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
-const navLinks = [
-  { href: "/services", label: "خدمات", className: "text-foreground" },
+const navLinks: {
+  href: string;
+  label: string;
+  className: string;
+  Icon: ComponentType<{ className?: string }>;
+}[] = [
+  {
+    href: "/services",
+    label: "سرویس‌ها",
+    className: "text-foreground",
+    Icon: MdDesignServices,
+  },
   {
     href: "/microservices",
-    label: "نمونه‌کارها",
+    label: "میکروسرویس‌ها",
     className: "text-foreground",
+    Icon: FaHashtag,
   },
-  { href: "/projects", label: "پروژه‌ها", className: "text-foreground" },
-  { href: "/customers", label: "مشتریان", className: "text-foreground" },
+  {
+    href: "/projects",
+    label: "پروژه‌ها",
+    className: "text-foreground",
+    Icon: MdFolderOpen,
+  },
+  {
+    href: "/customers",
+    label: "مشتریان",
+    className: "text-foreground",
+    Icon: MdRocket,
+  },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -66,8 +90,9 @@ export function SiteHeader() {
               >
                 <Link
                   href={link.href}
-                  className={`px-8 py-10 text-body-sm transition-colors hover:text-foreground ${link.className}`}
+                  className={`inline-flex items-center gap-1 px-8 py-10 text-body-sm transition-colors hover:text-foreground ${link.className}`}
                 >
+                  <link.Icon aria-hidden className="size-16 shrink-0" />
                   {link.label}
                 </Link>
               </motion.div>
@@ -137,9 +162,10 @@ export function SiteHeader() {
                 <Link
                   key={link.href + link.label}
                   href={link.href}
-                  className={`py-8 text-body-sm ${link.className}`}
+                  className={`inline-flex items-center gap-1 py-8 text-body-sm ${link.className}`}
                   onClick={() => setOpen(false)}
                 >
+                  <link.Icon aria-hidden className="size-16 shrink-0" />
                   {link.label}
                 </Link>
               ))}
