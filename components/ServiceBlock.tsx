@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
-import { PillButton } from "@/components/PillButton";
 import { ThemeImage } from "@/components/theme/ThemeImage";
 import type { ServiceColor } from "@/lib/models/types";
 import { serviceColorClass, serviceGradient } from "@/lib/service-colors";
@@ -23,8 +23,12 @@ export function ServiceBlock({
   imageSrc,
 }: ServiceBlockProps) {
   return (
-    <div>
-      <Reveal fromScale={0.85} fromRotate={-4}>
+    <Reveal fromScale={0.85} fromRotate={-4}>
+      <Link
+        href={`/services/${slug}`}
+        className="group block"
+        aria-label={`کاوش ${name}`}
+      >
         <div className="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-4/3 lg:aspect-3/2">
           {imageSrc ? (
             <ThemeImage
@@ -33,11 +37,11 @@ export function ServiceBlock({
               alt=""
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
             />
           ) : (
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105"
               style={{ background: serviceGradient[color] }}
               aria-hidden
             />
@@ -49,19 +53,19 @@ export function ServiceBlock({
             }`}
           >
             <h3
-              className={`text-subheading tracking-subheading md:text-heading-sm md:tracking-heading-sm lg:text-heading-lg lg:tracking-heading-lg ${serviceColorClass[color]}`}
+              className={`text-subheading tracking-subheading transition-transform duration-300 ease-out group-hover:-translate-x-1 md:text-heading-sm md:tracking-heading-sm lg:text-heading-lg lg:tracking-heading-lg ${serviceColorClass[color]}`}
             >
               {name}
             </h3>
             <p className="mt-8 max-w-xl text-body text-foreground lg:text-body-lg">
               {shortDescription}
             </p>
-            <div className="mt-16 pointer-events-auto">
-              <PillButton href={`/services/${slug}`}>کاوش {name}</PillButton>
-            </div>
+            <span className="mt-16 inline-flex items-center justify-center rounded-full border border-surface-25 bg-background/50 px-20 py-12 text-body-sm font-bold text-foreground transition-colors group-hover:border-surface-50">
+              کاوش {name}
+            </span>
           </Reveal>
         </div>
-      </Reveal>
-    </div>
+      </Link>
+    </Reveal>
   );
 }
