@@ -43,7 +43,7 @@ export default async function HomePage() {
               </h1>
             }
             subcopy={
-              <p className="mt-24 max-w-xl text-body-lg  text-surface-50">
+              <p className="mt-24 max-w-xl text-body-sm sm:text-body-lg  text-surface-50">
                 استودیو خلاق موکیوب — هویت برند، تصویرسازی، وب و مرچندایز برای
                 برندهایی که می‌خواهند دیده شوند.
               </p>
