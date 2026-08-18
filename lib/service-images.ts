@@ -11,5 +11,13 @@ export const serviceImages: Partial<Record<string, ThemeImagePair>> = {
   merch: {
     light: "/merchandise-light.webp",
     dark: "/merchandise-dark.webp",
+  },
+  web: {
+    light: "/brandIdentity-light.webp",
+    dark: "/brandIdentity-dark.webp",
+  },
+  illustration: {
+    light: "/merchandise-light.webp",
+    dark: "/merchandise-dark.webp",
   }
 };

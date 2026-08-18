@@ -29,7 +29,7 @@ export function ServiceBlock({
         className="group block"
         aria-label={`کاوش ${name}`}
       >
-        <div className="relative aspect-square w-full overflow-hidden rounded-lg md:aspect-4/3 lg:aspect-3/2">
+        <div className="relative aspect-square w-full overflow-hidden rounded-lg lg:aspect-3/2">
           {imageSrc ? (
             <ThemeImage
               lightSrc={imageSrc.light}
@@ -53,11 +53,11 @@ export function ServiceBlock({
             }`}
           >
             <h3
-              className={`text-subheading tracking-subheading transition-transform duration-300 ease-out group-hover:-translate-x-1 md:text-heading-sm md:tracking-heading-sm lg:text-heading-lg lg:tracking-heading-lg ${serviceColorClass[color]}`}
+              className={`text-heading-sm tracking-heading-sm transition-transform duration-300 ease-out group-hover:-translate-x-1 md:text-heading md:tracking-heading ${serviceColorClass[color]}`}
             >
               {name}
             </h3>
-            <p className="mt-8 max-w-xl text-body text-foreground lg:text-body-lg">
+            <p className="mt-8 text-body-sm text-foreground sm:text-body">
               {shortDescription}
             </p>
             <span className="mt-16 inline-flex items-center justify-center rounded-full border border-surface-25 bg-background/50 px-20 py-12 text-body-sm font-bold text-foreground transition-colors group-hover:border-surface-50">

@@ -13,6 +13,7 @@ import { ThemeImage } from "@/components/theme/ThemeImage";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServices } from "@/lib/queries/services";
 import { serviceImages } from "@/lib/service-images";
+import { MdDesignServices, MdFolderOpen } from "react-icons/md";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +36,7 @@ export default async function HomePage() {
           sizes="100vw"
           className="object-cover"
         />
-        <Container className="relative z-10 pt-32 pb-76 md:pt-76 text-center flex flex-col items-center">
+        <Container className="relative z-10 pt-32 pb-76 md:pt-64 text-center flex flex-col items-center">
           <HeroIntro
             headline={
               <h1 className="mt-16 max-w-none text-3xl leading-display font-bold tracking-heading-lg text-foreground sm:text-heading-lg sm:tracking-heading-lg w-[15ch]">
@@ -58,22 +59,11 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* <section className="border-t border-surface-25">
-        <Container className="py-76">
-          <Reveal>
-            <SectionEyebrow>چرا موکیوب</SectionEyebrow>
-            <h2 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-              طراحی با رنگ، تایپ و حرکت — نه قالب‌های تکراری
-            </h2>
-          </Reveal>
-        </Container>
-      </section> */}
-
-      <section className="border-t border-surface-25">
+      <section className="max-w-6xl mx-auto">
         <Container className="grid grid-cols-2 gap-12">
-          <Reveal className="py-18 col-span-2">
-            {/* <SectionEyebrow>ابزارهای موکیوب</SectionEyebrow> */}
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-center text-shockingly-green md:text-heading md:tracking-heading">
+          <Reveal className="col-span-2 flex items-center justify-center mt-64 mb-16 gap-4 text-heading-sm tracking-heading-sm text-center md:text-heading md:tracking-heading">
+            <MdDesignServices />
+            <h2>
               سرویس‌های موکیوب
             </h2>
           </Reveal>
@@ -101,9 +91,12 @@ export default async function HomePage() {
           <Reveal>
             {/* <SectionEyebrow>پروژه‌ها</SectionEyebrow> */}
             <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
-              <h2 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-                پروژه‌های منتخب
-              </h2>
+              <div className="flex items-center gap-4 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+                <MdFolderOpen />
+                <h2>
+                  پروژه‌های منتخب
+                </h2>
+              </div>
               <PillButton href="/projects">کاوش همه پروژه‌ها</PillButton>
             </div>
           </Reveal>

@@ -79,7 +79,7 @@ export function ShowcaseCard({
                   key={service.name}
                   label={service.name}
                   color={service.color}
-                  className="text-caption bg-background rounded-full"
+                  className="text-caption bg-background border border-surface-25 rounded-full"
                 />
               ))}
             </div>
