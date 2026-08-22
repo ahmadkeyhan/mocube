@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
+import { CustomerLogo } from "@/components/CustomerLogo";
 import { CustomerName } from "@/components/CustomerName";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
@@ -39,33 +40,31 @@ export default async function CustomerDetailPage({ params }: PageProps) {
     <section className="py-76">
       <Container>
         <Reveal>
-          <CustomerName>مشتری</CustomerName>
           <div className="mt-16 flex flex-wrap items-start gap-24">
-            <div
-              className="flex size-80 items-center justify-center rounded-lg text-subheading font-bold text-background"
-              style={{ background: customer.logoUrl }}
-            >
-              {customer.name.slice(0, 1)}
-            </div>
+            <CustomerLogo
+              name={customer.name}
+              logoUrl={customer.logoUrl}
+              className="size-80"
+            />
             <div>
               <h1 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
                 <CustomerName iconClassName="size-32 shrink-0 md:size-40">
                   {customer.name}
                 </CustomerName>
               </h1>
-              <p className="mt-12 text-body text-surface-50">
+              <p className="text-body text-surface-50">
                 {customer.shortDescription}
               </p>
             </div>
           </div>
-          <p className="mt-24 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+          <p className="mt-24 max-w-2xl text-body tracking-body text-surface-50">
             {customer.description}
           </p>
         </Reveal>
 
         <Reveal className="mt-76 mb-24">
           <h2 className="text-subheading tracking-subheading text-foreground">
-            پروژه‌های <CustomerName>{customer.name}</CustomerName>
+            پروژه‌های {customer.name}
           </h2>
         </Reveal>
 
