@@ -6,12 +6,11 @@ import { Container } from "@/components/Container";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { GradientCta } from "@/components/GradientCta";
 import { Reveal } from "@/components/motion/Reveal";
-import { OrganicBlob } from "@/components/OrganicBlob";
+import { PillButton } from "@/components/PillButton";
 import {
   getGalleriesForMicro,
   getMicroServiceBySlug,
 } from "@/lib/queries/microServices";
-import { MdSearch } from "react-icons/md";
 
 export const dynamic = "force-dynamic";
 
@@ -40,93 +39,86 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
   const service = micro.service;
 
   return (
-    <>
-      <section className="relative overflow-hidden py-76">
-        {service ? (
-          <div className="pointer-events-none absolute top-20 left-0 opacity-60">
-            <OrganicBlob
-              color={service.color}
-              className="max-w-[280px]"
-              delay={0.3}
-            />
-          </div>
-        ) : null}
-        <Container className="relative">
-          <Reveal>
+    <section className="py-40">
+      <Container>
+        <Reveal>
+          <article className="card-chrome rounded-lg bg-off-background p-20 lg:p-32">
             {service ? (
-              <Link href={`/services/${service.slug}`} className="mt-16 block">
+              <Link href={`/services/${service.slug}`}>
                 <CategoryLabel
                   label={service.name}
                   color={service.color}
-                  className="text-body-lg"
+                  className="text-caption bg-background rounded-full"
                 />
               </Link>
             ) : null}
-            <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+            <h1
+              className={`${service ? "mt-12" : ""} text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading`}
+            >
               {micro.name}
             </h1>
-            <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+            <p className="mt-8 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
               {micro.shortDescription}
             </p>
-            <p className="mt-16 max-w-2xl text-body text-surface-50">
-              {micro.description}
-            </p>
-            <div className="mt-32">
+            {micro.description && micro.description !== micro.shortDescription ? (
+              <p className="mt-12 max-w-2xl text-body text-surface-50">
+                {micro.description}
+              </p>
+            ) : null}
+            <div className="mt-24">
               <GradientCta
                 href={
                   service
                     ? `/contact?service=${service.slug}&micro=${micro.slug}`
                     : "/contact"
                 }
+                color={service?.color}
               >
                 درخواست این سرویس
               </GradientCta>
             </div>
-          </Reveal>
-        </Container>
-      </section>
+          </article>
+        </Reveal>
 
-      <section className="border-t border-surface-25 py-76">
-        <Container>
-          <Reveal>
-            <h3>نمونه‌ها</h3>
-            <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
-              گالری‌های مرتبط
-            </h2>
-          </Reveal>
+        {galleries.length > 0 ? (
+          galleries.map((block, index) => (
+            <Reveal
+              key={`${block.projectSlug}-${block.gallery.urls[0]}`}
+              delay={0.12 + index * 0.04}
+              className="mt-24"
+            >
+              <article className="card-chrome rounded-lg bg-off-background p-2 md:p-24">
+                <Link
+                  href={`/projects/${block.projectSlug}`}
+                  className="block px-2 pt-2 text-body font-bold text-foreground hover:text-shockingly-green md:px-0 md:pt-0"
+                >
+                  {block.projectTitle}
+                </Link>
+                {block.gallery.description ? (
+                  <p className="mt-12 mb-16 max-w-2xl px-2 text-body-lg tracking-body-lg text-foreground md:px-0">
+                    {block.gallery.description}
+                  </p>
+                ) : null}
+                <GalleryGrid
+                  className={block.gallery.description ? undefined : "mt-16"}
+                  urls={block.gallery.urls}
+                  description={block.gallery.description}
+                  projectTitle={block.projectTitle}
+                  projectHref={`/projects/${block.projectSlug}`}
+                />
+              </article>
+            </Reveal>
+          ))
+        ) : (
+          <p className="mt-24 text-body text-surface-50">
+            هنوز گالری‌ای برای این میکروسرویس ثبت نشده است.
+          </p>
+        )}
 
-          {galleries.length > 0 ? (
-            <div className="mt-32 flex flex-col gap-76">
-              {galleries.map((block) => (
-                <Reveal key={`${block.projectSlug}-${block.gallery.urls[0]}`}>
-                  <Link
-                    href={`/projects/${block.projectSlug}`}
-                    className="text-body font-bold text-foreground hover:underline"
-                  >
-                    {block.projectTitle}
-                  </Link>
-                  {block.gallery.description ? (
-                    <p className="mt-12 max-w-2xl text-body text-surface-50">
-                      {block.gallery.description}
-                    </p>
-                  ) : null}
-                  <GalleryGrid
-                    className="mt-24"
-                    urls={block.gallery.urls}
-                    description={block.gallery.description}
-                    projectTitle={block.projectTitle}
-                    projectHref={`/projects/${block.projectSlug}`}
-                  />
-                </Reveal>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-32 text-body text-surface-50">
-              هنوز گالری‌ای برای این میکروسرویس ثبت نشده است.
-            </p>
-          )}
-        </Container>
-      </section>
-    </>
+        <Reveal delay={0.15} className="mt-32">
+          <PillButton href="/microservices">بازگشت به میکروسرویس‌ها</PillButton>
+        </Reveal>
+      </Container>
+    </section>
   );
 }

@@ -35,14 +35,17 @@ export default async function AdminProjectsPage() {
         {projects.map((project) => (
           <SurfaceCard key={project._id} variant="row">
             <div className="min-w-0">
-              <p className="text-body-sm font-bold text-foreground">
-                {project.title}
+              <div className="flex gap-2">
+                <p className="text-body-sm font-bold text-foreground">
+                  {project.title}
+                  
+                </p>
                 {project.featured ? (
-                  <span className="mr-8 text-caption text-shockingly-green">
+                  <span className="text-caption text-shockingly-green">
                     شاخص
                   </span>
                 ) : null}
-              </p>
+              </div>
               <p className="mt-6 text-caption text-surface-50">
                 <span dir="ltr">{project.slug}</span>
                 {" · "}

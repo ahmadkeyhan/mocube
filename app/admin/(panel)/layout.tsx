@@ -28,7 +28,7 @@ export default async function AdminPanelLayout({
         <form action={logoutAction} className="lg:mt-auto">
           <button
             type="submit"
-            className="w-full rounded-full border border-surface-25 px-16 py-10 text-caption text-foreground transition-colors hover:border-lipstick-pink hover:text-lipstick-pink"
+            className="w-full rounded-full bg-off-background px-16 py-10 text-caption text-foreground transition-colors hover:border-lipstick-pink hover:text-lipstick-pink"
           >
             خروج
           </button>

@@ -58,7 +58,7 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className="max-w-6xl mx-auto">
+      <section className="max-w-6xl mx-auto pb-76">
         <Container className="grid grid-cols-2 gap-12">
           <Reveal className="col-span-2 flex items-center justify-center mt-64 mb-16 gap-4 text-heading-sm tracking-heading-sm text-center md:text-heading md:tracking-heading">
             <MdDesignServices />
