@@ -4,8 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import type { ComponentType } from "react";
 import { useEffect, useState } from "react";
-import { FaHashtag } from "react-icons/fa";
-import { MdDesignServices, MdFolderOpen, MdRocket } from "react-icons/md";
+import { MdDesignServices, MdFolderOpen, MdRocket, MdSearch } from "react-icons/md";
 import { GradientCta } from "@/components/GradientCta";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -25,7 +24,7 @@ const navLinks: {
     href: "/microservices",
     label: "میکروسرویس‌ها",
     className: "text-foreground",
-    Icon: FaHashtag,
+    Icon: MdSearch,
   },
   {
     href: "/projects",

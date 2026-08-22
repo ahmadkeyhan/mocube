@@ -3,7 +3,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 import { MdClose, MdOutlineFilterList, MdRocket } from "react-icons/md";
-import { microHash } from "@/lib/micro-label";
 import type { ServiceColor } from "@/lib/models/types";
 import {
   serviceBgTintClass,
@@ -205,7 +204,7 @@ export function ProjectsFilter({
           aria-label="فیلتر"
           aria-expanded={open}
           aria-controls={panelId}
-          className="relative inline-flex h-40 items-center justify-center gap-2 rounded-full border border-surface-25 bg-off-background px-4 text-foreground transition-colors hover:border-surface-50"
+          className="relative inline-flex h-40 items-center justify-center cursor-pointer hover:bg-background  gap-2 rounded-full bg-off-background pr-3 pl-4 text-foreground transition-colors hover:border hover:border-off-background"
           onClick={() => setOpen((current) => !current)}
         >
           {open ? (
@@ -217,7 +216,7 @@ export function ProjectsFilter({
           {filterActive ? (
             <span
               aria-hidden
-              className="absolute top-6 inset-e-6 size-8 rounded-full bg-shockingly-green"
+              className="absolute top-1.75 inset-e-1.75 size-8 rounded-full bg-shockingly-green"
             />
           ) : null}
         </button>
@@ -292,7 +291,7 @@ export function ProjectsFilter({
                     value.micro === item.slug,
                   )}
                 >
-                  {microHash(item.name)}
+                  {item.name}
                 </button>
               ))}
             </div>

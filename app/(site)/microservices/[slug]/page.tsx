@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaHashtag } from "react-icons/fa";
 import { CategoryLabel } from "@/components/CategoryLabel";
 import { Container } from "@/components/Container";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { GradientCta } from "@/components/GradientCta";
 import { Reveal } from "@/components/motion/Reveal";
 import { OrganicBlob } from "@/components/OrganicBlob";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
-import { microHash } from "@/lib/micro-label";
 import {
   getGalleriesForMicro,
   getMicroServiceBySlug,
 } from "@/lib/queries/microServices";
+import { MdSearch } from "react-icons/md";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +26,7 @@ export async function generateMetadata({
   const micro = await getMicroServiceBySlug(slug);
   if (!micro) return { title: "میکروسرویس یافت نشد" };
   return {
-    title: microHash(micro.name),
+    title: micro.name,
     description: micro.shortDescription,
   };
 }
@@ -55,12 +53,6 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
         ) : null}
         <Container className="relative">
           <Reveal>
-            <SectionEyebrow>
-              <span className="inline-flex items-center gap-1">
-                <FaHashtag aria-hidden className="size-16 shrink-0" />
-                میکروسرویس
-              </span>
-            </SectionEyebrow>
             {service ? (
               <Link href={`/services/${service.slug}`} className="mt-16 block">
                 <CategoryLabel
@@ -71,7 +63,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
               </Link>
             ) : null}
             <h1 className="mt-16 max-w-3xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-              {microHash(micro.name)}
+              {micro.name}
             </h1>
             <p className="mt-20 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
               {micro.shortDescription}
@@ -97,7 +89,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <SectionEyebrow>نمونه‌ها</SectionEyebrow>
+            <h3>نمونه‌ها</h3>
             <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               گالری‌های مرتبط
             </h2>

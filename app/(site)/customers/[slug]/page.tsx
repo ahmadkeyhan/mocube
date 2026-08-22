@@ -4,7 +4,6 @@ import { Container } from "@/components/Container";
 import { CustomerName } from "@/components/CustomerName";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { getCustomerBySlug } from "@/lib/queries/customers";
 import { getProjectsWithRelations } from "@/lib/queries/projects";
@@ -40,9 +39,7 @@ export default async function CustomerDetailPage({ params }: PageProps) {
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>
-            <CustomerName>مشتری</CustomerName>
-          </SectionEyebrow>
+          <CustomerName>مشتری</CustomerName>
           <div className="mt-16 flex flex-wrap items-start gap-24">
             <div
               className="flex size-80 items-center justify-center rounded-lg text-subheading font-bold text-background"

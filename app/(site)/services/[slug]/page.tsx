@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { FaHashtag } from "react-icons/fa";
 import { Container } from "@/components/Container";
 import { GradientCta } from "@/components/GradientCta";
 import { HeroIntro } from "@/components/motion/HeroIntro";
@@ -10,7 +9,6 @@ import { MicroServiceCard } from "@/components/MicroServiceCard";
 import { OrganicBlob } from "@/components/OrganicBlob";
 import { PillButton } from "@/components/PillButton";
 import { PricingCard } from "@/components/PricingCard";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { ThemeImage } from "@/components/theme/ThemeImage";
 import { getMicroServicesByServiceId } from "@/lib/queries/microServices";
@@ -18,6 +16,7 @@ import { getProjectsWithRelations } from "@/lib/queries/projects";
 import { getServiceBySlug, getServices } from "@/lib/queries/services";
 import { serviceColorClass, serviceGradient } from "@/lib/service-colors";
 import { serviceImages } from "@/lib/service-images";
+import { MdSearch } from "react-icons/md";
 
 export const dynamic = "force-dynamic";
 
@@ -135,7 +134,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Container>
           <Reveal>
             <h2 className="mt-16 inline-flex items-center gap-1 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-              <FaHashtag aria-hidden className="size-24 shrink-0 md:size-32" />
+              <MdSearch aria-hidden className="size-24 shrink-0 md:size-32" />
               میکروسرویس‌ها
             </h2>
           </Reveal>
@@ -156,7 +155,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            <SectionEyebrow>پلن‌ها</SectionEyebrow>
             <h2 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               سه سطح قیمت‌گذاری
             </h2>

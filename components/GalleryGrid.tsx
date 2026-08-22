@@ -117,11 +117,11 @@ export function GalleryGrid({
     <>
       <div ref={containerRef}>
         <Stagger
-          className={`flex items-start gap-16 ${className}`}
+          className={`flex items-start gap-2 md:gap-4  ${className}`}
           itemClassName="min-w-0 flex-1"
         >
           {columns.map((column, columnIndex) => (
-            <div key={columnIndex} className="flex flex-col gap-16">
+            <div key={columnIndex} className="flex flex-col gap-2 md:gap-4">
               {column.map((index) => {
                 const url = urls[index];
                 return (

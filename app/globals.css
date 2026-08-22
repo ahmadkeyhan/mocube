@@ -138,7 +138,7 @@
   --foreground: #0e100f;
   --surface-50: hsl(150, 6%, 34%);
   --surface-25: #c3e2e4;
-  --off-background: #fffaea;
+  --off-background: #e4e4dd;
   --surface-canvas: #fffcf5;
   --surface-nested-panel: #f7f3e7;
   --foreground-surface: #0e100f;
@@ -276,8 +276,14 @@ h3 {
 
 @layer components {
   .card-chrome {
-    border: 1px solid var(--surface-25);
+    border: 1px solid var(--off-background);
   }
+}
+
+:is(.dark, .theme-pane-dark) .card-chrome,
+:is(.dark, .theme-pane-dark) .border-surface-25,
+:is(.dark, .theme-pane-dark) .border-surface-25\/60 {
+  border-color: transparent;
 }
 
 /* Dark: sharp rect. Light: keep rounded on cards / buttons / chips / images */

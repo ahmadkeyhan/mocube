@@ -10,7 +10,6 @@ import {
 import { SubmitButton } from "@/components/admin/SubmitButton";
 import { submitInquiry } from "@/lib/actions/contact";
 import type { FormState } from "@/lib/admin/validation";
-import { microHash } from "@/lib/micro-label";
 
 export type ContactServiceOption = {
   slug: string;
@@ -250,7 +249,7 @@ export function ContactForm({
                         }
                         className="size-12 accent-shockingly-green"
                       />
-                      {microHash(micro.name)}
+                      {micro.name}
                     </label>
                   ))}
                 </div>

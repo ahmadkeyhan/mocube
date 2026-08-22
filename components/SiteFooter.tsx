@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { FaHashtag } from "react-icons/fa";
-import { MdDesignServices, MdFolderOpen, MdRocket } from "react-icons/md";
+import { MdDesignServices, MdFolderOpen, MdRocket, MdSearch } from "react-icons/md";
 import { toPersianDigits } from "@/lib/persian";
 
 type SiteFooterProps = {
@@ -42,7 +41,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
                 href="/microservices"
                 className="inline-flex items-center gap-1 hover:text-surface-50"
               >
-                <FaHashtag aria-hidden className="size-16 shrink-0" />
+                <MdSearch aria-hidden className="size-16 shrink-0" />
                 میکروسرویس‌ها
               </Link>
             </li>

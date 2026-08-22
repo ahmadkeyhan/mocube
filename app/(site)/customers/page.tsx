@@ -4,7 +4,6 @@ import { Container } from "@/components/Container";
 import { CustomerName } from "@/components/CustomerName";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { surfaceCardClass } from "@/components/SurfaceCard";
 import { getCustomers } from "@/lib/queries/customers";
 
@@ -22,9 +21,7 @@ export default async function CustomersPage() {
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>
-            <CustomerName>مشتریان</CustomerName>
-          </SectionEyebrow>
+          <CustomerName>مشتریان</CustomerName>
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             برندهایی که ساخته‌ایم
           </h1>

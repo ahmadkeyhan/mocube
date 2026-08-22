@@ -1,6 +1,5 @@
 import { Container } from "@/components/Container";
 import { PillButton } from "@/components/PillButton";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getSiteSettings } from "@/lib/queries/site";
@@ -14,7 +13,6 @@ export default async function NotFound() {
       <main className="flex-1">
         <section className="py-108">
           <Container className="text-center">
-            <SectionEyebrow>۴۰۴</SectionEyebrow>
             <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground">
               صفحه پیدا نشد
             </h1>

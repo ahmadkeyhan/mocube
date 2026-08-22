@@ -5,7 +5,6 @@ import { HeroIntro } from "@/components/motion/HeroIntro";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
 import { PillButton } from "@/components/PillButton";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { ServiceBlock } from "@/components/ServiceBlock";
 import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { HomeThemeGate } from "@/components/theme/HomeThemeGate";
@@ -89,7 +88,6 @@ export default async function HomePage() {
       <section className="border-t border-surface-25 py-76">
         <Container>
           <Reveal>
-            {/* <SectionEyebrow>پروژه‌ها</SectionEyebrow> */}
             <div className="mt-16 mb-32 flex flex-wrap items-end justify-between gap-16">
               <div className="flex items-center gap-4 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
                 <MdFolderOpen />
@@ -121,7 +119,6 @@ export default async function HomePage() {
       <section className="border-t border-surface-25 py-76">
         <Container className="text-center">
           <Reveal>
-            {/* <SectionEyebrow>بعدی چیست؟</SectionEyebrow> */}
             <h2 className="mx-auto mt-16 max-w-2xl text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
               پروژه‌ات را با موکیوب شروع کن
             </h2>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { microHash } from "@/lib/micro-label";
+import { MdChevronLeft, MdChevronRight, MdClose } from "react-icons/md";
 
 export type GalleryMicroLink = {
   name: string;
@@ -126,11 +126,11 @@ export function GalleryLightbox({
                 onClick={onClose}
                 className="rounded-full border border-surface-25 px-16 py-8 text-body-sm font-bold text-foreground transition-colors hover:border-surface-50 hover:text-shockingly-green"
               >
-                بستن
+                <MdClose />
               </button>
             </div>
 
-            <div className="relative flex min-h-0 flex-1 items-center justify-center bg-background px-16 py-24 md:px-32">
+            <div className="relative flex min-h-0 flex-1 items-center justify-center bg-background p-2">
               {hasNav ? (
                 <>
                   <button
@@ -139,7 +139,7 @@ export function GalleryLightbox({
                     aria-label="تصویر قبلی"
                     className="absolute top-1/2 right-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-background/80 text-body-sm text-foreground backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:right-16"
                   >
-                    ‹
+                    <MdChevronRight />
                   </button>
                   <button
                     type="button"
@@ -147,7 +147,7 @@ export function GalleryLightbox({
                     aria-label="تصویر بعدی"
                     className="absolute top-1/2 left-8 z-10 flex aspect-square h-40 w-40 shrink-0 -translate-y-1/2 items-center justify-center rounded-full border border-surface-25 bg-background/80 text-body-sm text-foreground backdrop-blur-sm transition-colors hover:border-surface-50 hover:text-shockingly-green md:left-16"
                   >
-                    ›
+                    <MdChevronLeft />
                   </button>
                 </>
               ) : null}
@@ -195,7 +195,7 @@ export function GalleryLightbox({
                 ) : null}
                 {description ? (
                   <p
-                    className={`max-w-2xl text-body text-surface-50 ${
+                    className={`max-w-2xl text-body text-foreground ${
                       projectTitle && projectHref ? "mt-12" : ""
                     }`}
                   >
@@ -203,14 +203,14 @@ export function GalleryLightbox({
                   </p>
                 ) : null}
                 {micros.length > 0 ? (
-                  <div className="mt-12 flex flex-wrap gap-12">
+                  <div className="mt-12 flex flex-wrap gap-2">
                     {micros.map((micro) => (
                       <Link
                         key={micro.slug}
                         href={`/microservices/${micro.slug}`}
-                        className="rounded-full border border-surface-25 px-16 py-8 text-body-sm text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
+                        className="rounded-full bg-background px-2 py-1 text-caption text-surface-50 transition-colors hover:border-surface-50 hover:text-foreground"
                       >
-                        {microHash(micro.name)}
+                        {micro.name}
                       </Link>
                     ))}
                   </div>

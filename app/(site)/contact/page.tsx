@@ -5,7 +5,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Stagger } from "@/components/motion/Stagger";
-import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { surfaceCardClass } from "@/components/SurfaceCard";
 import { toPersianDigits } from "@/lib/persian";
 import { getMicroServicesWithService } from "@/lib/queries/microServices";
@@ -77,7 +76,6 @@ export default async function ContactPage({
     <section className="py-76">
       <Container>
         <Reveal>
-          <SectionEyebrow>تماس</SectionEyebrow>
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             بیایید حرف بزنیم
           </h1>
