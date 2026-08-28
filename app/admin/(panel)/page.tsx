@@ -26,7 +26,7 @@ export default async function AdminDashboardPage() {
     { href: "/admin/services", label: "سرویس‌ها", value: counts?.services },
     {
       href: "/admin/microservices",
-      label: "ریزسرویس‌ها",
+      label: "میکروسرویس‌ها",
       value: counts?.microServices,
     },
   ];

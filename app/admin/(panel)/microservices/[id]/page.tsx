@@ -10,7 +10,7 @@ import { getServices } from "@/lib/queries/services";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ویرایش ریزسرویس",
+  title: "ویرایش میکروسرویس",
 };
 
 type PageProps = {
@@ -29,7 +29,7 @@ export default async function EditMicroServicePage({ params }: PageProps) {
 
   return (
     <div className="flex max-w-[720px] flex-col gap-24">
-      <AdminPageHeader title="ویرایش ریزسرویس" description={micro.name} />
+      <AdminPageHeader title="ویرایش میکروسرویس" description={micro.name} />
       <MicroServiceForm
         action={updateMicroService}
         defaults={micro}

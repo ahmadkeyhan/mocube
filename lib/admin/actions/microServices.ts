@@ -25,7 +25,7 @@ function parse(form: FormData) {
 
   const doc = {
     slug: slug(form, "slug", errors),
-    name: requiredText(form, "name", errors, "نام ریزسرویس"),
+    name: requiredText(form, "name", errors, "نام میکروسرویس"),
     shortDescription: text(form, "shortDescription"),
     description: text(form, "description"),
     serviceId: serviceId ?? new ObjectId(),
@@ -53,7 +53,7 @@ export async function createMicroService(
       .insertOne({ _id: new ObjectId(), ...doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "ذخیره ریزسرویس ناموفق بود." };
+    return { message: "ذخیره میکروسرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);
@@ -80,7 +80,7 @@ export async function updateMicroService(
       .updateOne({ _id: new ObjectId(id) }, { $set: doc });
   } catch (error) {
     if (isDuplicateKeyError(error)) return duplicateSlugState();
-    return { message: "به‌روزرسانی ریزسرویس ناموفق بود." };
+    return { message: "به‌روزرسانی میکروسرویس ناموفق بود." };
   }
 
   redirect(LIST_PATH);

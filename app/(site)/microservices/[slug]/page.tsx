@@ -60,11 +60,9 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
             <p className="mt-8 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
               {micro.shortDescription}
             </p>
-            {micro.description && micro.description !== micro.shortDescription ? (
-              <p className="mt-12 max-w-2xl text-body text-surface-50">
+            <p className="mt-12 max-w-2xl text-body text-surface-50">
                 {micro.description}
               </p>
-            ) : null}
             <div className="mt-24">
               <GradientCta
                 href={

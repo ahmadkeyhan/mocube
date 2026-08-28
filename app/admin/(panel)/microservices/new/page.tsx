@@ -8,7 +8,7 @@ import { getServices } from "@/lib/queries/services";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "ریزسرویس جدید",
+  title: "میکروسرویس جدید",
 };
 
 export default async function NewMicroServicePage() {
@@ -17,7 +17,7 @@ export default async function NewMicroServicePage() {
 
   return (
     <div className="flex max-w-[720px] flex-col gap-24">
-      <AdminPageHeader title="ریزسرویس جدید" />
+      <AdminPageHeader title="میکروسرویس جدید" />
       <MicroServiceForm
         action={createMicroService}
         serviceOptions={services.map((service) => ({
