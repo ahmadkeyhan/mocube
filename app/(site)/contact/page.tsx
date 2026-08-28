@@ -73,15 +73,15 @@ export default async function ContactPage({
       : null;
 
   return (
-    <section className="py-76">
+    <section className="py-40">
       <Container>
         <Reveal>
-          <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
+          <h1 className="text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
             بیایید حرف بزنیم
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            فرم را پر کنید تا با شما تماس بگیریم. نام، تلفن و نام کسب‌وکار لازم
-            است؛ جزئیات سرویس اختیاری است.
+            اول سرویس، بعد مسیر (پلن یا بخش‌ها)، بعد جزئیات، و در آخر مشخصات
+            تماس.
           </p>
         </Reveal>
 
@@ -91,31 +91,44 @@ export default async function ContactPage({
           </p>
         ) : null}
 
-        <div className="mt-48 grid gap-48 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-          <ContactForm
-            services={services.map((service) => ({
-              slug: service.slug,
-              name: service.name,
-              pricingPlans: service.pricingPlans.map((plan) => ({
-                name: plan.name,
-                priceLabel: plan.priceLabel,
-              })),
-            }))}
-            microServices={microServices.flatMap((micro) =>
-              micro.service
-                ? [
-                    {
-                      slug: micro.slug,
-                      name: micro.name,
-                      serviceSlug: micro.service.slug,
-                    },
-                  ]
-                : [],
-            )}
-            initialServiceSlugs={[...initialServiceSlugs]}
-            initialMicroSlugs={initialMicroSlugs}
-            initialPlan={initialPlan}
-          />
+        <div
+          className={
+            sent
+              ? "mt-48 grid gap-48"
+              : "mt-48 grid gap-48 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]"
+          }
+        >
+          {sent ? null : (
+            <ContactForm
+              services={services.map((service) => ({
+                slug: service.slug,
+                name: service.name,
+                color: service.color,
+                shortDescription: service.shortDescription,
+                pricingPlans: service.pricingPlans.map((plan) => ({
+                  name: plan.name,
+                  priceLabel: plan.priceLabel,
+                  features: plan.features,
+                  highlighted: plan.highlighted,
+                })),
+              }))}
+              microServices={microServices.flatMap((micro) =>
+                micro.service
+                  ? [
+                      {
+                        slug: micro.slug,
+                        name: micro.name,
+                        shortDescription: micro.shortDescription,
+                        serviceSlug: micro.service.slug,
+                      },
+                    ]
+                  : [],
+              )}
+              initialServiceSlugs={[...initialServiceSlugs]}
+              initialMicroSlugs={initialMicroSlugs}
+              initialPlan={initialPlan}
+            />
+          )}
 
           <Stagger spring className="flex flex-col gap-16">
             <a
@@ -124,10 +137,7 @@ export default async function ContactPage({
               className={surfaceCardClass("row")}
             >
               <MdPhone className="size-24 shrink-0 text-surface-50" />
-              <p
-                className="text-body font-bold text-foreground"
-                dir="ltr"
-              >
+              <p className="text-body font-bold text-foreground" dir="ltr">
                 {phoneDisplay}
               </p>
             </a>

@@ -42,7 +42,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
     <section className="py-40">
       <Container>
         <Reveal>
-          <article className="card-chrome rounded-lg bg-off-background p-20 lg:p-32">
+          <article className="card-chrome rounded-lg bg-background p-20 lg:p-32">
             {service ? (
               <Link href={`/services/${service.slug}`}>
                 <CategoryLabel
@@ -74,7 +74,7 @@ export default async function MicroServiceDetailPage({ params }: PageProps) {
                 }
                 color={service?.color}
               >
-                درخواست این سرویس
+                درخواست این میکروسرویس
               </GradientCta>
             </div>
           </article>

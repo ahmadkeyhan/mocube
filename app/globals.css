@@ -280,11 +280,7 @@ h3 {
   }
 }
 
-:is(.dark, .theme-pane-dark) .card-chrome,
-:is(.dark, .theme-pane-dark) .border-surface-25,
-:is(.dark, .theme-pane-dark) .border-surface-25\/60 {
-  border-color: transparent;
-}
+
 
 /* Dark: sharp rect. Light: keep rounded on cards / buttons / chips / images */
 :is(.dark, .theme-pane-dark) .rounded-lg:not(.round-keep),

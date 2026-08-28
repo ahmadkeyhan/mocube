@@ -11,28 +11,11 @@ import {
 import { COLLECTIONS, getDb } from "@/lib/db";
 import type {
   Inquiry,
+  InquiryPlanSnapshot,
   MicroService,
   Service,
 } from "@/lib/models/types";
-
-const PERSIAN_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
-
-function normalizePhone(raw: string): string {
-  let out = "";
-  for (const ch of raw.trim()) {
-    const persian = PERSIAN_DIGITS.indexOf(ch);
-    if (persian >= 0) {
-      out += String(persian);
-      continue;
-    }
-    if (ch !== " " && ch !== "-") out += ch;
-  }
-  return out;
-}
-
-function isValidPhone(raw: string): boolean {
-  return /^(?:\+98|0098|98|0)?9\d{9}$/.test(normalizePhone(raw));
-}
+import { isValidPhone } from "@/lib/phone";
 
 function formList(form: FormData, name: string): string[] {
   return [
@@ -46,7 +29,9 @@ function formList(form: FormData, name: string): string[] {
   ];
 }
 
-function parsePlanValue(value: string): { serviceSlug: string; planName: string } | null {
+function parsePlanValue(
+  value: string,
+): { serviceSlug: string; planName: string } | null {
   const separator = value.indexOf("::");
   if (separator <= 0) return null;
   const serviceSlug = value.slice(0, separator).trim();
@@ -81,13 +66,18 @@ export async function submitInquiry(
 
   const serviceSlugs = formList(form, "service");
   const microSlugs = formList(form, "micro");
-  const planRef = parsePlanValue(text(form, "plan"));
+  const planRefs = formList(form, "plan")
+    .map(parsePlanValue)
+    .filter((value): value is NonNullable<typeof value> => value !== null);
+
+  const planSlugs = planRefs.map((ref) => ref.serviceSlug);
+  const serviceQuerySlugs = [...new Set([...serviceSlugs, ...planSlugs])];
 
   const [serviceDocs, microDocs] = await Promise.all([
-    serviceSlugs.length > 0
+    serviceQuerySlugs.length > 0
       ? db
           .collection<Service>(COLLECTIONS.services)
-          .find({ slug: { $in: serviceSlugs } })
+          .find({ slug: { $in: serviceQuerySlugs } })
           .toArray()
       : Promise.resolve([]),
     microSlugs.length > 0
@@ -100,38 +90,25 @@ export async function submitInquiry(
 
   const serviceBySlug = new Map(serviceDocs.map((s) => [s.slug, s]));
 
-  let planService = planRef
-    ? serviceBySlug.get(planRef.serviceSlug)
-    : undefined;
-  if (planRef && !planService) {
-    planService =
-      (await db
-        .collection<Service>(COLLECTIONS.services)
-        .findOne({ slug: planRef.serviceSlug })) ?? undefined;
-  }
-
-  const services = [
-    ...serviceDocs.map((s) => ({ slug: s.slug, name: s.name })),
-    ...(planService && !serviceBySlug.has(planService.slug)
-      ? [{ slug: planService.slug, name: planService.name }]
-      : []),
-  ];
-
+  const services = serviceDocs.map((s) => ({ slug: s.slug, name: s.name }));
   const microServices = microDocs.map((m) => ({ slug: m.slug, name: m.name }));
 
-  const matchedPlan = planRef
-    ? (planService?.pricingPlans.find((p) => p.name === planRef.planName) ??
-      null)
-    : null;
+  const planSnapshots: InquiryPlanSnapshot[] = [];
+  for (const ref of planRefs) {
+    const planService = serviceBySlug.get(ref.serviceSlug);
+    const matchedPlan = planService?.pricingPlans.find(
+      (p) => p.name === ref.planName,
+    );
+    if (!planService || !matchedPlan) continue;
+    planSnapshots.push({
+      serviceSlug: planService.slug,
+      serviceName: planService.name,
+      planName: matchedPlan.name,
+      priceLabel: matchedPlan.priceLabel,
+    });
+  }
 
-  const plan = planRef && planService && matchedPlan
-    ? {
-        serviceSlug: planService.slug,
-        serviceName: planService.name,
-        planName: matchedPlan.name,
-        priceLabel: matchedPlan.priceLabel,
-      }
-    : null;
+  const plan = planSnapshots[0] ?? null;
 
   try {
     await db.collection<Inquiry>(COLLECTIONS.inquiries).insertOne({
