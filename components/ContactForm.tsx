@@ -549,7 +549,7 @@ export function ContactForm({
                                 });
                               }}
                             />
-                            <h3 className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-foreground md:text-[26px] md:tracking-[-0.26px]">
+                            <h3 className="text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-foreground md:text-[26px] md:tracking-subheading">
                               {micro.name}
                             </h3>
                             <p className="mt-12 text-body text-surface-50">

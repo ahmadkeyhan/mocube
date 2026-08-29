@@ -28,7 +28,7 @@ export default async function EditMicroServicePage({ params }: PageProps) {
   if (!micro) notFound();
 
   return (
-    <div className="flex max-w-[720px] flex-col gap-24">
+    <div className="flex max-w-180 flex-col gap-24">
       <AdminPageHeader title="ویرایش میکروسرویس" description={micro.name} />
       <MicroServiceForm
         action={updateMicroService}

@@ -47,7 +47,7 @@ export function MicroServiceCard({
       />
       <div className="relative z-10 pointer-events-none flex items-center justify-between gap-16">
         <motion.h3
-          className="min-w-0 text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-foreground md:text-[26px] md:tracking-[-0.26px]"
+          className="min-w-0 text-[20px] leading-[1.2] font-bold tracking-[-0.2px] text-foreground md:text-[26px] md:tracking-subheading"
           variants={reduce ? undefined : titleVariants}
           transition={{ type: "spring", stiffness: 300, damping: 24 }}
         >
