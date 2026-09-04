@@ -1,16 +1,16 @@
 import type { DefaultSession } from "next-auth";
-import type { AdminRole } from "@/lib/models/types";
+import type { UserRole } from "@/lib/models/types";
 
 declare module "next-auth" {
   interface Session {
     user: {
       id: string;
-      role: AdminRole;
+      role: UserRole;
     } & DefaultSession["user"];
   }
 
   interface User {
-    role: AdminRole;
+    role: UserRole;
   }
 }
 
@@ -18,6 +18,6 @@ declare module "next-auth" {
 // augmented at its source for the merge to take effect.
 declare module "@auth/core/jwt" {
   interface JWT {
-    role?: AdminRole;
+    role?: UserRole;
   }
 }

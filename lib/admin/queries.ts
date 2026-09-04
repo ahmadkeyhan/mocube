@@ -2,8 +2,10 @@ import "server-only";
 import { type Document, ObjectId } from "mongodb";
 import { COLLECTIONS, getDb } from "@/lib/db";
 import type {
+  CalendarEntry,
   Customer,
   MicroService,
+  Occasion,
   Project,
   Service,
 } from "@/lib/models/types";
@@ -50,22 +52,44 @@ export async function getMicroServiceById(id: string) {
   return doc ? serialize(doc) : null;
 }
 
+export async function getOccasionById(id: string) {
+  const doc = await findById<Occasion>(COLLECTIONS.occasions, id);
+  return doc ? serialize(doc) : null;
+}
+
+export async function getCalendarEntryById(id: string) {
+  const doc = await findById<CalendarEntry>(COLLECTIONS.calendarEntries, id);
+  return doc ? serialize(doc) : null;
+}
+
 export async function getAdminCounts() {
   try {
     const db = await getDb();
     if (!db) return null;
 
-    const [projects, customers, services, microServices, inquiries, unreadInquiries] =
-      await Promise.all([
-        db.collection(COLLECTIONS.projects).countDocuments(),
-        db.collection(COLLECTIONS.customers).countDocuments(),
-        db.collection(COLLECTIONS.services).countDocuments(),
-        db.collection(COLLECTIONS.microServices).countDocuments(),
-        db.collection(COLLECTIONS.inquiries).countDocuments(),
-        db
-          .collection(COLLECTIONS.inquiries)
-          .countDocuments({ read: false }),
-      ]);
+    const [
+      projects,
+      customers,
+      services,
+      microServices,
+      inquiries,
+      unreadInquiries,
+      pendingBusinesses,
+      openBriefs,
+    ] = await Promise.all([
+      db.collection(COLLECTIONS.projects).countDocuments(),
+      db.collection(COLLECTIONS.customers).countDocuments(),
+      db.collection(COLLECTIONS.services).countDocuments(),
+      db.collection(COLLECTIONS.microServices).countDocuments(),
+      db.collection(COLLECTIONS.inquiries).countDocuments(),
+      db.collection(COLLECTIONS.inquiries).countDocuments({ read: false }),
+      db
+        .collection(COLLECTIONS.businesses)
+        .countDocuments({ status: "pending" }),
+      db.collection(COLLECTIONS.calendarEntries).countDocuments({
+        "request.status": { $in: ["requested", "inDesign"] },
+      }),
+    ]);
 
     return {
       projects,
@@ -74,6 +98,8 @@ export async function getAdminCounts() {
       microServices,
       inquiries,
       unreadInquiries,
+      pendingBusinesses,
+      openBriefs,
     };
   } catch {
     return null;

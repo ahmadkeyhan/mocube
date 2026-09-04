@@ -29,6 +29,16 @@ export default async function AdminDashboardPage() {
       label: "میکروسرویس‌ها",
       value: counts?.microServices,
     },
+    {
+      href: "/admin/mocalendar/businesses",
+      label: "کسب‌وکارهای در انتظار",
+      value: counts?.pendingBusinesses,
+    },
+    {
+      href: "/admin/mocalendar/briefs",
+      label: "سفارش‌های باز",
+      value: counts?.openBriefs,
+    },
   ];
 
   return (

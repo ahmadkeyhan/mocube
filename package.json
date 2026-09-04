@@ -9,6 +9,8 @@
     "lint": "biome check",
     "format": "biome format --write",
     "seed": "tsx scripts/seed.ts",
+    "seed-occasions": "tsx scripts/seed-occasions.ts",
+    "verify-jalali": "tsx scripts/verify-jalali.ts",
     "create-admin": "tsx scripts/create-admin.ts"
   },
   "dependencies": {

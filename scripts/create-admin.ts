@@ -46,6 +46,17 @@ async function createAdmin() {
     db.collection("customers").createIndex({ slug: 1 }, { unique: true }),
     db.collection("projects").createIndex({ slug: 1 }, { unique: true }),
     db.collection("inquiries").createIndex({ createdAt: -1 }),
+    db
+      .collection("businesses")
+      .createIndex({ ownerUserId: 1 }, { unique: true }),
+    db
+      .collection("businesses")
+      .createIndex({ shareToken: 1 }, { unique: true, sparse: true }),
+    db.collection("occasions").createIndex({ slug: 1 }, { unique: true }),
+    db.collection("calendarEntries").createIndex({ businessId: 1, date: 1 }),
+    db
+      .collection("calendarEntries")
+      .createIndex({ "request.status": 1, "request.requestedAt": -1 }),
   ]);
 
   const passwordHash = await hash(password, 12);

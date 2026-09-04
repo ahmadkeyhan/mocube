@@ -10,6 +10,9 @@ const links = [
   { href: "/admin/customers", label: "مشتریان" },
   { href: "/admin/services", label: "سرویس‌ها" },
   { href: "/admin/microservices", label: "میکروسرویس‌ها" },
+  { href: "/admin/mocalendar/businesses", label: "کسب‌وکارها" },
+  { href: "/admin/mocalendar/occasions", label: "مناسبت‌ها" },
+  { href: "/admin/mocalendar/briefs", label: "سفارش طراحی" },
   { href: "/admin/settings", label: "تنظیمات سایت" },
 ];
 

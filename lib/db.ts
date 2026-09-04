@@ -43,4 +43,7 @@ export const COLLECTIONS = {
   siteSettings: "siteSettings",
   users: "users",
   inquiries: "inquiries",
+  businesses: "businesses",
+  occasions: "occasions",
+  calendarEntries: "calendarEntries",
 } as const;

@@ -2,10 +2,14 @@ import { compare } from "bcryptjs";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { COLLECTIONS, getDb } from "@/lib/db";
-import type { AdminUser } from "@/lib/models/types";
+import type { AppUser } from "@/lib/models/types";
 
 export const LOGIN_PATH = "/admin/login";
 export const ADMIN_HOME = "/admin";
+export const CALENDAR_LOGIN_PATH = "/calendar/login";
+export const CALENDAR_HOME = "/calendar";
+export const CALENDAR_SIGNUP_PATH = "/calendar/signup";
+export const CALENDAR_PENDING_PATH = "/calendar/pending";
 
 // Compared against when the username is unknown, so a wrong username costs the
 // same time as a wrong password and cannot be used to enumerate accounts.
@@ -34,7 +38,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!db) return null;
 
         const user = await db
-          .collection<AdminUser>(COLLECTIONS.users)
+          .collection<AppUser>(COLLECTIONS.users)
           .findOne({ username });
 
         const matches = await compare(
@@ -62,8 +66,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
     authorized({ request, auth: session }) {
-      if (request.nextUrl.pathname.startsWith(LOGIN_PATH)) return true;
-      return session?.user?.role === "admin";
+      const { pathname } = request.nextUrl;
+      if (pathname === LOGIN_PATH || pathname.startsWith(CALENDAR_LOGIN_PATH)) {
+        return true;
+      }
+      if (pathname.startsWith(CALENDAR_SIGNUP_PATH)) return true;
+      if (pathname.startsWith("/calendar/share")) return true;
+
+      if (pathname.startsWith("/admin")) {
+        if (session?.user?.role === "admin") return true;
+        if (session?.user) {
+          return Response.redirect(new URL(CALENDAR_HOME, request.nextUrl));
+        }
+        return false;
+      }
+
+      if (pathname.startsWith("/calendar")) {
+        if (session?.user?.role === "admin") {
+          return Response.redirect(new URL(ADMIN_HOME, request.nextUrl));
+        }
+        if (session?.user) return true;
+        return Response.redirect(new URL(CALENDAR_LOGIN_PATH, request.nextUrl));
+      }
+
+      return true;
     },
   },
 });
