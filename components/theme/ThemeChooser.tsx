@@ -47,8 +47,7 @@ function ChooserPane({ mode, imageSrc, priority }: PaneProps) {
       {/* Match home hero: Container + pt-32/md:pt-76 — not vertically centered */}
       <div className="relative z-10 mx-auto flex min-h-svh w-full max-w-7xl flex-col items-center px-16 pt-32 pb-76 text-center md:px-24 md:pt-76">
         <h1
-          style={{ color: "#0ae68e" }}
-          className="mt-16 max-w-none text-3xl font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:w-[15ch]"
+          className="mt-16 max-w-none text-3xl text-shockingly-green font-bold leading-display tracking-heading-lg sm:text-heading-lg sm:tracking-heading-lg lg:w-[15ch]"
         >
           سوخت خلاقیت برای رسیدن به مدار توجه
         </h1>
@@ -294,7 +293,7 @@ export function ThemeChooser({ onComplete }: ThemeChooserProps) {
             onPointerCancel={onPointerUp}
             aria-hidden
           />
-          <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-shockingly-green left-1/2 -translate-x-1/2" />
+          {/* <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-shockingly-green left-1/2 -translate-x-1/2" /> */}
           <button
             type="button"
             className="absolute top-1/2 left-1/2 flex size-48 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none items-center justify-center rounded-full round-keep bg-shockingly-green text-background outline-none focus-visible:ring-2 focus-visible:ring-shockingly-green focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e100f]"

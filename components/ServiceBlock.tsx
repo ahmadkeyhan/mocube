@@ -53,14 +53,14 @@ export function ServiceBlock({
             }`}
           >
             <h3
-              className={`text-heading-sm tracking-heading-sm transition-transform duration-300 ease-out group-hover:-translate-x-1 md:text-heading md:tracking-heading ${serviceColorClass[color]}`}
+              className={`text-heading-sm tracking-heading-sm transition-transform duration-300 ${slug === "illustration" ? "bg-off-background rounded-lg p-2" : ""} ease-out group-hover:-translate-x-1 md:text-heading md:tracking-heading ${serviceColorClass[color]}`}
             >
               {name}
             </h3>
-            <p className="mt-8 text-body-sm text-foreground sm:text-body">
+            <p className={`text-body-sm text-foreground sm:text-body ${slug === "illustration" ? "bg-off-background rounded-lg p-2" : ""}`}>
               {shortDescription}
             </p>
-            <span className="mt-16 inline-flex items-center justify-center rounded-full border border-surface-25 bg-background/50 px-20 py-12 text-body-sm font-bold text-foreground transition-colors group-hover:border-surface-50">
+            <span className="mt-8 inline-flex items-center justify-center rounded-full border border-surface-25 bg-background px-20 py-12 text-body-sm font-bold text-foreground transition-colors group-hover:border-surface-50">
               کاوش {name}
             </span>
           </Reveal>

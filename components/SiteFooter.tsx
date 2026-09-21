@@ -80,17 +80,17 @@ export function SiteFooter({ settings }: SiteFooterProps) {
               </Link>
             </li>
             <li>
-              <Link href="/services/illustration" className="text-pink">
+              <Link href="/services/illustration" className="text-foreground">
                 تصویرسازی
               </Link>
             </li>
             <li>
-              <Link href="/services/web" className="text-lilac">
+              <Link href="/services/web" className="text-shockingly-green">
                 توسعه وب
               </Link>
             </li>
             <li>
-              <Link href="/services/merch" className="text-blue">
+              <Link href="/services/merch" className="text-pink">
                 مرچندایز
               </Link>
             </li>
