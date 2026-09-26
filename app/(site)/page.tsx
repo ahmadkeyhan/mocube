@@ -44,8 +44,7 @@ export default async function HomePage() {
             }
             subcopy={
               <p className="mt-24 max-w-xl text-body-sm sm:text-body-lg  text-surface-50">
-                استودیو خلاق موکیوب — هویت برند، تصویرسازی، وب و مرچندایز برای
-                برندهایی که می‌خواهند دیده شوند.
+                ما در موکیوب، برند را از ایده تا اجرا می‌سازیم؛ از خلق برند و جایگاه‌یابی در بازار تا هویت بصری، تصویرسازی و توسعه وب.
               </p>
             }
             actions={

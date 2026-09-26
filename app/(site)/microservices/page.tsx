@@ -23,10 +23,14 @@ export default async function MicroServicesPage() {
       <Container>
         <Reveal>
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-            جزئیاتی که می‌توانید انتخاب کنید
+            میکروسرویس‌ها
           </h1>
-          <p className="mt-16 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            هر میکروسرویس مجموعه‌ای از گالری‌ها و نمونه‌های واقعی دارد.
+          <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+          برای هر مشکلی لازم نیست یک فضاپیمای جدید بسازیم. بعضی وقت‌ها فقط یک قطعه کم است.
+
+          </p>
+          <p className="mt-2 mb-32 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
+          میکروسرویس‌های موکیوب،  راهکارهای کوچک و مستقل برای اضافه‌کردن قابلیت، حل یک مشکل یا ارتقای  برند شما هستند.
           </p>
         </Reveal>
 

@@ -20,11 +20,11 @@ export default async function ServicesPage() {
       <Container className="grid grid-cols-2 gap-12">
         <Reveal className="col-span-2">
           <h1 className="mt-16 text-heading-sm tracking-heading-sm text-foreground md:text-heading md:tracking-heading">
-            چهار تخصص، یک استودیو
+          سرویس‌هایی برای حرکت مداوم برند
           </h1>
           <p className="mt-16 max-w-2xl text-body-lg tracking-body-lg text-surface-50">
-            هر سرویس مجموعه‌ای از میکروسرویس‌ها و سه پلن قیمتی دارد تا با مقیاس
-            پروژه‌ات هماهنگ شود.
+          هر مأموریت به تجهیزات متفاوتی نیاز دارد.
+          با انتخاب سرویس‌های مورد نیاز، فضاپیمای مناسب کسب‌وکارتان را طراحی کنید.
           </p>
         </Reveal>
         {services.map((service, index) => (

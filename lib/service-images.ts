@@ -17,7 +17,7 @@ export const serviceImages: Partial<Record<string, ThemeImagePair>> = {
     dark: "/webdev-light.webp",
   },
   illustration: {
-    light: "/illustration-light.jpeg",
-    dark: "/illustration-dark.jpeg",
+    light: "/illustration-light.webp",
+    dark: "/illustration-dark.webp",
   }
 };
